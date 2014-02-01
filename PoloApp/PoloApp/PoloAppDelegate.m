@@ -7,12 +7,16 @@
 //
 
 #import "PoloAppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation PoloAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [Parse setApplicationId:@"3TMKj6bB7P5K6gGFz4mqCNDwKmQ39WUnYRgc2Y7N"
+                  clientKey:@"M74KXveZwc6Y7nOauXRKmGwml38vRUOCo8Mmx3l4"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     return YES;
 }
 							

@@ -7,9 +7,10 @@
 //
 
 #import "AddFriendViewController.h"
+#import <Parse/Parse.h>
 
 @interface AddFriendViewController ()
-
+@property (nonatomic) NSMutableArray *friends;
 @end
 
 @implementation AddFriendViewController
@@ -21,6 +22,22 @@
         // Custom initialization
     }
     return self;
+}
+- (IBAction)AddFriendClick:(id)sender {
+    NSLog(@"So friends. Much wow");
+}
+- (IBAction)AddButtonClick:(id)sender {
+    PFUser *me = [PFUser currentUser];
+    _friends = me[@"friends"];
+
+    NSString *newFriend = [_friendNameField text];
+    
+    //Only add new friend if user does not already have the friend
+    if (![_friends containsObject:newFriend]){
+        [_friends addObject:newFriend];
+        NSLog(@"New Frand");
+        [me saveInBackground];
+    }
 }
 
 - (void)viewDidLoad

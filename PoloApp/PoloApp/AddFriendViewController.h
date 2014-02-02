@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AddFriendViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UITextField *friendNameField;
 @end

@@ -8,6 +8,7 @@
 
 #import "PoloAppDelegate.h"
 #import <Parse/Parse.h>
+#import "TestFlight.h"
 
 @implementation PoloAppDelegate
 
@@ -17,6 +18,11 @@
     [Parse setApplicationId:@"3TMKj6bB7P5K6gGFz4mqCNDwKmQ39WUnYRgc2Y7N"
                   clientKey:@"M74KXveZwc6Y7nOauXRKmGwml38vRUOCo8Mmx3l4"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    // start of your application:didFinishLaunchingWithOptions // ...
+    [TestFlight takeOff:@"dbc65925-e5bd-48a0-b838-b8799f44c331"];
+    // The rest of your application:didFinishLaunchingWithOptions method// ...
+    
     return YES;
 }
 							

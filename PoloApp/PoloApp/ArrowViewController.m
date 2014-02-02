@@ -55,7 +55,43 @@
     _me[@"lat"] = [NSString stringWithFormat:@"%f", myLat];
     _me[@"long"] = [NSString stringWithFormat:@"%f", myLong];
     
+    [_me saveInBackground];
+    
     //TODO: Actually get this from somebody else
+//    PFQuery *query= [PFUser query];
+//    [query whereKey:@"username" equalTo:@"Tufts"];
+// 
+//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+//        
+//        // Convert Degree to Radian to point the arrow
+//        float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
+//        
+//        //Find my current location
+//        float myLat = _locationManager.location.coordinate.latitude;
+//        float myLong = _locationManager.location.coordinate.longitude;
+//        
+//        float otherLat = [[object objectForKey:@"lat"] floatValue];
+//        float otherLong = [[object objectForKey:@"long"] floatValue];
+//        
+//        float change = 0.0f;
+//        
+//        float dLat = otherLat - myLat;
+//        float dLong = otherLong - myLong;
+//        
+//        change = atan2(dLat, dLong);
+//        change -= M_PI_2;
+//        
+//        NSLog([NSString stringWithFormat:@"%f", change]);
+//        newRad -= change;
+//        [_compassView setNewRad:newRad];
+//        [_compassView setNeedsDisplay];
+//    }];
+    
+    
+    
+//    float otherLat = 42.4069;
+//    float otherLong = -71.1198;
+    
     //TUFTS - SE
     float otherLat = 42.4069;
     float otherLong = -71.1198;
@@ -73,34 +109,12 @@
 //    float otherLong = -71.1961;
     
     float change = 0.0f;
-    
+//
     float dLat = otherLat - myLat;
     float dLong = otherLong - myLong;
     
     change = atan2(dLat, dLong);
     change -= M_PI_2;
-    
-//    if (otherLat > myLat){
-//        if (otherLong > myLong){
-//            //North East
-//            change = atan((otherLong - myLong)/(otherLat - myLat));
-//            NSLog(@"NORTHEAST  %f", change);
-//        } else {
-//            //North West
-//            change = -(atan((myLong - otherLong)/(otherLat - myLat)));
-//            NSLog(@"NORTHWEST  %f", change);
-//        }
-//    } else {
-//        if (otherLong > myLong){
-//            //South East
-//            change = M_PI - atan((otherLong - myLong)/(myLat - otherLat));
-//             NSLog(@"SOUTHEAST  %f", change);
-//        } else {
-//            //South West
-//            change = M_PI + atan((myLong - otherLong)/(myLat - otherLat));
-//            NSLog(@"SOUTHWEST  %f %f %f %f %f ", change, myLat, otherLat, myLong, otherLong);
-//        }
-//    }
     
     NSLog([NSString stringWithFormat:@"%f", change]);
     newRad -= change;

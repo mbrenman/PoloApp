@@ -1,5 +1,5 @@
 //
-//  FriendViewController.h
+//  FriendTableViewController.h
 //  PoloApp
 //
 //  Created by Matt Brenman on 2/1/14.
@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import "FriendCell.h"
 
-
-@interface FriendViewController : UIViewController
+@interface FriendTableViewController : UITableViewController
 
 @end

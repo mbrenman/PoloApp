@@ -26,11 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    PFUser *me = [PFUser currentUser];
-    if (!me[@"friends"]){
-        me[@"friends"] = @[@"matt", @"julian"];
-    }
-    [me saveInBackground];
+
     NSLog(@"YYEAAAHHHHHHHHH");
 	// Do any additional setup after loading the view.
 }
@@ -38,12 +34,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    PFUser *me = [PFUser currentUser];
-    NSMutableArray *friends = me[@"friends"];
-    for (NSString *friend in friends){
-        NSLog(friend);
-    }
+
     NSLog(@"WOOOOOOOT");
 }
 

@@ -1,5 +1,5 @@
 //
-//  FriendViewController.h
+//  FriendCell.h
 //  PoloApp
 //
 //  Created by Matt Brenman on 2/1/14.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@interface FriendCell : UITableViewCell
 
-@interface FriendViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UILabel *friendLabel;
 
 @end

@@ -8,6 +8,12 @@
 
 #import "ArrowView.h"
 
+@interface ArrowView ()
+
+@property (strong, nonatomic) UIImageView *imageView;
+
+@end
+
 @implementation ArrowView
 
 - (id)initWithFrame:(CGRect)frame
@@ -19,17 +25,17 @@
     return self;
 }
 
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    UIImage *image = [UIImage imageNamed:@"compass_needle.png"];
-    UIImageView *imageView = [ [ UIImageView alloc ] initWithFrame:CGRectMake(0.0, 100.0, image.size.width, image.size.height) ];
-    imageView.image = image;
-    [self addSubview:imageView];
+    if (!_imageView){
+        _imageView = [ [ UIImageView alloc ] initWithFrame:CGRectMake(0.0, 100.0, _arrowImage.size.width, _arrowImage.size.height) ];
+        _imageView.image = _arrowImage;
+        [self addSubview:_imageView];
+    }
     CGAffineTransform rotate = CGAffineTransformMakeRotation( _newRad );
-    [imageView setTransform:rotate];
+    [_imageView setTransform:rotate];
 }
 
 

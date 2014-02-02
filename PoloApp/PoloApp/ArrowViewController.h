@@ -13,9 +13,7 @@
 
 @interface ArrowViewController : UIViewController<CLLocationManagerDelegate>
 
-@property (strong, nonatomic) IBOutlet ArrowView *compassView;
-
+    @property (strong, nonatomic) IBOutlet ArrowView *compassView;
 	@property (nonatomic) CLLocationManager *locationManager;
-	@property (nonatomic) IBOutlet UIImageView *compassImage;
 
 @end

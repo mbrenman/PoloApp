@@ -26,6 +26,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    [_compassView setArrowImage:[UIImage imageNamed:@"compass_needle.png"]];
     
 	_locationManager=[[CLLocationManager alloc] init];
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;

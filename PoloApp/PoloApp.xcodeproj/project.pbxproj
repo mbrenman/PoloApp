@@ -13,6 +13,7 @@
 		AA046074189E3F31001A5785 /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA046073189E3F31001A5785 /* ArrowView.m */; };
 		AA046078189E7BF8001A5785 /* chevron.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = AA046077189E7BF8001A5785 /* chevron.jpeg */; };
 		AA04607A189E8719001A5785 /* PoloTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = AA046079189E8719001A5785 /* PoloTitle.png */; };
+		AA04607C189E9AD8001A5785 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA04607B189E9AD8001A5785 /* icon.png */; };
 		AAD39611189D923A00675698 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39610189D923A00675698 /* Foundation.framework */; };
 		AAD39613189D923A00675698 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39612189D923A00675698 /* CoreGraphics.framework */; };
 		AAD39615189D923A00675698 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39614189D923A00675698 /* UIKit.framework */; };
@@ -60,6 +61,7 @@
 		AA046073189E3F31001A5785 /* ArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowView.m; sourceTree = "<group>"; };
 		AA046077189E7BF8001A5785 /* chevron.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chevron.jpeg; sourceTree = "<group>"; };
 		AA046079189E8719001A5785 /* PoloTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PoloTitle.png; sourceTree = "<group>"; };
+		AA04607B189E9AD8001A5785 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		AAD3960D189D923A00675698 /* PoloApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoloApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD39610189D923A00675698 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AAD39612189D923A00675698 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -188,6 +190,7 @@
 				AA04606A189E321C001A5785 /* ArrowViewController.m */,
 				AAD39628189D923A00675698 /* Images.xcassets */,
 				AA046079189E8719001A5785 /* PoloTitle.png */,
+				AA04607B189E9AD8001A5785 /* icon.png */,
 				AA046077189E7BF8001A5785 /* chevron.jpeg */,
 				AAD39617189D923A00675698 /* Supporting Files */,
 			);
@@ -302,6 +305,7 @@
 			files = (
 				AAD39629189D923A00675698 /* Images.xcassets in Resources */,
 				AAD3961B189D923A00675698 /* InfoPlist.strings in Resources */,
+				AA04607C189E9AD8001A5785 /* icon.png in Resources */,
 				AAD39624189D923A00675698 /* Main.storyboard in Resources */,
 				AA046078189E7BF8001A5785 /* chevron.jpeg in Resources */,
 				AA04607A189E8719001A5785 /* PoloTitle.png in Resources */,

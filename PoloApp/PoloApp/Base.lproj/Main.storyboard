@@ -36,15 +36,30 @@
                     <view key="view" contentMode="scaleToFill" id="H3x-c5-ceN" customClass="ArrowView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Vi-VG-jus">
+                                <rect key="frame" x="20" y="20" width="48" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ArrowBackButtonPushed:" destination="pLJ-TN-xqo" eventType="touchUpInside" id="bpP-jP-zjP"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="compassView" destination="H3x-c5-ceN" id="TRR-h6-6sb"/>
+                        <segue destination="dek-XN-y0q" kind="modal" identifier="ArrowToPerson" id="uRb-x2-C5F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLl-xp-cSp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="658" y="-631"/>
+            <point key="canvasLocation" x="1714" y="649"/>
         </scene>
         <!--Friend Table View Controller - Friends-->
         <scene sceneID="fNB-h4-yfZ">
@@ -91,11 +106,12 @@
                         <outlet property="addFriendButton" destination="Jlm-gG-3S5" id="6on-r6-ra2"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="LogOutSegue" id="TXm-gv-ivG"/>
                         <segue destination="7bK-gE-R1Q" kind="push" identifier="AddFriendSegue" id="GsT-ym-nQk"/>
+                        <segue destination="pLJ-TN-xqo" kind="modal" identifier="PersonToArrow" id="TJO-ak-dHW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RYc-HU-N7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1186" y="-63"/>
+            <point key="canvasLocation" x="1160" y="-63"/>
         </scene>
         <!--Add Friend View Controller-->
         <scene sceneID="cT0-Gk-3s9">
@@ -169,6 +185,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="SgB-wt-Hiy"/>
+        <segue reference="uRb-x2-C5F"/>
     </inferredMetricsTieBreakers>
 </document>

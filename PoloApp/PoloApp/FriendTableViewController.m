@@ -30,6 +30,11 @@
     [self performSegueWithIdentifier:@"LogOutSegue" sender:nil];
 }
 
+- (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath{
+    //TODO: Later on, pull the data from the sender and use that to customize the arrow
+    [self performSegueWithIdentifier:@"PersonToArrow" sender:nil];
+}
+
 - (void)addFriendScreen
 {
     NSLog(@"Go to Add Friend Screen");

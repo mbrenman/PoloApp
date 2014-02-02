@@ -38,6 +38,11 @@
     _me = [PFUser currentUser];
 }
 
+- (IBAction)ArrowBackButtonPushed:(id)sender {
+    NSLog(@"Pushed");
+    [self performSegueWithIdentifier:@"ArrowToPerson" sender:nil];
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
 	// Convert Degree to Radian to point the arrow
 	float newRad =  -newHeading.trueHeading * M_PI / 180.0f;

@@ -52,25 +52,31 @@
     
     //TODO: Actually get this from somebody else
     //TUFTS - SE
-//    float otherLat = 42.4069;
-//    float otherLong = -71.1198;
+    float otherLat = 42.4069;
+    float otherLong = -71.1198;
 
     //SW
 //    float otherLat = 42.3369;
 //    float otherLong = -71.2097;
     
     //NE
-    float otherLat = 42.5278;
-    float otherLong = -70.9292;
+//    float otherLat = 42.5278;
+//    float otherLong = -70.9292;
     
+    //NW
+//    float otherLat = 42.5047;
+//    float otherLong = -71.1961;
     
     float change = 0.0f;
     if (otherLat > myLat){
         if (otherLong > myLong){
             //North East
-            //change = acos((otherLong - myLong)/(otherLat - myLat));
+            change = atan((otherLong - myLong)/(otherLat - myLat));
+            NSLog(@"NORTHEAST  %f", change);
         } else {
             //North West
+            change = atan((otherLong - myLong)/(otherLat - myLat));
+            NSLog(@"NORTHWEST  %f", change);
         }
     } else {
         if (otherLong > myLong){

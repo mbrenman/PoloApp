@@ -30,7 +30,7 @@
 - (void)drawRect:(CGRect)rect
 {
     if (!_imageView){
-        _imageView = [ [ UIImageView alloc ] initWithFrame:CGRectMake(0.0, 100.0, _arrowImage.size.width, _arrowImage.size.height) ];
+        _imageView = [ [ UIImageView alloc ] initWithFrame:CGRectMake(60.0, 120.0, _arrowImage.size.width, _arrowImage.size.height) ];
         _imageView.image = _arrowImage;
         [self addSubview:_imageView];
     }

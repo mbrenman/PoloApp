@@ -27,7 +27,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    [_compassView setArrowImage:[UIImage imageNamed:@"compass_needle.png"]];
+    [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
 	_locationManager=[[CLLocationManager alloc] init];
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -75,25 +75,23 @@
             NSLog(@"NORTHEAST  %f", change);
         } else {
             //North West
-            change = atan((otherLong - myLong)/(otherLat - myLat));
+            change = -(atan((myLong-otherLong)/(otherLat - myLat)));
             NSLog(@"NORTHWEST  %f", change);
         }
     } else {
         if (otherLong > myLong){
             //South East
-            change = atan((otherLong - myLong)/(otherLat - myLat));
-            change += M_PI;
-            NSLog(@"SOUTHEAST  %f", change);
+            change = M_PI - atan((otherLong - myLong)/(myLat-otherLat));
+             NSLog(@"SOUTHEAST  %f", change);
         } else {
             //South West
-            change = M_PI - atan((myLong - otherLong)/(otherLat - myLat));
+            change = M_PI + atan((myLong - otherLong)/(myLat -otherLat));
             NSLog(@"SOUTHWEST  %f %f %f %f %f ", change, myLat, otherLat, myLong, otherLong);
         }
     }
     
     NSLog([NSString stringWithFormat:@"%f", change]);
     newRad += change;
-    
     [_compassView setNewRad:newRad];
     [_compassView setNeedsDisplay];
 }

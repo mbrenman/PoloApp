@@ -47,6 +47,8 @@
     [_addFriendButton setTarget:self];
     [_addFriendButton setAction:@selector(addFriendScreen)];
     
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
     

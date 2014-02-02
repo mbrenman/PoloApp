@@ -17,5 +17,5 @@
     @property (strong, nonatomic) PFUser *me;
     @property (strong, nonatomic) IBOutlet ArrowView *compassView;
 	@property (nonatomic) CLLocationManager *locationManager;
-
+    @property float otherLat, otherLong;
 @end

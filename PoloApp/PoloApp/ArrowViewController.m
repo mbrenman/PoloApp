@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 
 @interface ArrowViewController ()
-
+@property int timer;
 @end
 
 @implementation ArrowViewController
@@ -28,6 +28,10 @@
     [super viewDidLoad];
     
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
+    
+    _timer = 0;
+    _otherLat = 0;
+    _otherLong = 0;
     
 	_locationManager=[[CLLocationManager alloc] init];
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -58,34 +62,47 @@
     [_me saveInBackground];
     
     //TODO: Actually get this from somebody else
-//    PFQuery *query= [PFUser query];
-//    [query whereKey:@"username" equalTo:@"Tufts"];
-// 
-//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+    if (_timer == 0){
+        _timer++;
+        PFQuery *query= [PFUser query];
+        [query whereKey:@"username" equalTo:@"julian"];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+        
+//            // Convert Degree to Radian to point the arrow
+//            float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
 //        
-//        // Convert Degree to Radian to point the arrow
-//        float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
+//            //Find my current location
+//            float myLat = _locationManager.location.coordinate.latitude;
+//            float myLong = _locationManager.location.coordinate.longitude;
+        
+            float otherLat = [[object objectForKey:@"lat"] floatValue];
+            float otherLong = [[object objectForKey:@"long"] floatValue];
+            
+//            NSLog([NSString stringWithFormat:@"SUP DUDE... %d", _timer]);
+            
+            [self setOtherLat:otherLat];
+            [self setOtherLong:otherLong];
 //        
-//        //Find my current location
-//        float myLat = _locationManager.location.coordinate.latitude;
-//        float myLong = _locationManager.location.coordinate.longitude;
+//            float change = 0.0f;
+//
+//            float dLat = otherLat - myLat;
+//            float dLong = otherLong - myLong;
 //        
-//        float otherLat = [[object objectForKey:@"lat"] floatValue];
-//        float otherLong = [[object objectForKey:@"long"] floatValue];
+//            change = atan2(dLat, dLong);
+//            change -= M_PI_2;
 //        
-//        float change = 0.0f;
-//        
-//        float dLat = otherLat - myLat;
-//        float dLong = otherLong - myLong;
-//        
-//        change = atan2(dLat, dLong);
-//        change -= M_PI_2;
-//        
-//        NSLog([NSString stringWithFormat:@"%f", change]);
-//        newRad -= change;
-//        [_compassView setNewRad:newRad];
-//        [_compassView setNeedsDisplay];
-//    }];
+//            NSLog([NSString stringWithFormat:@"%f", change]);
+//            newRad -= change;
+//            [_compassView setNewRad:newRad];
+            [_compassView setNeedsDisplay];
+        }];
+    } else {
+        if (_timer < 30){
+            _timer++;
+        } else {
+            _timer = 0;
+        }
+    }
     
     
     
@@ -93,8 +110,8 @@
 //    float otherLong = -71.1198;
     
     //TUFTS - SE
-    float otherLat = 42.4069;
-    float otherLong = -71.1198;
+//    float otherLat = 42.4069;
+//    float otherLong = -71.1198;
 
     //SW
 //    float otherLat = 42.3369;
@@ -110,13 +127,13 @@
     
     float change = 0.0f;
 //
-    float dLat = otherLat - myLat;
-    float dLong = otherLong - myLong;
+    float dLat = _otherLat - myLat;
+    float dLong = _otherLong - myLong;
     
     change = atan2(dLat, dLong);
     change -= M_PI_2;
-    
-    NSLog([NSString stringWithFormat:@"%f", change]);
+//
+//    NSLog([NSString stringWithFormat:@"%f", change]);
     newRad -= change;
     [_compassView setNewRad:newRad];
     [_compassView setNeedsDisplay];

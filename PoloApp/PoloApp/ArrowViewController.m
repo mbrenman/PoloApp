@@ -7,6 +7,7 @@
 //
 
 #import "ArrowViewController.h"
+#import <Parse/Parse.h>
 
 @interface ArrowViewController ()
 
@@ -33,21 +34,60 @@
 	_locationManager.headingFilter = 1;
 	_locationManager.delegate=self;
 	[_locationManager startUpdatingHeading];
+    
+    _me = [PFUser currentUser];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-	// Convert Degree to Radian and move the needle
-	float oldRad =  -manager.heading.trueHeading * M_PI / 180.0f;
+	// Convert Degree to Radian to point the arrow
 	float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
-//	CABasicAnimation *theAnimation;
-//    theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-//    theAnimation.fromValue = [NSNumber numberWithFloat:oldRad];
-//    theAnimation.toValue=[NSNumber numberWithFloat:newRad];
-//    theAnimation.duration = 0.5f;
-//    [_compassImage.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
-//    _compassImage.transform = CGAffineTransformMakeRotation(newRad);
-//	NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
 
+    //Find my current location
+    float myLat = _locationManager.location.coordinate.latitude;
+    float myLong = _locationManager.location.coordinate.longitude;
+    
+    //Push my current location to the cloud (so partner can see it)
+    _me[@"lat"] = [NSString stringWithFormat:@"%f", myLat];
+    _me[@"long"] = [NSString stringWithFormat:@"%f", myLong];
+    
+    //TODO: Actually get this from somebody else
+    //TUFTS - SE
+//    float otherLat = 42.4069;
+//    float otherLong = -71.1198;
+
+    //SW
+//    float otherLat = 42.3369;
+//    float otherLong = -71.2097;
+    
+    //NE
+    float otherLat = 42.5278;
+    float otherLong = -70.9292;
+    
+    
+    float change = 0.0f;
+    if (otherLat > myLat){
+        if (otherLong > myLong){
+            //North East
+            //change = acos((otherLong - myLong)/(otherLat - myLat));
+        } else {
+            //North West
+        }
+    } else {
+        if (otherLong > myLong){
+            //South East
+            change = atan((otherLong - myLong)/(otherLat - myLat));
+            change += M_PI;
+            NSLog(@"SOUTHEAST  %f", change);
+        } else {
+            //South West
+            change = M_PI - atan((myLong - otherLong)/(otherLat - myLat));
+            NSLog(@"SOUTHWEST  %f %f %f %f %f ", change, myLat, otherLat, myLong, otherLong);
+        }
+    }
+    
+    NSLog([NSString stringWithFormat:@"%f", change]);
+    newRad += change;
+    
     [_compassView setNewRad:newRad];
     [_compassView setNeedsDisplay];
 }

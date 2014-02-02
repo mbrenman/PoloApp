@@ -10,9 +10,11 @@
 #import "ArrowView.h"
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>
 
 @interface ArrowViewController : UIViewController<CLLocationManagerDelegate>
 
+    @property (strong, nonatomic) PFUser *me;
     @property (strong, nonatomic) IBOutlet ArrowView *compassView;
 	@property (nonatomic) CLLocationManager *locationManager;
 

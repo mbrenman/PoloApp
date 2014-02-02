@@ -103,7 +103,7 @@
 //    }
     
     NSLog([NSString stringWithFormat:@"%f", change]);
-    newRad += change;
+    newRad -= change;
     [_compassView setNewRad:newRad];
     [_compassView setNeedsDisplay];
 }

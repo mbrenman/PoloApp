@@ -68,11 +68,31 @@
                         <outlet property="LogoutButton" destination="oHy-D9-Q86" id="NRg-0p-NMu"/>
                         <outlet property="addFriendButton" destination="Jlm-gG-3S5" id="6on-r6-ra2"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="LogOutSegue" id="TXm-gv-ivG"/>
+                        <segue destination="7bK-gE-R1Q" kind="push" identifier="AddFriendSegue" id="GsT-ym-nQk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RYc-HU-N7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1188" y="-57"/>
+        </scene>
+        <!--Add Friend View Controller-->
+        <scene sceneID="cT0-Gk-3s9">
+            <objects>
+                <viewController id="7bK-gE-R1Q" customClass="AddFriendViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fCo-Gd-C9r"/>
+                        <viewControllerLayoutGuide type="bottom" id="YNI-PW-R6N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R4w-s4-Xji">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RTC-mE-KDq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pUM-wc-ye7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800" y="-67"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IfQ-TV-SG3">

@@ -33,7 +33,7 @@
 - (void)addFriendScreen
 {
     NSLog(@"Go to Add Friend Screen");
-//    [self performSegueWithIdentifier:@"AddFriendSegue" sender:nil];
+    [self performSegueWithIdentifier:@"AddFriendSegue" sender:nil];
 }
 
 - (void)viewDidLoad

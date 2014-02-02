@@ -20,6 +20,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -34,14 +35,35 @@
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
         
+        logInViewController.view.backgroundColor = [UIColor blackColor];
+        logInViewController.logInView.usernameField.backgroundColor = [UIColor whiteColor];
+        logInViewController.logInView.passwordField.backgroundColor = [UIColor whiteColor];
+        logInViewController.logInView.usernameField.textColor = [UIColor blackColor];
+        logInViewController.logInView.passwordField.textColor = [UIColor blackColor];
+        
+        logInViewController.logInView.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PoloTitle.png"]];
+        
         logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten;
         
         // Create the sign up view controller
         PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
-
+        
         [signUpViewController setFields:PFSignUpFieldsDefault | PFSignUpFieldsAdditional];
         [[[signUpViewController signUpView] additionalField] setPlaceholder:@"Phone Number"];
+        
+        signUpViewController.signUpView.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PoloTitle.png"]];
+        
+        signUpViewController.view.backgroundColor = [UIColor blackColor];
+        signUpViewController.signUpView.usernameField.backgroundColor = [UIColor whiteColor];
+        signUpViewController.signUpView.passwordField.backgroundColor = [UIColor whiteColor];
+        signUpViewController.signUpView.usernameField.textColor = [UIColor blackColor];
+        signUpViewController.signUpView.passwordField.textColor = [UIColor blackColor];
+        
+        signUpViewController.signUpView.emailField.backgroundColor = [UIColor whiteColor];
+        signUpViewController.signUpView.emailField.textColor = [UIColor blackColor];
+        signUpViewController.signUpView.additionalField.backgroundColor = [UIColor whiteColor];
+        signUpViewController.signUpView.additionalField.textColor = [UIColor blackColor];
         
         // Assign our sign up controller to be displayed from the login controller
         [logInViewController setSignUpController:signUpViewController];

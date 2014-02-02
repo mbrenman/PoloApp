@@ -75,17 +75,17 @@
             NSLog(@"NORTHEAST  %f", change);
         } else {
             //North West
-            change = -(atan((myLong-otherLong)/(otherLat - myLat)));
+            change = -(atan((myLong - otherLong)/(otherLat - myLat)));
             NSLog(@"NORTHWEST  %f", change);
         }
     } else {
         if (otherLong > myLong){
             //South East
-            change = M_PI - atan((otherLong - myLong)/(myLat-otherLat));
+            change = M_PI - atan((otherLong - myLong)/(myLat - otherLat));
              NSLog(@"SOUTHEAST  %f", change);
         } else {
             //South West
-            change = M_PI + atan((myLong - otherLong)/(myLat -otherLat));
+            change = M_PI + atan((myLong - otherLong)/(myLat - otherLat));
             NSLog(@"SOUTHWEST  %f %f %f %f %f ", change, myLat, otherLat, myLong, otherLong);
         }
     }

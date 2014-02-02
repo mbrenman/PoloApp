@@ -7,7 +7,6 @@
 //
 
 #import "LoginSignupViewController.h"
-#import "FriendViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
 

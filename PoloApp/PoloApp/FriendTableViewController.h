@@ -12,5 +12,6 @@
 
 @interface FriendTableViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addFriendButton;
 
 @end

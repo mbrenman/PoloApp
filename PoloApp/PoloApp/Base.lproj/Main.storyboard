@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-137" y="40"/>
+            <point key="canvasLocation" x="-133" y="-130"/>
         </scene>
         <!--Friend Table View Controller - Friends-->
         <scene sceneID="fNB-h4-yfZ">
@@ -66,11 +66,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="LogoutButton" destination="oHy-D9-Q86" id="NRg-0p-NMu"/>
+                        <outlet property="addFriendButton" destination="Jlm-gG-3S5" id="6on-r6-ra2"/>
+                        <segue destination="vXZ-lx-hvc" kind="modal" identifier="LogOutSegue" id="TXm-gv-ivG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RYc-HU-N7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482" y="87"/>
+            <point key="canvasLocation" x="1188" y="-57"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IfQ-TV-SG3">
@@ -88,7 +90,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Avt-2h-SZC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="492" y="99"/>
+            <point key="canvasLocation" x="450" y="509"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

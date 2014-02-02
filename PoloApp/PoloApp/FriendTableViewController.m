@@ -26,17 +26,26 @@
 - (void)logoutUser
 {
     [PFUser logOut];
-    if (![PFUser currentUser]){
-        NSLog(@"#Winning");
-    }
+    //Segue back to the login screen
+    [self performSegueWithIdentifier:@"LogOutSegue" sender:nil];
 }
-         
+
+- (void)addFriendScreen
+{
+    NSLog(@"Go to Add Friend Screen");
+//    [self performSegueWithIdentifier:@"AddFriendSegue" sender:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    //Set up buttons with their targets
     [_logoutButton setTarget:self];
     [_logoutButton setAction:@selector(logoutUser)];
+    
+    [_addFriendButton setTarget:self];
+    [_addFriendButton setAction:@selector(addFriendScreen)];
     
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];

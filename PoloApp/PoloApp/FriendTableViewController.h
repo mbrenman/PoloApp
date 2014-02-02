@@ -11,5 +11,6 @@
 #import "FriendCell.h"
 
 @interface FriendTableViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 
 @end

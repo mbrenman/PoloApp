@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA046062189E0680001A5785 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA046061189E0680001A5785 /* Parse.framework */; };
 		AAD39611189D923A00675698 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39610189D923A00675698 /* Foundation.framework */; };
 		AAD39613189D923A00675698 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39612189D923A00675698 /* CoreGraphics.framework */; };
 		AAD39615189D923A00675698 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39614189D923A00675698 /* UIKit.framework */; };
@@ -21,7 +22,6 @@
 		AAD39632189D923A00675698 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39614189D923A00675698 /* UIKit.framework */; };
 		AAD3963A189D923A00675698 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAD39638189D923A00675698 /* InfoPlist.strings */; };
 		AAD3963C189D923A00675698 /* PoloAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD3963B189D923A00675698 /* PoloAppTests.m */; };
-		AAD39646189D974A00675698 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39645189D974A00675698 /* Parse.framework */; };
 		AAD39648189D977E00675698 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39647189D977E00675698 /* AudioToolbox.framework */; };
 		AAD3964A189D978500675698 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39649189D978500675698 /* CFNetwork.framework */; };
 		AAD3964C189D978D00675698 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD3964B189D978D00675698 /* CoreLocation.framework */; };
@@ -46,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA046061189E0680001A5785 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		AAD3960D189D923A00675698 /* PoloApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoloApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD39610189D923A00675698 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AAD39612189D923A00675698 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,7 +66,6 @@
 		AAD39637189D923A00675698 /* PoloAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PoloAppTests-Info.plist"; sourceTree = "<group>"; };
 		AAD39639189D923A00675698 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AAD3963B189D923A00675698 /* PoloAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoloAppTests.m; sourceTree = "<group>"; };
-		AAD39645189D974A00675698 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		AAD39647189D977E00675698 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AAD39649189D978500675698 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		AAD3964B189D978D00675698 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -92,12 +92,12 @@
 				AAD39652189D97AE00675698 /* QuartzCore.framework in Frameworks */,
 				AAD39650189D97A400675698 /* MobileCoreServices.framework in Frameworks */,
 				AAD3964E189D979900675698 /* libz.dylib in Frameworks */,
+				AA046062189E0680001A5785 /* Parse.framework in Frameworks */,
 				AAD3964C189D978D00675698 /* CoreLocation.framework in Frameworks */,
 				AAD3964A189D978500675698 /* CFNetwork.framework in Frameworks */,
 				AAD39648189D977E00675698 /* AudioToolbox.framework in Frameworks */,
 				AAD39613189D923A00675698 /* CoreGraphics.framework in Frameworks */,
 				AAD39615189D923A00675698 /* UIKit.framework in Frameworks */,
-				AAD39646189D974A00675698 /* Parse.framework in Frameworks */,
 				AAD39611189D923A00675698 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,10 +143,10 @@
 				AAD39651189D97AE00675698 /* QuartzCore.framework */,
 				AAD3964F189D97A400675698 /* MobileCoreServices.framework */,
 				AAD3964D189D979900675698 /* libz.dylib */,
+				AA046061189E0680001A5785 /* Parse.framework */,
 				AAD3964B189D978D00675698 /* CoreLocation.framework */,
 				AAD39649189D978500675698 /* CFNetwork.framework */,
 				AAD39647189D977E00675698 /* AudioToolbox.framework */,
-				AAD39645189D974A00675698 /* Parse.framework */,
 				AAD39610189D923A00675698 /* Foundation.framework */,
 				AAD39612189D923A00675698 /* CoreGraphics.framework */,
 				AAD39614189D923A00675698 /* UIKit.framework */,
@@ -434,6 +434,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp,
+					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp/PoloApp,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PoloApp/PoloApp-Prefix.pch";
@@ -451,6 +452,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp,
+					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp/PoloApp,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PoloApp/PoloApp-Prefix.pch";
@@ -521,6 +523,7 @@
 				AAD39641189D923A00675698 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AAD39642189D923A00675698 /* Build configuration list for PBXNativeTarget "PoloAppTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +532,7 @@
 				AAD39644189D923A00675698 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

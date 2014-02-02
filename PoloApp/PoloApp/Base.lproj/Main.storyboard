@@ -64,10 +64,13 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="oHy-D9-Q86"/>
                         <barButtonItem key="rightBarButtonItem" title="Add Friend" id="Jlm-gG-3S5"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="LogoutButton" destination="oHy-D9-Q86" id="NRg-0p-NMu"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RYc-HU-N7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1018" y="99"/>
+            <point key="canvasLocation" x="1482" y="87"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IfQ-TV-SG3">

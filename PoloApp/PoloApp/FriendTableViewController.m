@@ -23,9 +23,21 @@
     return self;
 }
 
+- (void)logoutUser
+{
+    [PFUser logOut];
+    if (![PFUser currentUser]){
+        NSLog(@"#Winning");
+    }
+}
+         
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [_logoutButton setTarget:self];
+    [_logoutButton setAction:@selector(logoutUser)];
+    
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
     

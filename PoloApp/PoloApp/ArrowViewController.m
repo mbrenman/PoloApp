@@ -73,27 +73,34 @@
 //    float otherLong = -71.1961;
     
     float change = 0.0f;
-    if (otherLat > myLat){
-        if (otherLong > myLong){
-            //North East
-            change = atan((otherLong - myLong)/(otherLat - myLat));
-            NSLog(@"NORTHEAST  %f", change);
-        } else {
-            //North West
-            change = -(atan((myLong - otherLong)/(otherLat - myLat)));
-            NSLog(@"NORTHWEST  %f", change);
-        }
-    } else {
-        if (otherLong > myLong){
-            //South East
-            change = M_PI - atan((otherLong - myLong)/(myLat - otherLat));
-             NSLog(@"SOUTHEAST  %f", change);
-        } else {
-            //South West
-            change = M_PI + atan((myLong - otherLong)/(myLat - otherLat));
-            NSLog(@"SOUTHWEST  %f %f %f %f %f ", change, myLat, otherLat, myLong, otherLong);
-        }
-    }
+    
+    float dLat = otherLat - myLat;
+    float dLong = otherLong - myLong;
+    
+    change = atan2(dLat, dLong);
+    change -= M_PI_2;
+    
+//    if (otherLat > myLat){
+//        if (otherLong > myLong){
+//            //North East
+//            change = atan((otherLong - myLong)/(otherLat - myLat));
+//            NSLog(@"NORTHEAST  %f", change);
+//        } else {
+//            //North West
+//            change = -(atan((myLong - otherLong)/(otherLat - myLat)));
+//            NSLog(@"NORTHWEST  %f", change);
+//        }
+//    } else {
+//        if (otherLong > myLong){
+//            //South East
+//            change = M_PI - atan((otherLong - myLong)/(myLat - otherLat));
+//             NSLog(@"SOUTHEAST  %f", change);
+//        } else {
+//            //South West
+//            change = M_PI + atan((myLong - otherLong)/(myLat - otherLat));
+//            NSLog(@"SOUTHWEST  %f %f %f %f %f ", change, myLat, otherLat, myLong, otherLong);
+//        }
+//    }
     
     NSLog([NSString stringWithFormat:@"%f", change]);
     newRad += change;

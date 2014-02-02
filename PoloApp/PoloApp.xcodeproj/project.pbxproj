@@ -14,7 +14,7 @@
 		AAD3961D189D923A00675698 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD3961C189D923A00675698 /* main.m */; };
 		AAD39621189D923A00675698 /* PoloAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39620189D923A00675698 /* PoloAppDelegate.m */; };
 		AAD39624189D923A00675698 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD39622189D923A00675698 /* Main.storyboard */; };
-		AAD39627189D923A00675698 /* PoloViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39626189D923A00675698 /* PoloViewController.m */; };
+		AAD39627189D923A00675698 /* LoginSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39626189D923A00675698 /* LoginSignupViewController.m */; };
 		AAD39629189D923A00675698 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD39628189D923A00675698 /* Images.xcassets */; };
 		AAD39630189D923A00675698 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD3962F189D923A00675698 /* XCTest.framework */; };
 		AAD39631189D923A00675698 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39610189D923A00675698 /* Foundation.framework */; };
@@ -31,6 +31,7 @@
 		AAD39654189D97B500675698 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39653189D97B500675698 /* Security.framework */; };
 		AAD39656189D97BB00675698 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39655189D97BB00675698 /* StoreKit.framework */; };
 		AAD39658189D97C300675698 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39657189D97C300675698 /* SystemConfiguration.framework */; };
+		AAD3965B189DBF2100675698 /* FriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD3965A189DBF2100675698 /* FriendViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +56,8 @@
 		AAD3961F189D923A00675698 /* PoloAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PoloAppDelegate.h; sourceTree = "<group>"; };
 		AAD39620189D923A00675698 /* PoloAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoloAppDelegate.m; sourceTree = "<group>"; };
 		AAD39623189D923A00675698 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AAD39625189D923A00675698 /* PoloViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PoloViewController.h; sourceTree = "<group>"; };
-		AAD39626189D923A00675698 /* PoloViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoloViewController.m; sourceTree = "<group>"; };
+		AAD39625189D923A00675698 /* LoginSignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginSignupViewController.h; sourceTree = "<group>"; };
+		AAD39626189D923A00675698 /* LoginSignupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginSignupViewController.m; sourceTree = "<group>"; };
 		AAD39628189D923A00675698 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AAD3962E189D923A00675698 /* PoloAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoloAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD3962F189D923A00675698 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -73,6 +74,8 @@
 		AAD39653189D97B500675698 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AAD39655189D97BB00675698 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AAD39657189D97C300675698 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AAD39659189DBF2100675698 /* FriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendViewController.h; sourceTree = "<group>"; };
+		AAD3965A189DBF2100675698 /* FriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,8 +158,10 @@
 				AAD3961F189D923A00675698 /* PoloAppDelegate.h */,
 				AAD39620189D923A00675698 /* PoloAppDelegate.m */,
 				AAD39622189D923A00675698 /* Main.storyboard */,
-				AAD39625189D923A00675698 /* PoloViewController.h */,
-				AAD39626189D923A00675698 /* PoloViewController.m */,
+				AAD39659189DBF2100675698 /* FriendViewController.h */,
+				AAD3965A189DBF2100675698 /* FriendViewController.m */,
+				AAD39625189D923A00675698 /* LoginSignupViewController.h */,
+				AAD39626189D923A00675698 /* LoginSignupViewController.m */,
 				AAD39628189D923A00675698 /* Images.xcassets */,
 				AAD39617189D923A00675698 /* Supporting Files */,
 			);
@@ -290,7 +295,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAD39627189D923A00675698 /* PoloViewController.m in Sources */,
+				AAD3965B189DBF2100675698 /* FriendViewController.m in Sources */,
+				AAD39627189D923A00675698 /* LoginSignupViewController.m in Sources */,
 				AAD39621189D923A00675698 /* PoloAppDelegate.m in Sources */,
 				AAD3961D189D923A00675698 /* main.m in Sources */,
 			);

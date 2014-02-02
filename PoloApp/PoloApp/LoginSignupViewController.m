@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 mbrenman. All rights reserved.
 //
 
-#import "PoloViewController.h"
+#import "LoginSignupViewController.h"
+#import "FriendViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
 
@@ -29,7 +30,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [PFUser logOut];
+
     if (![PFUser currentUser]) { // No user logged in
         // Create the log in view controller
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
@@ -50,28 +51,9 @@
         
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
+    } else {
+        [self performSegueWithIdentifier:@"FriendsFromLogin" sender:nil];
     }
-    
-    
-//    PFUser *user = [PFUser user];
-//    user.username = @"julian";
-//    user.password = @"a";
-//    user.email = @"email@example.com";
-//    
-//    // other fields can be set just like with PFObject
-//    user[@"lat"] = [NSString stringWithFormat:@"%f", _locationManager.location.coordinate.latitude];
-//    user[@"long"] = [NSString stringWithFormat:@"%f", _locationManager.location.coordinate.longitude];
-//    
-//    
-//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//            // Hooray! Let them use the app now.
-//        } else {
-//            NSString *errorString = [error userInfo][@"error"];
-//            NSLog(errorString);
-//            // Show the errorString somewhere and let the user try again.
-//        }
-//    }];
 }
 
 // Sent to the delegate to determine whether the log in request should be submitted to the server.

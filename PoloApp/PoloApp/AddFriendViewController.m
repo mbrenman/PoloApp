@@ -32,11 +32,14 @@
 
     NSString *newFriend = [_friendNameField text];
     
+    //TODO: Check if friend exists as a user in the app
+    
     //Only add new friend if user does not already have the friend
     if (![_friends containsObject:newFriend]){
         [_friends addObject:newFriend];
         NSLog(@"New Frand");
         [me saveInBackground];
+        [self performSegueWithIdentifier:@"FriendAdded" sender:nil];
     }
 }
 

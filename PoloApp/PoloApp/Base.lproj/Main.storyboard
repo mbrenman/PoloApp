@@ -29,22 +29,22 @@
         <scene sceneID="fNB-h4-yfZ">
             <objects>
                 <tableViewController id="Gf3-if-SZ3" customClass="FriendTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" id="BVx-jh-ziI">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" id="BVx-jh-ziI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="16" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="53" id="dR3-9c-t5f" customClass="FriendCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="53"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="16" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="69" id="dR3-9c-t5f" customClass="FriendCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dR3-9c-t5f" id="kLd-Fw-EtT">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNp-jo-XnI">
-                                            <rect key="frame" x="139" y="16" width="42" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNp-jo-XnI">
+                                            <rect key="frame" x="20" y="0.0" width="280" height="68"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -112,11 +112,12 @@
                     <navigationItem key="navigationItem" id="RTC-mE-KDq"/>
                     <connections>
                         <outlet property="friendNameField" destination="NGR-ge-ucn" id="14B-6P-q9s"/>
+                        <segue destination="dek-XN-y0q" kind="modal" identifier="FriendAdded" id="SgB-wt-Hiy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pUM-wc-ye7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1800" y="-67"/>
+            <point key="canvasLocation" x="1996" y="-237"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IfQ-TV-SG3">
@@ -142,4 +143,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="SgB-wt-Hiy"/>
+    </inferredMetricsTieBreakers>
 </document>

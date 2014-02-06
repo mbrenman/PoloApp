@@ -54,6 +54,13 @@ const float TIMER_MAX = 100;
 {
     [super viewWillDisappear:animated];
     NSLog(@"will dissapear");
+    
+    //Zero out location data when we get off of the arrow
+    _me[@"lat"] = @"0";
+    _me[@"long"] = @"0";
+    [_me saveInBackground];
+    
+    //Stop the view from trying to update when we turn the device
     [_locationManager stopUpdatingHeading];
     //Purge whitelist
 }

@@ -14,10 +14,6 @@
 		AA046078189E7BF8001A5785 /* chevron.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = AA046077189E7BF8001A5785 /* chevron.jpeg */; };
 		AA04607A189E8719001A5785 /* PoloTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = AA046079189E8719001A5785 /* PoloTitle.png */; };
 		AA04607C189E9AD8001A5785 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA04607B189E9AD8001A5785 /* icon.png */; };
-		AA046085189E9D9F001A5785 /* .README.md.swp in Resources */ = {isa = PBXBuildFile; fileRef = AA04607E189E9D9F001A5785 /* .README.md.swp */; };
-		AA046086189E9D9F001A5785 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04607F189E9D9F001A5785 /* libTestFlight.a */; };
-		AA046087189E9DA0001A5785 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AA046080189E9D9F001A5785 /* README.md */; };
-		AA046088189E9DA0001A5785 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = AA046081189E9D9F001A5785 /* release_notes.md */; };
 		AAD39611189D923A00675698 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39610189D923A00675698 /* Foundation.framework */; };
 		AAD39613189D923A00675698 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39612189D923A00675698 /* CoreGraphics.framework */; };
 		AAD39615189D923A00675698 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39614189D923A00675698 /* UIKit.framework */; };
@@ -66,13 +62,6 @@
 		AA046077189E7BF8001A5785 /* chevron.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chevron.jpeg; sourceTree = "<group>"; };
 		AA046079189E8719001A5785 /* PoloTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PoloTitle.png; sourceTree = "<group>"; };
 		AA04607B189E9AD8001A5785 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		AA04607E189E9D9F001A5785 /* .README.md.swp */ = {isa = PBXFileReference; lastKnownFileType = file; path = .README.md.swp; sourceTree = "<group>"; };
-		AA04607F189E9D9F001A5785 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		AA046080189E9D9F001A5785 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		AA046081189E9D9F001A5785 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		AA046082189E9D9F001A5785 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		AA046083189E9D9F001A5785 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
-		AA046084189E9D9F001A5785 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		AAD3960D189D923A00675698 /* PoloApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoloApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD39610189D923A00675698 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AAD39612189D923A00675698 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -113,7 +102,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAD39658189D97C300675698 /* SystemConfiguration.framework in Frameworks */,
-				AA046086189E9D9F001A5785 /* libTestFlight.a in Frameworks */,
 				AAD39656189D97BB00675698 /* StoreKit.framework in Frameworks */,
 				AAD39654189D97B500675698 /* Security.framework in Frameworks */,
 				AAD39652189D97AE00675698 /* QuartzCore.framework in Frameworks */,
@@ -142,20 +130,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA04607D189E9D9F001A5785 /* TestFlightSDK2.2.1 */ = {
-			isa = PBXGroup;
-			children = (
-				AA04607E189E9D9F001A5785 /* .README.md.swp */,
-				AA04607F189E9D9F001A5785 /* libTestFlight.a */,
-				AA046080189E9D9F001A5785 /* README.md */,
-				AA046081189E9D9F001A5785 /* release_notes.md */,
-				AA046082189E9D9F001A5785 /* TestFlight+AsyncLogging.h */,
-				AA046083189E9D9F001A5785 /* TestFlight+ManualSessions.h */,
-				AA046084189E9D9F001A5785 /* TestFlight.h */,
-			);
-			path = TestFlightSDK2.2.1;
-			sourceTree = "<group>";
-		};
 		AAD39604189D923A00675698 = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +158,6 @@
 				AAD39651189D97AE00675698 /* QuartzCore.framework */,
 				AAD3964F189D97A400675698 /* MobileCoreServices.framework */,
 				AAD3964D189D979900675698 /* libz.dylib */,
-				AA04607D189E9D9F001A5785 /* TestFlightSDK2.2.1 */,
 				AA046061189E0680001A5785 /* Parse.framework */,
 				AAD3964B189D978D00675698 /* CoreLocation.framework */,
 				AAD39649189D978500675698 /* CFNetwork.framework */,
@@ -330,14 +303,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA046088189E9DA0001A5785 /* release_notes.md in Resources */,
 				AAD39629189D923A00675698 /* Images.xcassets in Resources */,
-				AA046085189E9D9F001A5785 /* .README.md.swp in Resources */,
 				AAD3961B189D923A00675698 /* InfoPlist.strings in Resources */,
 				AA04607C189E9AD8001A5785 /* icon.png in Resources */,
 				AAD39624189D923A00675698 /* Main.storyboard in Resources */,
 				AA046078189E7BF8001A5785 /* chevron.jpeg in Resources */,
-				AA046087189E9DA0001A5785 /* README.md in Resources */,
 				AA04607A189E8719001A5785 /* PoloTitle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,10 +469,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PoloApp/PoloApp-Prefix.pch";
 				INFOPLIST_FILE = "PoloApp/PoloApp-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp/PoloApp/TestFlightSDK2.2.1,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -521,10 +488,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PoloApp/PoloApp-Prefix.pch";
 				INFOPLIST_FILE = "PoloApp/PoloApp-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp/PoloApp/TestFlightSDK2.2.1,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

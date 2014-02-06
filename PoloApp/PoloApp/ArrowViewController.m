@@ -105,9 +105,9 @@ const float TIMER_MAX = 100;
     [_me saveInBackground];
     
     //TODO: Actually get this from somebody else
-
+    
     PFQuery *query= [PFUser query];
-    [query whereKey:@"username" equalTo:@"Tufts"];
+    [query whereKey:@"username" equalTo:_targetUserName];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
         
         //TODO: Only get the rest of the information if currentUser is in the target's whitelist

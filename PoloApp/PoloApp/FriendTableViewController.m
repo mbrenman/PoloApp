@@ -8,6 +8,7 @@
 
 #import "FriendTableViewController.h"
 #import "FriendCell.h"
+#import "ArrowViewController.h"
 
 @interface FriendTableViewController ()
 @property (nonatomic) NSMutableArray *friends;
@@ -33,7 +34,8 @@
 
 - (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath{
     //TODO: Later on, pull the data from the sender and use that to customize the arrow
-    [self performSegueWithIdentifier:@"PersonToArrow" sender:nil];
+    NSString *user = [_friends objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"PersonToArrow" sender:user];
 }
 
 - (void)addFriendScreen
@@ -139,7 +141,7 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -147,8 +149,9 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"PersonToArrow"]){
+        [segue.destinationViewController setTargetUserName:sender] ;
+    }
 }
-
- */
 
 @end

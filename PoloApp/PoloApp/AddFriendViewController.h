@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 mbrenman. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
+@import UIKit;
 
 @interface AddFriendViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *friendNameField;

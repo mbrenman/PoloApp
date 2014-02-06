@@ -7,8 +7,7 @@
 //
 
 #import "LoginSignupViewController.h"
-#import <CoreLocation/CoreLocation.h>
-
+@import CoreLocation;
 
 @interface PoloViewController ()
     @property (nonatomic) CLLocationManager *locationManager;

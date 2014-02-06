@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 mbrenman. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "ArrowView.h"
-#import <CoreLocation/CoreLocation.h>
-#import <QuartzCore/QuartzCore.h>
+@import CoreLocation;
+@import QuartzCore;
 #import <Parse/Parse.h>
 
 @interface ArrowViewController : UIViewController<CLLocationManagerDelegate>

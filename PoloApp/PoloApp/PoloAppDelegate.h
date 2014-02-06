@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 mbrenman. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface PoloAppDelegate : UIResponder <UIApplicationDelegate>
 

@@ -9,8 +9,12 @@
 #import "ArrowViewController.h"
 #import <Parse/Parse.h>
 
+const float TIMER_MAX = 100;
+
 @interface ArrowViewController ()
 @property int timer;
+@property float radChange;
+@property int numberOfCalls;
 @end
 
 @implementation ArrowViewController
@@ -29,9 +33,13 @@
     
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
-    _timer = 0;
-    _otherLat = 0;
-    _otherLong = 0;
+    _timer = TIMER_MAX;
+    
+    _numberOfCalls = 0;
+    
+    _radChange = 0.0f;
+    _otherLat = 0.0f;
+    _otherLong = 0.0f;
     
 	_locationManager=[[CLLocationManager alloc] init];
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -50,7 +58,26 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
 	// Convert Degree to Radian to point the arrow
 	float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
+    
+    if (_timer == TIMER_MAX){
+        _radChange = [self findNewRadChangeForTarget];
+        _timer = 0;
+    } else {
+        _timer++;
+    }
+    
+    
+    newRad += _radChange;
+    [_compassView setNewRad:newRad];
+    [_compassView setNeedsDisplay];
+}
 
+- (float)findNewRadChangeForTarget
+{
+    
+    _numberOfCalls++;
+    
+    float radChange = 0;
     //Find my current location
     float myLat = _locationManager.location.coordinate.latitude;
     float myLong = _locationManager.location.coordinate.longitude;
@@ -62,81 +89,35 @@
     [_me saveInBackground];
     
     //TODO: Actually get this from somebody else
-    if (_timer == 0){
-        _timer++;
-        PFQuery *query= [PFUser query];
-        [query whereKey:@"username" equalTo:@"julian"];
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
-        
-//            // Convert Degree to Radian to point the arrow
-//            float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
-//        
-//            //Find my current location
-//            float myLat = _locationManager.location.coordinate.latitude;
-//            float myLong = _locationManager.location.coordinate.longitude;
-        
-            float otherLat = [[object objectForKey:@"lat"] floatValue];
-            float otherLong = [[object objectForKey:@"long"] floatValue];
-            
-//            NSLog([NSString stringWithFormat:@"SUP DUDE... %d", _timer]);
-            
-            [self setOtherLat:otherLat];
-            [self setOtherLong:otherLong];
-//        
-//            float change = 0.0f;
-//
-//            float dLat = otherLat - myLat;
-//            float dLong = otherLong - myLong;
-//        
-//            change = atan2(dLat, dLong);
-//            change -= M_PI_2;
-//        
-//            NSLog([NSString stringWithFormat:@"%f", change]);
-//            newRad -= change;
-//            [_compassView setNewRad:newRad];
-            [_compassView setNeedsDisplay];
-        }];
-    } else {
-        if (_timer < 30){
-            _timer++;
-        } else {
-            _timer = 0;
-        }
-    }
-    
-    
-    
-//    float otherLat = 42.4069;
-//    float otherLong = -71.1198;
-    
-    //TUFTS - SE
-//    float otherLat = 42.4069;
-//    float otherLong = -71.1198;
 
-    //SW
-//    float otherLat = 42.3369;
-//    float otherLong = -71.2097;
-    
-    //NE
-//    float otherLat = 42.5278;
-//    float otherLong = -70.9292;
-    
-    //NW
-//    float otherLat = 42.5047;
-//    float otherLong = -71.1961;
+    PFQuery *query= [PFUser query];
+    [query whereKey:@"username" equalTo:@"Tufts"];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+            
+        float otherLat = [[object objectForKey:@"lat"] floatValue];
+        float otherLong = [[object objectForKey:@"long"] floatValue];
+            
+        NSLog([NSString stringWithFormat:@"SUP DUDE... %d", _numberOfCalls]);
+            
+        [self setOtherLat:otherLat];
+        [self setOtherLong:otherLong];
+            
+        [_compassView setNeedsDisplay];
+    }];
     
     float change = 0.0f;
-//
+    
     float dLat = _otherLat - myLat;
     float dLong = _otherLong - myLong;
     
-    change = atan2(dLat, dLong);
-    change -= M_PI_2;
-//
-//    NSLog([NSString stringWithFormat:@"%f", change]);
-    newRad -= change;
-    [_compassView setNewRad:newRad];
-    [_compassView setNeedsDisplay];
+    if ((_otherLat != 0.0) && (_otherLong != 0.0)){
+        change = atan2(dLat, dLong);
+        change -= M_PI_2;
+    
+        radChange -= change;
+    }
+    
+    return radChange;
 }
 
 - (void)didReceiveMemoryWarning

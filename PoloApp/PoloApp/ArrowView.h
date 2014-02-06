@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 mbrenman. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
-#import <QuartzCore/QuartzCore.h>
+@import UIKit;
+@import CoreLocation;
+@import QuartzCore;
 
 @interface ArrowView : UIView
 @property float newRad;

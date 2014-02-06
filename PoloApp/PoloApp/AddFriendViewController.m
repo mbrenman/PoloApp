@@ -30,6 +30,11 @@
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
 
+    if (_friends == nil){
+        NSLog(@"ha ha. no friends for you. geek.");
+        me[@"friends"] = [[NSMutableArray alloc] init];
+    }
+    
     NSString *newFriend = [_friendNameField text];
     
     //TODO: Check if friend exists as a user in the app

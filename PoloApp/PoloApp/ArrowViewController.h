@@ -7,10 +7,11 @@
 //
 
 @import UIKit;
-#import "ArrowView.h"
 @import CoreLocation;
 @import QuartzCore;
+
 #import <Parse/Parse.h>
+@class ArrowView;
 
 @interface ArrowViewController : UIViewController<CLLocationManagerDelegate>
 

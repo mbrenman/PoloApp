@@ -7,6 +7,7 @@
 //
 
 #import "ArrowViewController.h"
+#import "ArrowView.h"
 #import <Parse/Parse.h>
 
 const float TIMER_MAX = 100;

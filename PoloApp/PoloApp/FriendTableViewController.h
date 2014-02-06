@@ -7,8 +7,8 @@
 //
 
 @import UIKit;
+@class FriendCell;
 #import <Parse/Parse.h>
-#import "FriendCell.h"
 
 @interface FriendTableViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;

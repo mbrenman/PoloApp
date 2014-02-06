@@ -7,6 +7,7 @@
 //
 
 #import "FriendTableViewController.h"
+#import "FriendCell.h"
 
 @interface FriendTableViewController ()
 @property (nonatomic) NSMutableArray *friends;

@@ -50,13 +50,21 @@ const float TIMER_MAX = 100;
     _me = [PFUser currentUser];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NSLog(@"will dissapear");
+    [_locationManager stopUpdatingHeading];
+    //Purge whitelist
+}
+
 - (IBAction)ArrowBackButtonPushed:(id)sender {
     NSLog(@"Pushed");
     [self performSegueWithIdentifier:@"ArrowToPerson" sender:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-	// Convert Degree to Radian to point the arrow
+    // Convert Degree to Radian to point the arrow
 	float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
     
     if (_timer == TIMER_MAX){
@@ -93,7 +101,10 @@ const float TIMER_MAX = 100;
     PFQuery *query= [PFUser query];
     [query whereKey:@"username" equalTo:@"Tufts"];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
-            
+        
+        //TODO: Only get the rest of the information if currentUser is in the target's whitelist
+        //      Otherwise, show the connecting pictures
+        
         float otherLat = [[object objectForKey:@"lat"] floatValue];
         float otherLong = [[object objectForKey:@"long"] floatValue];
             

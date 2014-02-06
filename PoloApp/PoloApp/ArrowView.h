@@ -11,7 +11,7 @@
 @import QuartzCore;
 
 @interface ArrowView : UIView
-@property float newRad;
+@property (nonatomic) CGFloat newRad;
 @property (nonatomic) IBOutlet UIImageView *compassImageView;
 @property (strong, nonatomic) UIImage *arrowImage;
 @end

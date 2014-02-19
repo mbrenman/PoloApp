@@ -15,7 +15,10 @@ const float TIMER_MAX = 100;
 @interface ArrowViewController ()
 @property int timer;
 @property float radChange;
-@property int numberOfCalls;
+@property BOOL visible;
+@property float myLat, myLong;
+@property int numberOfCalls; //Not actually used for anything helpful
+@property BOOL haveMyLoc, haveTargetLoc;
 @end
 
 @implementation ArrowViewController
@@ -36,11 +39,19 @@ const float TIMER_MAX = 100;
     
     _timer = TIMER_MAX;
     
+    _haveMyLoc = NO;
+    _haveTargetLoc = NO;
+    
     _numberOfCalls = 0;
+    
+    _visible = YES;
     
     _radChange = 0.0f;
     _otherLat = 0.0f;
     _otherLong = 0.0f;
+    
+    //Open a new thread to update the target angle regularly
+    [self performSelectorInBackground:@selector(fakeFunc) withObject:nil];
     
 	_locationManager=[[CLLocationManager alloc] init];
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -51,18 +62,33 @@ const float TIMER_MAX = 100;
     _me = [PFUser currentUser];
 }
 
+//DELETE THIS FUNC
+- (void)fakeFunc
+{
+    while (_visible)
+    {
+        sleep(5);
+        [self updateLocations];
+        NSLog(@"while");
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     NSLog(@"will dissapear");
     
+    _visible = FALSE;
+    
     //Zero out location data when we get off of the arrow
-    _me[@"lat"] = @"0";
-    _me[@"long"] = @"0";
+    _me[@"lat"] = [NSString stringWithFormat:@"%f", 0.0f];
+    _me[@"long"] = [NSString stringWithFormat:@"%f", 0.0f];
     [_me saveInBackground];
+    NSLog(@"should be zero");
     
     //Stop the view from trying to update when we turn the device
     [_locationManager stopUpdatingHeading];
+    
     //Purge whitelist
 }
 
@@ -72,40 +98,41 @@ const float TIMER_MAX = 100;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-    // Convert Degree to Radian to point the arrow
-	float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
     
-    if (_timer == TIMER_MAX){
+    if (_haveMyLoc && _haveTargetLoc){
+        // Convert Degree to Radian to point the arrow
+        float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
+    
         _radChange = [self findNewRadChangeForTarget];
-        _timer = 0;
+        newRad += _radChange;
+
+        [_compassView setNewRad:newRad];
+        [_compassView setNeedsDisplay];
     } else {
-        _timer++;
+        NSLog(@"denied.");
     }
-    
-    
-    newRad += _radChange;
-    [_compassView setNewRad:newRad];
-    [_compassView setNeedsDisplay];
 }
 
 - (float)findNewRadChangeForTarget
 {
-    
-    _numberOfCalls++;
+//    NSLog(@"findNewRad");
     
     float radChange = 0;
-    //Find my current location
-    float myLat = _locationManager.location.coordinate.latitude;
-    float myLong = _locationManager.location.coordinate.longitude;
+    float change = 0.0f;
     
-    //Push my current location to the cloud (so partner can see it)
-    _me[@"lat"] = [NSString stringWithFormat:@"%f", myLat];
-    _me[@"long"] = [NSString stringWithFormat:@"%f", myLong];
+    float dLat = _otherLat - _myLat;
+    float dLong = _otherLong - _myLong;
     
-    [_me saveInBackground];
+    change = atan2(dLat, dLong);
+    change -= M_PI_2;
     
-    //TODO: Actually get this from somebody else
+    radChange -= change;
     
+    return radChange;
+}
+
+- (void)updateLocations
+{
     PFQuery *query= [PFUser query];
     [query whereKey:@"username" equalTo:_targetUserName];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
@@ -115,28 +142,32 @@ const float TIMER_MAX = 100;
         
         float otherLat = [[object objectForKey:@"lat"] floatValue];
         float otherLong = [[object objectForKey:@"long"] floatValue];
-            
-        NSLog([NSString stringWithFormat:@"SUP DUDE... %d", _numberOfCalls]);
-            
+        
         [self setOtherLat:otherLat];
         [self setOtherLong:otherLong];
-            
+        
+        NSLog([NSString stringWithFormat:@"target location set %f, %f", otherLat, otherLong]);
+        
+        _haveTargetLoc = YES;
+        
         [_compassView setNeedsDisplay];
     }];
     
-    float change = 0.0f;
     
-    float dLat = _otherLat - myLat;
-    float dLong = _otherLong - myLong;
+    //Find my current location
+    _myLat = _locationManager.location.coordinate.latitude;
+    _myLong = _locationManager.location.coordinate.longitude;
     
-    if ((_otherLat != 0.0) && (_otherLong != 0.0)){
-        change = atan2(dLat, dLong);
-        change -= M_PI_2;
+    //Push my current location to the cloud (so partner can see it)
+    _me[@"lat"] = [NSString stringWithFormat:@"%f", _myLat];
+    _me[@"long"] = [NSString stringWithFormat:@"%f", _myLong];
     
-        radChange -= change;
+    if (_visible){
+        [_me saveInBackground];
     }
+    _haveMyLoc = YES;
     
-    return radChange;
+    NSLog(@"my location set");
 }
 
 - (void)didReceiveMemoryWarning

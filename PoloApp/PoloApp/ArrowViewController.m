@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 
 const float TIMER_MAX = 100;
+const unsigned int UPDATE_SECONDS = 1;
 
 @interface ArrowViewController ()
 @property int timer;
@@ -51,7 +52,7 @@ const float TIMER_MAX = 100;
     _otherLong = 0.0f;
     
     //Open a new thread to update the target angle regularly
-    [self performSelectorInBackground:@selector(fakeFunc) withObject:nil];
+    [self performSelectorInBackground:@selector(regularInfoUpdate) withObject:nil];
     
 	_locationManager=[[CLLocationManager alloc] init];
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -62,14 +63,13 @@ const float TIMER_MAX = 100;
     _me = [PFUser currentUser];
 }
 
-//DELETE THIS FUNC
-- (void)fakeFunc
+- (void)regularInfoUpdate
 {
     while (_visible)
     {
-        sleep(5);
         [self updateLocations];
         NSLog(@"while");
+        sleep(UPDATE_SECONDS);
     }
 }
 

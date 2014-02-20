@@ -7,11 +7,6 @@
 //
 
 #import "LoginSignupViewController.h"
-@import CoreLocation;
-
-@interface PoloViewController ()
-    @property (nonatomic) CLLocationManager *locationManager;
-@end
 
 @implementation PoloViewController
 
@@ -19,11 +14,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.distanceFilter = kCLDistanceFilterNone;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [_locationManager startUpdatingLocation];
 }
 
 - (void)viewDidAppear:(BOOL)animated

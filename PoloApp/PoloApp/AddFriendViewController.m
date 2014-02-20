@@ -23,31 +23,50 @@
     }
     return self;
 }
-- (IBAction)AddFriendClick:(id)sender {
-    NSLog(@"So friends. Much wow");
-}
+//- (IBAction)AddFriendClick:(id)sender {
+//    NSLog(@"So friends. Much wow");
+//}
 - (IBAction)AddButtonClick:(id)sender {
-    PFUser *me = [PFUser currentUser];
-    _friends = me[@"friends"];
 
-    if (_friends == nil){
-        NSLog(@"ha ha. no friends for you. geek.");
-        me[@"friends"] = [[NSMutableArray alloc] init];
-    }
     
     NSString *newFriend = [_friendNameField text];
-    
-    //TODO: Check if friend exists as a user in the app
-    
-    //Only add new friend if user does not already have the friend
-    if (![_friends containsObject:newFriend]){
-        [_friends addObject:newFriend];
-        NSLog(@"New Frand");
-        [me saveInBackground];
-        [self performSegueWithIdentifier:@"FriendAdded" sender:nil];
-    }
+    [self AddFriendIfExistsinDB:newFriend];
 }
 
+- (void)AddFriendIfExistsinDB: (NSString *)newFriend
+{
+    //TODO: can we make this faster?
+    
+    PFQuery *query= [PFUser query];
+    [query whereKey:@"username" equalTo: newFriend];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (object != nil){
+            [self addFriendToFriends:newFriend];
+        }
+    }];
+}
+     
+- (void)addFriendToFriends: (NSString *)newFriend
+{
+    PFUser *me = [PFUser currentUser];
+    _friends = me[@"friends"];
+    if (_friends == nil){
+        NSLog(@"ha ha. no friends for you. geek.");
+        me[@"friends"] = [[NSMutableArray alloc] initWithObjects:newFriend, nil];
+    } else {
+        //TODO: Check if friend exists as a user in the app
+        
+        //Only add new friend if user does not already have the friend
+        if (![_friends containsObject:newFriend]){
+            [_friends addObject:newFriend];
+            NSLog(@"New Frand");
+        }
+    }
+    
+    [me saveInBackground];
+    [self performSegueWithIdentifier:@"FriendAdded" sender:nil];
+}
+        
 - (void)viewDidLoad
 {
     [super viewDidLoad];

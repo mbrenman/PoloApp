@@ -71,7 +71,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="16" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="69" id="dR3-9c-t5f" customClass="FriendCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="69"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dR3-9c-t5f" id="kLd-Fw-EtT">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
@@ -130,9 +130,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="AddFriendClick:" destination="7bK-gE-R1Q" eventType="editingDidEnd" id="bBp-gq-VRF"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyW-gh-taC">
                                 <rect key="frame" x="20" y="190" width="280" height="34"/>

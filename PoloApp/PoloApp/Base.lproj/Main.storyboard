@@ -49,10 +49,18 @@
                                     <action selector="ArrowBackButtonPushed:" destination="pLJ-TN-xqo" eventType="touchUpInside" id="bpP-jP-zjP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0t-5R-zTG">
+                                <rect key="frame" x="20" y="415" width="280" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="DistanceLabel" destination="j0t-5R-zTG" id="hb8-mM-ziX"/>
                         <outlet property="compassView" destination="H3x-c5-ceN" id="TRR-h6-6sb"/>
                         <segue destination="dek-XN-y0q" kind="modal" identifier="ArrowToPerson" id="uRb-x2-C5F"/>
                     </connections>
@@ -181,6 +189,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="SgB-wt-Hiy"/>
+        <segue reference="uRb-x2-C5F"/>
     </inferredMetricsTieBreakers>
 </document>

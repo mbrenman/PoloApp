@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 
 const unsigned int UPDATE_SECONDS = 1;
+const float EARTH_RADIUS = 3963.1676;
 
 @interface ArrowViewController ()
 @property float radChange;
@@ -102,11 +103,36 @@ const unsigned int UPDATE_SECONDS = 1;
         _radChange = [self findNewRadChangeForTarget];
         newRad += _radChange;
 
+        [self updateDistance];
         [_compassView setNewRad:newRad];
         [_compassView setNeedsDisplay];
     } else {
         NSLog(@"denied.");
     }
+    
+}
+
+- (void)updateDistance
+{
+    float lat1 = [self degreesToRadians:_myLat];
+    float lat2 = [self degreesToRadians:_otherLat];
+    float long1 = [self degreesToRadians:_myLong];
+    float long2 = [self degreesToRadians:_otherLong];
+    
+    
+    float dLat = lat1 - lat2;
+    float dLong = long1 - long2;
+    
+    float a = sinf(dLat/2.0f) * sinf(dLat/2.0f) + sinf(dLong/2.0f) * sinf(dLong/2.0f) * cosf(lat1) * cosf(lat2);
+    float c = 2.0f * atan2((sqrtf(a)), (sqrtf(1.0f-a)));
+    float d = EARTH_RADIUS * c;
+    NSLog(@"updated!!!");
+    _DistanceLabel.text = [NSString stringWithFormat:@"%f mi", d];
+}
+
+- (float)degreesToRadians: (float)degrees
+{
+    return degrees * M_PI / 180.0f;
 }
 
 - (float)findNewRadChangeForTarget

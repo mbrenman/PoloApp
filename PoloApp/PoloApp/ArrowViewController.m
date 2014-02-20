@@ -10,16 +10,16 @@
 #import "ArrowView.h"
 #import <Parse/Parse.h>
 
-const float TIMER_MAX = 100;
 const unsigned int UPDATE_SECONDS = 1;
 
 @interface ArrowViewController ()
-@property int timer;
 @property float radChange;
-@property BOOL visible;
 @property float myLat, myLong;
-@property int numberOfCalls; //Not actually used for anything helpful
+@property (nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) PFUser *me;
+@property float otherLat, otherLong;
 @property BOOL haveMyLoc, haveTargetLoc;
+@property BOOL visible;
 @end
 
 @implementation ArrowViewController
@@ -38,12 +38,8 @@ const unsigned int UPDATE_SECONDS = 1;
     
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
-    _timer = TIMER_MAX;
-    
     _haveMyLoc = NO;
     _haveTargetLoc = NO;
-    
-    _numberOfCalls = 0;
     
     _visible = YES;
     

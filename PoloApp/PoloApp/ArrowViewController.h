@@ -15,9 +15,7 @@
 
 @interface ArrowViewController : UIViewController<CLLocationManagerDelegate>
 
-    @property (strong, nonatomic) PFUser *me;
-    @property (strong, nonatomic) IBOutlet ArrowView *compassView;
-	@property (nonatomic) CLLocationManager *locationManager;
-    @property (nonatomic) CGFloat otherLat, otherLong;
-    @property (nonatomic) NSString *targetUserName;
+@property (strong, nonatomic) IBOutlet ArrowView *compassView;
+@property (nonatomic) NSString *targetUserName;
+
 @end

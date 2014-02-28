@@ -7,7 +7,7 @@
 //
 
 #import "FriendCell.h"
-
+//
 @implementation FriendCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

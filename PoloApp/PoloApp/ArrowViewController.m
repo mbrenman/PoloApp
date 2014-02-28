@@ -36,7 +36,7 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:40];
+    _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:60];
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
     _haveMyLoc = NO;

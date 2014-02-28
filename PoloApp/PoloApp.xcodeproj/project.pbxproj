@@ -40,6 +40,7 @@
 		AAD3965E189DD88F00675698 /* FriendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD3965D189DD88F00675698 /* FriendTableViewController.m */; };
 		AAD39661189DDB0C00675698 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39660189DDB0C00675698 /* FriendCell.m */; };
 		B3066D1618BF09F8004FC03F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3066D1518BF09F8004FC03F /* Parse.framework */; };
+		B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9918C06A2900C612F8 /* BackArrow2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		AAD3965F189DDB0C00675698 /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
 		AAD39660189DDB0C00675698 /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
 		B3066D1518BF09F8004FC03F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		B3D45D9918C06A2900C612F8 /* BackArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackArrow2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 		AAD39617189D923A00675698 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3D45D9918C06A2900C612F8 /* BackArrow2.png */,
 				AAD39618189D923A00675698 /* PoloApp-Info.plist */,
 				AAD39619189D923A00675698 /* InfoPlist.strings */,
 				AAD3961C189D923A00675698 /* main.m */,
@@ -313,6 +316,7 @@
 				AAD39629189D923A00675698 /* Images.xcassets in Resources */,
 				AAD3961B189D923A00675698 /* InfoPlist.strings in Resources */,
 				AA04607C189E9AD8001A5785 /* icon.png in Resources */,
+				B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */,
 				AAD39624189D923A00675698 /* Main.storyboard in Resources */,
 				AA046078189E7BF8001A5785 /* chevron.jpeg in Resources */,
 				AA04607A189E8719001A5785 /* PoloTitle.png in Resources */,

@@ -41,6 +41,9 @@
 		AAD39661189DDB0C00675698 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39660189DDB0C00675698 /* FriendCell.m */; };
 		B3066D1618BF09F8004FC03F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3066D1518BF09F8004FC03F /* Parse.framework */; };
 		B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9918C06A2900C612F8 /* BackArrow2.png */; };
+		B3D45D9D18C0FBB700C612F8 /* MyUINavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D45D9C18C0FBB700C612F8 /* MyUINavigationViewController.m */; };
+		B3D45D9F18C100B600C612F8 /* rect4444.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9E18C100B600C612F8 /* rect4444.png */; };
+		B3D45DA118C1031000C612F8 /* rect4445.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45DA018C1031000C612F8 /* rect4445.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +101,10 @@
 		AAD39660189DDB0C00675698 /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
 		B3066D1518BF09F8004FC03F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		B3D45D9918C06A2900C612F8 /* BackArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackArrow2.png; sourceTree = "<group>"; };
+		B3D45D9B18C0FBB700C612F8 /* MyUINavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUINavigationViewController.h; sourceTree = "<group>"; };
+		B3D45D9C18C0FBB700C612F8 /* MyUINavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUINavigationViewController.m; sourceTree = "<group>"; };
+		B3D45D9E18C100B600C612F8 /* rect4444.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect4444.png; sourceTree = "<group>"; };
+		B3D45DA018C1031000C612F8 /* rect4445.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect4445.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +189,9 @@
 				AAD3961F189D923A00675698 /* PoloAppDelegate.h */,
 				AAD39620189D923A00675698 /* PoloAppDelegate.m */,
 				AAD39622189D923A00675698 /* Main.storyboard */,
+				B3D45D9B18C0FBB700C612F8 /* MyUINavigationViewController.h */,
+				B3D45D9C18C0FBB700C612F8 /* MyUINavigationViewController.m */,
+				B3D45DA018C1031000C612F8 /* rect4445.png */,
 				AA046066189E1B2C001A5785 /* AddFriendViewController.h */,
 				AA046067189E1B2C001A5785 /* AddFriendViewController.m */,
 				AAD3965C189DD88F00675698 /* FriendTableViewController.h */,
@@ -195,9 +205,6 @@
 				AA046069189E321C001A5785 /* ArrowViewController.h */,
 				AA04606A189E321C001A5785 /* ArrowViewController.m */,
 				AAD39628189D923A00675698 /* Images.xcassets */,
-				AA046079189E8719001A5785 /* PoloTitle.png */,
-				AA04607B189E9AD8001A5785 /* icon.png */,
-				AA046077189E7BF8001A5785 /* chevron.jpeg */,
 				AAD39617189D923A00675698 /* Supporting Files */,
 			);
 			path = PoloApp;
@@ -206,6 +213,10 @@
 		AAD39617189D923A00675698 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA046079189E8719001A5785 /* PoloTitle.png */,
+				AA04607B189E9AD8001A5785 /* icon.png */,
+				AA046077189E7BF8001A5785 /* chevron.jpeg */,
+				B3D45D9E18C100B600C612F8 /* rect4444.png */,
 				B3D45D9918C06A2900C612F8 /* BackArrow2.png */,
 				AAD39618189D923A00675698 /* PoloApp-Info.plist */,
 				AAD39619189D923A00675698 /* InfoPlist.strings */,
@@ -316,8 +327,10 @@
 				AAD39629189D923A00675698 /* Images.xcassets in Resources */,
 				AAD3961B189D923A00675698 /* InfoPlist.strings in Resources */,
 				AA04607C189E9AD8001A5785 /* icon.png in Resources */,
+				B3D45DA118C1031000C612F8 /* rect4445.png in Resources */,
 				B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */,
 				AAD39624189D923A00675698 /* Main.storyboard in Resources */,
+				B3D45D9F18C100B600C612F8 /* rect4444.png in Resources */,
 				AA046078189E7BF8001A5785 /* chevron.jpeg in Resources */,
 				AA04607A189E8719001A5785 /* PoloTitle.png in Resources */,
 			);
@@ -345,6 +358,7 @@
 				AA046074189E3F31001A5785 /* ArrowView.m in Sources */,
 				AAD39621189D923A00675698 /* PoloAppDelegate.m in Sources */,
 				AA046068189E1B2C001A5785 /* AddFriendViewController.m in Sources */,
+				B3D45D9D18C0FBB700C612F8 /* MyUINavigationViewController.m in Sources */,
 				AAD3961D189D923A00675698 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

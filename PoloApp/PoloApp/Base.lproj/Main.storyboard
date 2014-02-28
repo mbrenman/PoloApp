@@ -126,6 +126,7 @@
         <!--Add Friend View Controller-->
         <scene sceneID="cT0-Gk-3s9">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pUM-wc-ye7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="7bK-gE-R1Q" customClass="AddFriendViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fCo-Gd-C9r"/>
@@ -164,14 +165,13 @@
                         <segue destination="dek-XN-y0q" kind="modal" identifier="FriendAdded" id="SgB-wt-Hiy"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pUM-wc-ye7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1996" y="-237"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--MyUI Navigation View Controller-->
         <scene sceneID="IfQ-TV-SG3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dek-XN-y0q" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dek-XN-y0q" customClass="MyUINavigationViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WUU-iL-uiZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

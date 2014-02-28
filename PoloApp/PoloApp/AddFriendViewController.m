@@ -16,10 +16,8 @@
 
 @implementation AddFriendViewController
 
+//this lets hide keyboard when a touch is outside the text area
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    //UITouch *touch = [[event allTouches] anyObject];
-    
     if ([_friendNameField isFirstResponder])// && [touch view] != (_friendNameField))
     {
         [_friendNameField resignFirstResponder];
@@ -86,6 +84,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        //now we will populate an alert for use if the user tries to add a nonexistent friend
         _alert = [[UIAlertView alloc]
         initWithTitle:@"Error"
         message:@"No such user exists"

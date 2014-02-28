@@ -15,6 +15,18 @@
 
 @implementation AddFriendViewController
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    //UITouch *touch = [[event allTouches] anyObject];
+    
+    if ([_friendNameField isFirstResponder])// && [touch view] != (_friendNameField))
+    {
+        [_friendNameField resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

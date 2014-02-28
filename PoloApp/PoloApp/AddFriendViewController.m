@@ -11,6 +11,7 @@
 
 @interface AddFriendViewController ()
 @property (nonatomic) NSMutableArray *friends;
+@property (nonatomic, strong) UIAlertView *alert;
 @end
 
 @implementation AddFriendViewController
@@ -54,6 +55,9 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (object != nil){
             [self addFriendToFriends:newFriend];
+        } else {
+            NSLog(@"NOPE New Frand");
+            [_alert show];
         }
     }];
 }
@@ -71,7 +75,7 @@
         //Only add new friend if user does not already have the friend
         if (![_friends containsObject:newFriend]){
             [_friends addObject:newFriend];
-            NSLog(@"New Frand");
+            //NSLog(@"New Frand");
         }
     }
     
@@ -81,11 +85,13 @@
         
 - (void)viewDidLoad
 {
-    [super viewDidLoad];/*
-    _friendNameField.borderStyle = UITextBorderStyleNone;
-    _friendNameField.font=[UIFont systemFontOfSize:30.0f];
-    _friendNameField.background = [UIImage imageNamed:@"white-rectangle50.gif"];*/
-	// Do any additional setup after loading the view.
+    [super viewDidLoad];
+        _alert = [[UIAlertView alloc]
+        initWithTitle:@"Error"
+        message:@"No such user exists"
+        delegate:self
+        cancelButtonTitle:@"Dismiss"
+        otherButtonTitles:nil];
 }
 
 - (void)didReceiveMemoryWarning

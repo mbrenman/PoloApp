@@ -19,7 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -69,7 +69,10 @@
         
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];/*
+    _friendNameField.borderStyle = UITextBorderStyleNone;
+    _friendNameField.font=[UIFont systemFontOfSize:30.0f];
+    _friendNameField.background = [UIImage imageNamed:@"white-rectangle50.gif"];*/
 	// Do any additional setup after loading the view.
 }
 

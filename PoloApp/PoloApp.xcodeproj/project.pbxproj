@@ -39,6 +39,7 @@
 		AAD39658189D97C300675698 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39657189D97C300675698 /* SystemConfiguration.framework */; };
 		AAD3965E189DD88F00675698 /* FriendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD3965D189DD88F00675698 /* FriendTableViewController.m */; };
 		AAD39661189DDB0C00675698 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39660189DDB0C00675698 /* FriendCell.m */; };
+		B3066D1618BF09F8004FC03F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3066D1518BF09F8004FC03F /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		AAD3965D189DD88F00675698 /* FriendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewController.m; sourceTree = "<group>"; };
 		AAD3965F189DDB0C00675698 /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
 		AAD39660189DDB0C00675698 /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
+		B3066D1518BF09F8004FC03F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				AAD3964C189D978D00675698 /* CoreLocation.framework in Frameworks */,
 				AAD3964A189D978500675698 /* CFNetwork.framework in Frameworks */,
 				AAD39648189D977E00675698 /* AudioToolbox.framework in Frameworks */,
+				B3066D1618BF09F8004FC03F /* Parse.framework in Frameworks */,
 				AAD39613189D923A00675698 /* CoreGraphics.framework in Frameworks */,
 				AAD39615189D923A00675698 /* UIKit.framework in Frameworks */,
 				AAD39611189D923A00675698 /* Foundation.framework in Frameworks */,
@@ -152,6 +155,7 @@
 		AAD3960F189D923A00675698 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3066D1518BF09F8004FC03F /* Parse.framework */,
 				AAD39657189D97C300675698 /* SystemConfiguration.framework */,
 				AAD39655189D97BB00675698 /* StoreKit.framework */,
 				AAD39653189D97B500675698 /* Security.framework */,
@@ -274,6 +278,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = mbrenman;
 				TargetAttributes = {
+					AAD3960C189D923A00675698 = {
+						DevelopmentTeam = WC5PBECM68;
+					};
 					AAD3962D189D923A00675698 = {
 						TestTargetID = AAD3960C189D923A00675698;
 					};
@@ -461,10 +468,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp,
 					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp/PoloApp,
+					/Users/susanneheincke/Developer/Polo/PoloApp/PoloApp,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PoloApp/PoloApp-Prefix.pch";
@@ -480,10 +489,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp,
 					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp/PoloApp,
+					/Users/susanneheincke/Developer/Polo/PoloApp/PoloApp,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PoloApp/PoloApp-Prefix.pch";

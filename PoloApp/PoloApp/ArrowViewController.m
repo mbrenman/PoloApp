@@ -36,7 +36,7 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:40];
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
     _haveMyLoc = NO;
@@ -127,7 +127,7 @@ const float EARTH_RADIUS = 3963.1676;
     float c = 2.0f * atan2((sqrtf(a)), (sqrtf(1.0f-a)));
     float d = EARTH_RADIUS * c;
     NSLog(@"updated!!!");
-    _DistanceLabel.text = [NSString stringWithFormat:@"%f mi", d];
+    _DistanceLabel.text = [NSString stringWithFormat:@"%.2f mi", d];
 }
 
 - (float)degreesToRadians: (float)degrees

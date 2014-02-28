@@ -37,6 +37,7 @@ const float EARTH_RADIUS = 3963.1676;
 - (void)viewDidLoad{
     [super viewDidLoad];
     _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:60];
+    
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
     _haveMyLoc = NO;
@@ -149,7 +150,7 @@ const float EARTH_RADIUS = 3963.1676;
     change -= M_PI_2;
     
     radChange -= change;
-    
+    //NSLog(@"Radchange: %f", radChange);
     return radChange;
 }
 
@@ -168,7 +169,7 @@ const float EARTH_RADIUS = 3963.1676;
         [self setOtherLat:otherLat];
         [self setOtherLong:otherLong];
         
-        NSLog([NSString stringWithFormat:@"target location set %f, %f", otherLat, otherLong]);
+        //NSLog([NSString stringWithFormat:@"target location set %f, %f", otherLat, otherLong]);
         
         _haveTargetLoc = YES;
         

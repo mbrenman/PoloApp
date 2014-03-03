@@ -35,7 +35,6 @@
 		AAD39650189D97A400675698 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD3964F189D97A400675698 /* MobileCoreServices.framework */; };
 		AAD39652189D97AE00675698 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39651189D97AE00675698 /* QuartzCore.framework */; };
 		AAD39654189D97B500675698 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39653189D97B500675698 /* Security.framework */; };
-		AAD39656189D97BB00675698 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39655189D97BB00675698 /* StoreKit.framework */; };
 		AAD39658189D97C300675698 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39657189D97C300675698 /* SystemConfiguration.framework */; };
 		AAD3965E189DD88F00675698 /* FriendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD3965D189DD88F00675698 /* FriendTableViewController.m */; };
 		AAD39661189DDB0C00675698 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39660189DDB0C00675698 /* FriendCell.m */; };
@@ -93,7 +92,6 @@
 		AAD3964F189D97A400675698 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		AAD39651189D97AE00675698 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AAD39653189D97B500675698 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		AAD39655189D97BB00675698 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AAD39657189D97C300675698 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AAD3965C189DD88F00675698 /* FriendTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewController.h; sourceTree = "<group>"; };
 		AAD3965D189DD88F00675698 /* FriendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewController.m; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAD39658189D97C300675698 /* SystemConfiguration.framework in Frameworks */,
-				AAD39656189D97BB00675698 /* StoreKit.framework in Frameworks */,
 				AAD39654189D97B500675698 /* Security.framework in Frameworks */,
 				AAD39652189D97AE00675698 /* QuartzCore.framework in Frameworks */,
 				AAD39650189D97A400675698 /* MobileCoreServices.framework in Frameworks */,
@@ -166,7 +163,6 @@
 			children = (
 				B3066D1518BF09F8004FC03F /* Parse.framework */,
 				AAD39657189D97C300675698 /* SystemConfiguration.framework */,
-				AAD39655189D97BB00675698 /* StoreKit.framework */,
 				AAD39653189D97B500675698 /* Security.framework */,
 				AAD39651189D97AE00675698 /* QuartzCore.framework */,
 				AAD3964F189D97A400675698 /* MobileCoreServices.framework */,
@@ -293,7 +289,12 @@
 				ORGANIZATIONNAME = mbrenman;
 				TargetAttributes = {
 					AAD3960C189D923A00675698 = {
-						DevelopmentTeam = WC5PBECM68;
+						DevelopmentTeam = WC8GK6LE4R;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					AAD3962D189D923A00675698 = {
 						TestTargetID = AAD3960C189D923A00675698;
@@ -487,6 +488,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp,
@@ -498,6 +500,7 @@
 				INFOPLIST_FILE = "PoloApp/PoloApp-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -508,6 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mattbrenman/Desktop/Projects/PoloApp/PoloApp,
@@ -519,6 +523,7 @@
 				INFOPLIST_FILE = "PoloApp/PoloApp-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

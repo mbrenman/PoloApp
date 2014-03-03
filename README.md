@@ -9,7 +9,7 @@ Polo TODO
 Needed before pushing to App Store:
 * DONE-Limit API requests from Parse per connection — download target’s data less frequently and animate, it shouldn’t change terribly often (maybe every 5 seconds?)
 * DONE-Connect to any user in friend list
-* Only can add friend if the friend exists in DB
+* DONE-Only can add friend if the friend exists in DB
 * Users have a whitelist of current callers
 * Connections should only happen if on whitelist
 * DONE-Fix add friend issue when the user has no friends
@@ -29,3 +29,4 @@ New features:
 * Add call or text button from the arrow screen (blank out if no supplied phone number)
 * Update friend list with contact nicknames/names if phone number is supplied and in contacts
 * Make adding friends faster
+* Custom colors -- change icon too

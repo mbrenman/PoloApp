@@ -127,7 +127,6 @@ const float EARTH_RADIUS = 3963.1676;
     float a = sinf(dLat/2.0f) * sinf(dLat/2.0f) + sinf(dLong/2.0f) * sinf(dLong/2.0f) * cosf(lat1) * cosf(lat2);
     float c = 2.0f * atan2((sqrtf(a)), (sqrtf(1.0f-a)));
     float d = EARTH_RADIUS * c;
-    NSLog(@"updated!!!");
     _DistanceLabel.text = [NSString stringWithFormat:@"%.2f mi", d];
 }
 

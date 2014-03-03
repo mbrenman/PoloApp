@@ -294,7 +294,7 @@
 				ORGANIZATIONNAME = mbrenman;
 				TargetAttributes = {
 					AAD3960C189D923A00675698 = {
-						DevelopmentTeam = WC8GK6LE4R;
+						DevelopmentTeam = WC5PBECM68;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;

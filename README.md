@@ -20,6 +20,7 @@ Needed before pushing to App Store:
 * DONE-Remove testflight
 * delete friends
 * integrate iAd
+* Add custom nav bar
 
 New features:
 * Organize friends in list - alphabetize?

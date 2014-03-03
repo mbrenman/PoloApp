@@ -53,7 +53,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0t-5R-zTG">
                                 <rect key="frame" x="0.0" y="394" width="320" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -126,7 +126,6 @@
         <!--Add Friend View Controller-->
         <scene sceneID="cT0-Gk-3s9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pUM-wc-ye7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="7bK-gE-R1Q" customClass="AddFriendViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fCo-Gd-C9r"/>
@@ -165,6 +164,7 @@
                         <segue destination="dek-XN-y0q" kind="modal" identifier="FriendAdded" id="SgB-wt-Hiy"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pUM-wc-ye7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1996" y="-237"/>
         </scene>
@@ -193,6 +193,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="SgB-wt-Hiy"/>
+        <segue reference="uRb-x2-C5F"/>
     </inferredMetricsTieBreakers>
 </document>

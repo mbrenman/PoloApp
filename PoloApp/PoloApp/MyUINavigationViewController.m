@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   // [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"rect4445.png"] forBarMetrics:UIBarMetricsDefault];
+   //   [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"rect4445.png"] forBarMetrics:UIBarMetricsDefault];
 	// Do any additional setup after loading the view.
 }
 

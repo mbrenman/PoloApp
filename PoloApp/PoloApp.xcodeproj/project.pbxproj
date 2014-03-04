@@ -190,7 +190,6 @@
 				AAD39622189D923A00675698 /* Main.storyboard */,
 				B3D45D9B18C0FBB700C612F8 /* MyUINavigationViewController.h */,
 				B3D45D9C18C0FBB700C612F8 /* MyUINavigationViewController.m */,
-				B3D45DA018C1031000C612F8 /* rect4445.png */,
 				AA046066189E1B2C001A5785 /* AddFriendViewController.h */,
 				AA046067189E1B2C001A5785 /* AddFriendViewController.m */,
 				AAD3965C189DD88F00675698 /* FriendTableViewController.h */,
@@ -214,6 +213,7 @@
 		AAD39617189D923A00675698 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3D45DA018C1031000C612F8 /* rect4445.png */,
 				AA046079189E8719001A5785 /* PoloTitle.png */,
 				AA04607B189E9AD8001A5785 /* icon.png */,
 				AA046077189E7BF8001A5785 /* chevron.jpeg */,

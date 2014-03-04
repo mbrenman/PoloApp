@@ -11,7 +11,8 @@
 
 @interface AddFriendViewController ()
 @property (nonatomic) NSMutableArray *friends;
-@property (nonatomic, strong) UIAlertView *alert;
+@property (nonatomic, strong) UIAlertView *alertNonexistent;
+@property (nonatomic, strong) UIAlertView *alertAlreadyAdded;
 @end
 
 @implementation AddFriendViewController
@@ -54,8 +55,8 @@
         if (object != nil){
             [self addFriendToFriends:newFriend];
         } else {
-            NSLog(@"NOPE New Frand");
-            [_alert show];
+            NSLog(@"NOPE Frand");
+            [_alertNonexistent show];
         }
     }];
 }
@@ -68,12 +69,12 @@
         NSLog(@"ha ha. no friends for you. geek.");
         me[@"friends"] = [[NSMutableArray alloc] initWithObjects:newFriend, nil];
     } else {
-        //TODO: Check if friend exists as a user in the app
-        
         //Only add new friend if user does not already have the friend
         if (![_friends containsObject:newFriend]){
             [_friends addObject:newFriend];
             //NSLog(@"New Frand");
+        } else {
+            [_alertAlreadyAdded show];
         }
     }
     
@@ -85,12 +86,19 @@
 {
     [super viewDidLoad];
         //now we will populate an alert for use if the user tries to add a nonexistent friend
-        _alert = [[UIAlertView alloc]
+        _alertNonexistent = [[UIAlertView alloc]
         initWithTitle:@"Error"
         message:@"No such user exists"
         delegate:self
         cancelButtonTitle:@"Dismiss"
         otherButtonTitles:nil];
+    
+    _alertAlreadyAdded = [[UIAlertView alloc]
+                         initWithTitle:@"Error"
+                         message:@"Already friends with selcted user"
+                         delegate:self
+                         cancelButtonTitle:@"Dismiss"
+                         otherButtonTitles:nil];
 }
 
 - (void)didReceiveMemoryWarning

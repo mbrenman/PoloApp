@@ -38,7 +38,9 @@
         CGContextRef context = UIGraphicsGetCurrentContext();
     
         CGContextMoveToPoint(context, 0, height);
-        CGContextAddLineToPoint(context, width/2.0f, 0);
+        CGContextAddLineToPoint(context, 0,0);
+        CGContextAddLineToPoint(context, width, 0);
+        
         CGContextAddLineToPoint(context, width, height);
     
         CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);

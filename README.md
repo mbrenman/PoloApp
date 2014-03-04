@@ -32,3 +32,4 @@ New features:
 * Update friend list with contact nicknames/names if phone number is supplied and in contacts
 * Make adding friends faster
 * Custom colors -- change icon too
+* Custom Skin for login, less parse-y

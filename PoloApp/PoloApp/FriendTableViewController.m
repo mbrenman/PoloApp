@@ -59,7 +59,8 @@
     
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
-    
+    // sort _friends
+    _friends = (NSMutableArray*)[_friends sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

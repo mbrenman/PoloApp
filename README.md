@@ -16,14 +16,15 @@ Needed before pushing to App Store:
 * DONE-Make user zero-out location data on closing out of arrow view
 * DONE-Fix crash on logout after seeing the arrow
 * Maybe something with calibration?
-* Make usernames NOT case sensitive
+* Make usernames NOT case sensitive (importance?)
 * DONE-Remove testflight
 * delete friends
 * integrate iAd
 * Add custom nav bar
+* DONE Organize friends in list - alphabetize?
 
 New features:
-* Organize friends in list - alphabetize?
+
 * Arbitrary points as friends — make a new type without API? Friend/Points as tab view controller?
 * Whitelist of users that can always connect - how do we update from the non-user’s phone?
 * Show “waiting…” or “connecting…” before pulling target’s data or when target is at (0º, 0º) —> not connecting

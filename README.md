@@ -22,6 +22,7 @@ Needed before pushing to App Store:
 * integrate iAd
 * Add custom nav bar
 * DONE Organize friends in list - alphabetize?
+* encrypt all location data between users - public/private keys for users? Can Parse do this?
 
 New features:
 

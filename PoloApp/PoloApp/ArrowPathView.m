@@ -37,13 +37,13 @@
         
         CGContextRef context = UIGraphicsGetCurrentContext();
     
-        CGContextMoveToPoint(context, 0, height);
-        CGContextAddLineToPoint(context, 0,0);
-        CGContextAddLineToPoint(context, width, 0);
+        CGContextMoveToPoint(context, 50, height-50 );
+        CGContextAddLineToPoint(context, 70,0);
+        CGContextAddLineToPoint(context, width-135, 135);
         
-        CGContextAddLineToPoint(context, width, height);
+        CGContextAddLineToPoint(context, width, height-70);
     
-        CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
         CGContextFillPath(context);
         _drawn = YES;
     }

@@ -36,12 +36,17 @@
         CGFloat width = CGRectGetWidth(self.bounds);
         
         CGContextRef context = UIGraphicsGetCurrentContext();
-    
-        CGContextMoveToPoint(context, 50, height-50 );
-        CGContextAddLineToPoint(context, 70,0);
-        CGContextAddLineToPoint(context, width-135, 135);
+
+        CGContextMoveToPoint(context, 0, height);
+        CGContextAddLineToPoint(context, width/2.0f, 0);
+        CGContextAddLineToPoint(context, width, height);
+        CGContextAddLineToPoint(context, width/2.0f, 35);
         
-        CGContextAddLineToPoint(context, width, height-70);
+//        CGContextMoveToPoint(context, 50, height-50 );
+//        CGContextAddLineToPoint(context, 70,0);
+//        CGContextAddLineToPoint(context, width-135, 135);
+//        
+//        CGContextAddLineToPoint(context, width, height-70);
     
         CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
         CGContextFillPath(context);

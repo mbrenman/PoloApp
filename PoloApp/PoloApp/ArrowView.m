@@ -33,7 +33,10 @@
 {
     if (!_bezierArrowView){
         NSLog(@"making again");
-        _bezierArrowView = [[ArrowPathView alloc] initWithFrame:CGRectMake(60.0, 120.0, _arrowImage.size.width, _arrowImage.size.height)];
+        
+        CGFloat width = CGRectGetWidth(self.bounds);
+        
+        _bezierArrowView = [[ArrowPathView alloc] initWithFrame:CGRectMake(((width-_arrowImage.size.width)/2), 120.0, _arrowImage.size.width, _arrowImage.size.height)];
         [self addSubview:_bezierArrowView];
 //        
 //        _imageView = [ [ UIImageView alloc ] initWithFrame:CGRectMake(60.0, 120.0, _arrowImage.size.width, _arrowImage.size.height) ];

@@ -26,7 +26,6 @@
     }
     return self;
 }
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
@@ -36,7 +35,7 @@
         
         CGFloat width = CGRectGetWidth(self.bounds);
         
-        _bezierArrowView = [[ArrowPathView alloc] initWithFrame:CGRectMake(((width-_arrowImage.size.width)/2), 120.0, _arrowImage.size.width, _arrowImage.size.height)];
+        _bezierArrowView = [[ArrowPathView alloc] initWithFrame:CGRectMake(((width-_arrowImage.size.width)/2), 140.0, _arrowImage.size.width, _arrowImage.size.height-60)];
         [self addSubview:_bezierArrowView];
 //        
 //        _imageView = [ [ UIImageView alloc ] initWithFrame:CGRectMake(60.0, 120.0, _arrowImage.size.width, _arrowImage.size.height) ];

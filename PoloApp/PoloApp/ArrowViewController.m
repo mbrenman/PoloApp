@@ -34,6 +34,10 @@ const float EARTH_RADIUS = 3963.1676;
     return self;
 }
 
+- (void) viewDidAppear:(BOOL)animated{
+         [self locationManagerShouldDisplayHeadingCalibration:_locationManager];
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:60];
@@ -56,9 +60,14 @@ const float EARTH_RADIUS = 3963.1676;
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	_locationManager.headingFilter = 1;
 	_locationManager.delegate=self;
+
 	[_locationManager startUpdatingHeading];
-    
     _me = [PFUser currentUser];
+}
+
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager{
+    NSLog(@"WE SHOULD DISPLAY CALIBRATION!!!!");
+    return YES;
 }
 
 - (void)regularInfoUpdate
@@ -152,6 +161,8 @@ const float EARTH_RADIUS = 3963.1676;
     //NSLog(@"Radchange: %f", radChange);
     return radChange;
 }
+
+
 
 - (void)updateLocations
 {

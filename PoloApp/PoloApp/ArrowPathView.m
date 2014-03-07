@@ -24,7 +24,6 @@
     return self;
 }
 
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
@@ -40,7 +39,7 @@
         CGContextMoveToPoint(context, 0, height);
         CGContextAddLineToPoint(context, width/2.0f, 0);
         CGContextAddLineToPoint(context, width, height);
-        CGContextAddLineToPoint(context, width/2.0f, 35);
+        CGContextAddLineToPoint(context, width/2.0f, 25);
         
 //        CGContextMoveToPoint(context, 50, height-50 );
 //        CGContextAddLineToPoint(context, 70,0);

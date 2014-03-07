@@ -18,7 +18,7 @@ Needed before pushing to App Store:
 * Maybe something with calibration?
 * Make usernames NOT case sensitive (importance?)
 * DONE-Remove testflight
-* delete friends
+* DONE delete friends
 * integrate iAd
 * Add custom nav bar
 * DONE Organize friends in list - alphabetize?

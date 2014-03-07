@@ -25,6 +25,17 @@
     return self;
 }
 
+- (IBAction)beginEditingTable:(id)sender {
+    NSLog(@"Now we can edit teh table");
+    [self setEditing:YES animated:YES];
+}
+/* will work on, doesn't work yet
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deleteRowsAtIndexPaths:_friends withRowAnimation:UITableViewRowAnimationFade];
+}*/
+
+
 - (void)logoutUser
 {
     [PFUser logOut];
@@ -42,6 +53,10 @@
 {
     NSLog(@"Go to Add Friend Screen");
     [self performSegueWithIdentifier:@"AddFriendSegue" sender:nil];
+}
+- (IBAction)editTable:(id)sender {
+    [self setEditing:YES animated:YES];
+    
 }
 
 - (void)viewDidLoad
@@ -102,6 +117,7 @@
     
     return cell;
 }
+
 
 /*
 // Override to support conditional editing of the table view.

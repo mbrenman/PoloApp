@@ -71,7 +71,7 @@
             </objects>
             <point key="canvasLocation" x="1724" y="394"/>
         </scene>
-        <!--Friend Table View Controller - Friends-->
+        <!--Friend Table View Controller-->
         <scene sceneID="fNB-h4-yfZ">
             <objects>
                 <tableViewController id="Gf3-if-SZ3" customClass="FriendTableViewController" sceneMemberID="viewController">
@@ -81,7 +81,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="16" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="69" id="dR3-9c-t5f" customClass="FriendCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="69"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dR3-9c-t5f" id="kLd-Fw-EtT">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
@@ -107,9 +107,25 @@
                             <outlet property="delegate" destination="Gf3-if-SZ3" id="eDZ-aL-Vu8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="GgU-fE-g0C">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="oHy-D9-Q86"/>
-                        <barButtonItem key="rightBarButtonItem" title="Add Friend" id="Jlm-gG-3S5"/>
+                    <navigationItem key="navigationItem" id="GgU-fE-g0C">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="oHy-D9-Q86">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="v2m-l0-5XA">
+                            <rect key="frame" x="93" y="6" width="128" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="Edit">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="beginEditingTable:" destination="Gf3-if-SZ3" eventType="touchUpInside" id="XPg-0I-WbV"/>
+                            </connections>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" title="Add Friend" id="Jlm-gG-3S5">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="LogoutButton" destination="oHy-D9-Q86" id="NRg-0p-NMu"/>
@@ -173,7 +189,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dek-XN-y0q" customClass="MyUINavigationViewController" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WUU-iL-uiZ">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="WUU-iL-uiZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -187,12 +204,13 @@
             <point key="canvasLocation" x="450" y="509"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uRb-x2-C5F"/>
+        <segue reference="SgB-wt-Hiy"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -38,8 +38,13 @@
         for (NSString *i in _friends){
             NSLog(@"%@", i);
         }
+        //remove from local NSArray
         [self.friends removeObjectAtIndex:indexPath.row];
-
+        // remove from database
+        PFUser *me = [PFUser currentUser];
+        me[@"friends"] = _friends;
+        [me saveInBackground];
+        //remove from local table
          [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView reloadData];
         [self setEditing:NO animated:YES];

@@ -29,10 +29,34 @@
     NSLog(@"Now we can edit teh table");
     [self setEditing:YES animated:YES];
 }
-/* will work on, doesn't work yet
+
+- (void)tableView:(UITableView *)tv commitEditingStyle:    (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // If row is deleted, remove it from the list.
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        for (NSString *i in _friends){
+            NSLog(@"%@", i);
+        }
+        [self.friends removeObjectAtIndex:indexPath.row];
+
+         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadData];
+        [self setEditing:NO animated:YES];
+    }
+}
+
+
+/*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deleteRowsAtIndexPaths:_friends withRowAnimation:UITableViewRowAnimationFade];
+     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSObject *eventToDelete = [_friends objectAtIndex:indexPath.row];
+        [_friends removeObjectIdenticalTo:eventToDelete];
+        [_friends removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+     }
+        //[tableView deleteRowsAtIndexPaths:_friends withRowAnimation:UITableViewRowAnimationFade];
 }*/
 
 
@@ -75,7 +99,7 @@
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
     // sort _friends
-    _friends = (NSMutableArray*)[_friends sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+   /* _friends = (NSMutableArray*)[_friends sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];*/
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

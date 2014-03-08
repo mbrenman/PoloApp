@@ -27,7 +27,11 @@
 
 - (IBAction)beginEditingTable:(id)sender {
     NSLog(@"Now we can edit teh table");
-    [self setEditing:YES animated:YES];
+    if (self.editing==NO) {
+        [self setEditing:YES animated:YES];
+    } else {
+        [self setEditing:NO animated:YES];
+    }
 }
 
 - (void)tableView:(UITableView *)tv commitEditingStyle:    (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -47,7 +51,6 @@
         //remove from local table
          [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView reloadData];
-        [self setEditing:NO animated:YES];
     }
 }
 

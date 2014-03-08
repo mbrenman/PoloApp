@@ -18,6 +18,7 @@ const float EARTH_RADIUS = 3963.1676;
 @property float myLat, myLong;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) PFUser *me;
+@property (retain, nonatomic) CLHeading *currentHeading;
 @property float otherLat, otherLong;
 @property BOOL haveMyLoc, haveTargetLoc;
 @property BOOL visible;
@@ -35,11 +36,11 @@ const float EARTH_RADIUS = 3963.1676;
 }
 
 - (void) viewDidAppear:(BOOL)animated{
-         [self locationManagerShouldDisplayHeadingCalibration:_locationManager];
 }
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    [self locationManagerShouldDisplayHeadingCalibration:_locationManager];
     _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:60];
     
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
@@ -59,15 +60,20 @@ const float EARTH_RADIUS = 3963.1676;
 	_locationManager=[[CLLocationManager alloc] init];
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	_locationManager.headingFilter = 1;
-	_locationManager.delegate=self;
+	self.locationManager.delegate=self;
 
 	[_locationManager startUpdatingHeading];
     _me = [PFUser currentUser];
 }
 
-- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager{
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
+{
+    if (self.currentHeading == nil){
     NSLog(@"WE SHOULD DISPLAY CALIBRATION!!!!");
-    return YES;
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (void)regularInfoUpdate

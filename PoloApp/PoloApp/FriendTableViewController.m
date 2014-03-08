@@ -26,7 +26,6 @@
 }
 
 - (IBAction)beginEditingTable:(id)sender {
-    NSLog(@"Now we can edit teh table");
     if (self.editing==NO) {
         [self setEditing:YES animated:YES];
     } else {
@@ -53,20 +52,6 @@
         [self.tableView reloadData];
     }
 }
-
-
-/*
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSObject *eventToDelete = [_friends objectAtIndex:indexPath.row];
-        [_friends removeObjectIdenticalTo:eventToDelete];
-        [_friends removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-     }
-        //[tableView deleteRowsAtIndexPaths:_friends withRowAnimation:UITableViewRowAnimationFade];
-}*/
-
 
 - (void)logoutUser
 {
@@ -106,7 +91,7 @@
     
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
-    // sort _friends
+    // sort _friends removed because it breaks remove... need to fix this
    /* _friends = (NSMutableArray*)[_friends sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];*/
     
     // Uncomment the following line to preserve selection between presentations.

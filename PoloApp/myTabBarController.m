@@ -1,18 +1,18 @@
 //
-//  MyUINavigationViewController.m
+//  myTabBarController.m
 //  PoloApp
 //
-//  Created by Susanne Heincke on 2/28/14.
+//  Created by Susanne Heincke on 3/8/14.
 //  Copyright (c) 2014 mbrenman. All rights reserved.
 //
 
-#import "MyUINavigationViewController.h"
+#import "myTabBarController.h"
 
-@interface MyUINavigationViewController ()
+@interface myTabBarController ()
 
 @end
 
-@implementation MyUINavigationViewController
+@implementation myTabBarController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,8 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //enabled for now so I can see on add friend page, we need a better image for this
-      [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"rect4445.png"] forBarMetrics:UIBarMetricsDefault];
 	// Do any additional setup after loading the view.
 }
 
@@ -35,6 +33,9 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated{
 }
 
 @end

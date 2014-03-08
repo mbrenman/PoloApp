@@ -8,11 +8,16 @@
 
 #import "AddFriendViewController.h"
 #import <Parse/Parse.h>
+#import "locLatLong.h"
 
 @interface AddFriendViewController ()
 @property (nonatomic) NSMutableArray *friends;
+@property (nonatomic) NSMutableArray *locations;
 @property (nonatomic, strong) UIAlertView *alertNonexistent;
 @property (nonatomic, strong) UIAlertView *alertAlreadyAdded;
+@property float myLat, myLong;
+@property (nonatomic) CLLocationManager *locationManager;
+
 @end
 
 @implementation AddFriendViewController
@@ -39,8 +44,6 @@
 //    NSLog(@"So friends. Much wow");
 //}
 - (IBAction)AddButtonClick:(id)sender {
-
-    
     NSString *newFriend = [_friendNameField text];
     [self AddFriendIfExistsinDB:newFriend];
 }
@@ -73,13 +76,12 @@
         if (![_friends containsObject:newFriend]){
             [_friends addObject:newFriend];
             //NSLog(@"New Frand");
+            [me saveInBackground];
+            [self performSegueWithIdentifier:@"FriendAdded" sender:nil];
         } else {
             [_alertAlreadyAdded show];
         }
     }
-    
-    [me saveInBackground];
-    [self performSegueWithIdentifier:@"FriendAdded" sender:nil];
 }
         
 - (void)viewDidLoad

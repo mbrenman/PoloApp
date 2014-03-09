@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 mbrenman. All rights reserved.
 //
 
-#import "myTabBarController.h"
+#import "FriendListTabBarController.h"
 
-@interface myTabBarController ()
+@interface FriendListTabBarController ()
 
 @end
 
-@implementation myTabBarController
+@implementation FriendListTabBarController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -41,7 +41,7 @@
 		AAD39661189DDB0C00675698 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39660189DDB0C00675698 /* FriendCell.m */; };
 		B3066D1618BF09F8004FC03F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3066D1518BF09F8004FC03F /* Parse.framework */; };
 		B34B145118CBB25000758173 /* locLatLong.m in Sources */ = {isa = PBXBuildFile; fileRef = B34B145018CBB25000758173 /* locLatLong.m */; };
-		B34B145418CBCAD600758173 /* myTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34B145318CBCAD600758173 /* myTabBarController.m */; };
+		B34B145418CBCAD600758173 /* FriendListTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34B145318CBCAD600758173 /* FriendListTabBarController.m */; };
 		B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9918C06A2900C612F8 /* BackArrow2.png */; };
 		B3D45D9D18C0FBB700C612F8 /* MyUINavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D45D9C18C0FBB700C612F8 /* MyUINavigationViewController.m */; };
 		B3D45D9F18C100B600C612F8 /* rect4444.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9E18C100B600C612F8 /* rect4444.png */; };
@@ -105,8 +105,8 @@
 		B3066D1518BF09F8004FC03F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		B34B144F18CBB25000758173 /* locLatLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = locLatLong.h; sourceTree = "<group>"; };
 		B34B145018CBB25000758173 /* locLatLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = locLatLong.m; sourceTree = "<group>"; };
-		B34B145218CBCAD600758173 /* myTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = myTabBarController.h; path = ../myTabBarController.h; sourceTree = "<group>"; };
-		B34B145318CBCAD600758173 /* myTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = myTabBarController.m; path = ../myTabBarController.m; sourceTree = "<group>"; };
+		B34B145218CBCAD600758173 /* FriendListTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendListTabBarController.h; path = ../FriendListTabBarController.h; sourceTree = "<group>"; };
+		B34B145318CBCAD600758173 /* FriendListTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendListTabBarController.m; path = ../FriendListTabBarController.m; sourceTree = "<group>"; };
 		B3D45D9918C06A2900C612F8 /* BackArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackArrow2.png; sourceTree = "<group>"; };
 		B3D45D9B18C0FBB700C612F8 /* MyUINavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUINavigationViewController.h; sourceTree = "<group>"; };
 		B3D45D9C18C0FBB700C612F8 /* MyUINavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUINavigationViewController.m; sourceTree = "<group>"; };
@@ -192,8 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				AAD39622189D923A00675698 /* Main.storyboard */,
-				B34B145218CBCAD600758173 /* myTabBarController.h */,
-				B34B145318CBCAD600758173 /* myTabBarController.m */,
+				B34B145218CBCAD600758173 /* FriendListTabBarController.h */,
+				B34B145318CBCAD600758173 /* FriendListTabBarController.m */,
 				AAD3961F189D923A00675698 /* PoloAppDelegate.h */,
 				AAD39620189D923A00675698 /* PoloAppDelegate.m */,
 				B3D45D9B18C0FBB700C612F8 /* MyUINavigationViewController.h */,
@@ -372,7 +372,7 @@
 				AAD3965E189DD88F00675698 /* FriendTableViewController.m in Sources */,
 				AAD39661189DDB0C00675698 /* FriendCell.m in Sources */,
 				AA04606B189E321C001A5785 /* ArrowViewController.m in Sources */,
-				B34B145418CBCAD600758173 /* myTabBarController.m in Sources */,
+				B34B145418CBCAD600758173 /* FriendListTabBarController.m in Sources */,
 				AA046074189E3F31001A5785 /* ArrowView.m in Sources */,
 				AA4FE88818C41BEB0089058E /* ArrowPathView.m in Sources */,
 				AAD39621189D923A00675698 /* PoloAppDelegate.m in Sources */,

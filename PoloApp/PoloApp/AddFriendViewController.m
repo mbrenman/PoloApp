@@ -41,9 +41,7 @@
     }
     return self;
 }
-//- (IBAction)AddFriendClick:(id)sender {
-//    NSLog(@"So friends. Much wow");
-//}
+
 - (IBAction)AddButtonClick:(id)sender {
     NSString *newFriend = [_friendNameField text];
     [self AddFriendIfExistsinDB:newFriend];
@@ -76,10 +74,7 @@
         //Only add new friend if user does not already have the friend
         if (![_friends containsObject:newFriend]){
             if (![[me username] isEqualToString:newFriend]){
-                NSLog([me username]);
-                NSLog(newFriend);
                 [_friends addObject:newFriend];
-                //NSLog(@"New Frand");
                 [me saveInBackground];
                 [self performSegueWithIdentifier:@"FriendAdded" sender:nil];
             } else {

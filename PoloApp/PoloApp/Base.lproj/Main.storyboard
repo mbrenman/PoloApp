@@ -203,7 +203,7 @@
             </objects>
             <point key="canvasLocation" x="-796" y="704"/>
         </scene>
-        <!--Table View Controller - Root View Controller-->
+        <!--Table View Controller - Locations-->
         <scene sceneID="jsI-ve-Bvs">
             <objects>
                 <tableViewController id="2ne-Yh-yDT" sceneMemberID="viewController">
@@ -222,7 +222,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="3NZ-4H-ixi"/>
+                    <navigationItem key="navigationItem" title="Locations" id="3NZ-4H-ixi"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4T-rp-VVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -244,7 +244,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkG-7j-kLJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="214" y="548"/>
+            <point key="canvasLocation" x="102" y="1394"/>
         </scene>
         <!--Friend ListUI Navigation View Controller - Friends-->
         <scene sceneID="IfQ-TV-SG3">
@@ -265,10 +265,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Avt-2h-SZC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="208" y="731"/>
+            <point key="canvasLocation" x="372" y="783"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

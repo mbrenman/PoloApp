@@ -191,11 +191,11 @@
 		AAD39616189D923A00675698 /* PoloApp */ = {
 			isa = PBXGroup;
 			children = (
+				AAD39622189D923A00675698 /* Main.storyboard */,
 				B34B145218CBCAD600758173 /* myTabBarController.h */,
 				B34B145318CBCAD600758173 /* myTabBarController.m */,
 				AAD3961F189D923A00675698 /* PoloAppDelegate.h */,
 				AAD39620189D923A00675698 /* PoloAppDelegate.m */,
-				AAD39622189D923A00675698 /* Main.storyboard */,
 				B3D45D9B18C0FBB700C612F8 /* MyUINavigationViewController.h */,
 				B3D45D9C18C0FBB700C612F8 /* MyUINavigationViewController.m */,
 				AA046066189E1B2C001A5785 /* AddFriendViewController.h */,
@@ -304,7 +304,7 @@
 				ORGANIZATIONNAME = mbrenman;
 				TargetAttributes = {
 					AAD3960C189D923A00675698 = {
-						DevelopmentTeam = WC5PBECM68;
+						DevelopmentTeam = WC8GK6LE4R;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;

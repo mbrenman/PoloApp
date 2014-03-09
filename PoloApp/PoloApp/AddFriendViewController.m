@@ -15,6 +15,7 @@
 @property (nonatomic) NSMutableArray *locations;
 @property (nonatomic, strong) UIAlertView *alertNonexistent;
 @property (nonatomic, strong) UIAlertView *alertAlreadyAdded;
+@property (nonatomic, strong) UIAlertView *alertSelfAdded;
 @property float myLat, myLong;
 @property (nonatomic) CLLocationManager *locationManager;
 
@@ -74,10 +75,16 @@
     } else {
         //Only add new friend if user does not already have the friend
         if (![_friends containsObject:newFriend]){
-            [_friends addObject:newFriend];
-            //NSLog(@"New Frand");
-            [me saveInBackground];
-            [self performSegueWithIdentifier:@"FriendAdded" sender:nil];
+            if (![[me username] isEqualToString:newFriend]){
+                NSLog([me username]);
+                NSLog(newFriend);
+                [_friends addObject:newFriend];
+                //NSLog(@"New Frand");
+                [me saveInBackground];
+                [self performSegueWithIdentifier:@"FriendAdded" sender:nil];
+            } else {
+                [_alertSelfAdded show];
+            }
         } else {
             [_alertAlreadyAdded show];
         }
@@ -87,20 +94,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        //now we will populate an alert for use if the user tries to add a nonexistent friend
-        _alertNonexistent = [[UIAlertView alloc]
+    //An alert for if the user tries to add a nonexistent friend
+    _alertNonexistent = [[UIAlertView alloc]
         initWithTitle:@"Error"
         message:@"No such user exists"
         delegate:self
         cancelButtonTitle:@"Dismiss"
         otherButtonTitles:nil];
     
+    //An alert for if the user tries to add a friend that they already have
     _alertAlreadyAdded = [[UIAlertView alloc]
                          initWithTitle:@"Error"
                          message:@"Already friends with selcted user"
                          delegate:self
                          cancelButtonTitle:@"Dismiss"
                          otherButtonTitles:nil];
+
+    //An alert for is the user tries to add themselves
+    _alertSelfAdded = [[UIAlertView alloc]
+                          initWithTitle:@"Error"
+                          message:@"Cannot add yourself"
+                          delegate:self
+                          cancelButtonTitle:@"Dismiss"
+                          otherButtonTitles:nil];
 }
 
 - (void)didReceiveMemoryWarning

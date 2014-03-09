@@ -43,7 +43,7 @@
 		B34B145118CBB25000758173 /* locLatLong.m in Sources */ = {isa = PBXBuildFile; fileRef = B34B145018CBB25000758173 /* locLatLong.m */; };
 		B34B145418CBCAD600758173 /* FriendListTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34B145318CBCAD600758173 /* FriendListTabBarController.m */; };
 		B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9918C06A2900C612F8 /* BackArrow2.png */; };
-		B3D45D9D18C0FBB700C612F8 /* MyUINavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D45D9C18C0FBB700C612F8 /* MyUINavigationViewController.m */; };
+		B3D45D9D18C0FBB700C612F8 /* FriendListUINavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */; };
 		B3D45D9F18C100B600C612F8 /* rect4444.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9E18C100B600C612F8 /* rect4444.png */; };
 		B3D45DA118C1031000C612F8 /* rect4445.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45DA018C1031000C612F8 /* rect4445.png */; };
 /* End PBXBuildFile section */
@@ -108,8 +108,8 @@
 		B34B145218CBCAD600758173 /* FriendListTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendListTabBarController.h; path = ../FriendListTabBarController.h; sourceTree = "<group>"; };
 		B34B145318CBCAD600758173 /* FriendListTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendListTabBarController.m; path = ../FriendListTabBarController.m; sourceTree = "<group>"; };
 		B3D45D9918C06A2900C612F8 /* BackArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackArrow2.png; sourceTree = "<group>"; };
-		B3D45D9B18C0FBB700C612F8 /* MyUINavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUINavigationViewController.h; sourceTree = "<group>"; };
-		B3D45D9C18C0FBB700C612F8 /* MyUINavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUINavigationViewController.m; sourceTree = "<group>"; };
+		B3D45D9B18C0FBB700C612F8 /* FriendListUINavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListUINavigationViewController.h; sourceTree = "<group>"; };
+		B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListUINavigationViewController.m; sourceTree = "<group>"; };
 		B3D45D9E18C100B600C612F8 /* rect4444.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect4444.png; sourceTree = "<group>"; };
 		B3D45DA018C1031000C612F8 /* rect4445.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect4445.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,8 +196,8 @@
 				B34B145318CBCAD600758173 /* FriendListTabBarController.m */,
 				AAD3961F189D923A00675698 /* PoloAppDelegate.h */,
 				AAD39620189D923A00675698 /* PoloAppDelegate.m */,
-				B3D45D9B18C0FBB700C612F8 /* MyUINavigationViewController.h */,
-				B3D45D9C18C0FBB700C612F8 /* MyUINavigationViewController.m */,
+				B3D45D9B18C0FBB700C612F8 /* FriendListUINavigationViewController.h */,
+				B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */,
 				AA046066189E1B2C001A5785 /* AddFriendViewController.h */,
 				AA046067189E1B2C001A5785 /* AddFriendViewController.m */,
 				AAD3965C189DD88F00675698 /* FriendTableViewController.h */,
@@ -377,7 +377,7 @@
 				AA4FE88818C41BEB0089058E /* ArrowPathView.m in Sources */,
 				AAD39621189D923A00675698 /* PoloAppDelegate.m in Sources */,
 				AA046068189E1B2C001A5785 /* AddFriendViewController.m in Sources */,
-				B3D45D9D18C0FBB700C612F8 /* MyUINavigationViewController.m in Sources */,
+				B3D45D9D18C0FBB700C612F8 /* FriendListUINavigationViewController.m in Sources */,
 				AAD3961D189D923A00675698 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

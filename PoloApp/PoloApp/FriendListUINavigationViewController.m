@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 mbrenman. All rights reserved.
 //
 
-#import "MyUINavigationViewController.h"
+#import "FriendListUINavigationViewController.h"
 
-@interface MyUINavigationViewController ()
+@interface FriendListUINavigationViewController ()
 
 @end
 
-@implementation MyUINavigationViewController
+@implementation FriendListUINavigationViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

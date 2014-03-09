@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyUINavigationViewController : UINavigationController
+@interface FriendListUINavigationViewController : UINavigationController
 
 @end

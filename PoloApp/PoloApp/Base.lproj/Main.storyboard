@@ -246,10 +246,10 @@
             </objects>
             <point key="canvasLocation" x="514" y="1208"/>
         </scene>
-        <!--MyUI Navigation View Controller - Item-->
+        <!--Friend ListUI Navigation View Controller - Item-->
         <scene sceneID="IfQ-TV-SG3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dek-XN-y0q" customClass="MyUINavigationViewController" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dek-XN-y0q" customClass="FriendListUINavigationViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="rrV-qJ-xye"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

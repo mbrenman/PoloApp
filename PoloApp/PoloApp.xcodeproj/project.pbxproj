@@ -40,7 +40,6 @@
 		AAD3965E189DD88F00675698 /* FriendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD3965D189DD88F00675698 /* FriendTableViewController.m */; };
 		AAD39661189DDB0C00675698 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39660189DDB0C00675698 /* FriendCell.m */; };
 		B3066D1618BF09F8004FC03F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3066D1518BF09F8004FC03F /* Parse.framework */; };
-		B34B145118CBB25000758173 /* locLatLong.m in Sources */ = {isa = PBXBuildFile; fileRef = B34B145018CBB25000758173 /* locLatLong.m */; };
 		B34B145418CBCAD600758173 /* FriendListTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34B145318CBCAD600758173 /* FriendListTabBarController.m */; };
 		B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9918C06A2900C612F8 /* BackArrow2.png */; };
 		B3D45D9D18C0FBB700C612F8 /* FriendListUINavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */; };
@@ -103,8 +102,6 @@
 		AAD3965F189DDB0C00675698 /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
 		AAD39660189DDB0C00675698 /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
 		B3066D1518BF09F8004FC03F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		B34B144F18CBB25000758173 /* locLatLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = locLatLong.h; sourceTree = "<group>"; };
-		B34B145018CBB25000758173 /* locLatLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = locLatLong.m; sourceTree = "<group>"; };
 		B34B145218CBCAD600758173 /* FriendListTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendListTabBarController.h; path = ../FriendListTabBarController.h; sourceTree = "<group>"; };
 		B34B145318CBCAD600758173 /* FriendListTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendListTabBarController.m; path = ../FriendListTabBarController.m; sourceTree = "<group>"; };
 		B3D45D9918C06A2900C612F8 /* BackArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackArrow2.png; sourceTree = "<group>"; };
@@ -212,8 +209,6 @@
 				AA4FE88718C41BEB0089058E /* ArrowPathView.m */,
 				AA046069189E321C001A5785 /* ArrowViewController.h */,
 				AA04606A189E321C001A5785 /* ArrowViewController.m */,
-				B34B144F18CBB25000758173 /* locLatLong.h */,
-				B34B145018CBB25000758173 /* locLatLong.m */,
 				AAD39628189D923A00675698 /* Images.xcassets */,
 				AAD39617189D923A00675698 /* Supporting Files */,
 			);
@@ -368,7 +363,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAD39627189D923A00675698 /* LoginSignupViewController.m in Sources */,
-				B34B145118CBB25000758173 /* locLatLong.m in Sources */,
 				AAD3965E189DD88F00675698 /* FriendTableViewController.m in Sources */,
 				AAD39661189DDB0C00675698 /* FriendCell.m in Sources */,
 				AA04606B189E321C001A5785 /* ArrowViewController.m in Sources */,

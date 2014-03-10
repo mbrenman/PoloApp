@@ -188,7 +188,6 @@ const float EARTH_RADIUS = 3963.1676;
         //NSLog([NSString stringWithFormat:@"target location set %f, %f", otherLat, otherLong]);
         
         _haveTargetLoc = YES;
-        
         [_compassView setNeedsDisplay];
     }];
     

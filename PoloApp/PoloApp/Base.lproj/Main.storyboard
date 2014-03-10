@@ -81,7 +81,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="16" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="69" id="dR3-9c-t5f" customClass="FriendCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="69"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dR3-9c-t5f" id="kLd-Fw-EtT">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
@@ -203,17 +203,17 @@
             </objects>
             <point key="canvasLocation" x="-324" y="696"/>
         </scene>
-        <!--Table View Controller - Locations-->
+        <!--Location Table View Controller - Locations-->
         <scene sceneID="jsI-ve-Bvs">
             <objects>
-                <tableViewController id="2ne-Yh-yDT" sceneMemberID="viewController">
+                <tableViewController id="2ne-Yh-yDT" customClass="LocationTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PFv-9S-sH9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="21n-qq-xz9">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="21n-qq-xz9" id="kNz-WT-OmC">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -232,12 +232,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4T-rp-VVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="768" y="1170"/>
+            <point key="canvasLocation" x="784" y="1346"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Location View Controller-->
         <scene sceneID="RAn-Ah-j8D">
             <objects>
-                <viewController id="wNO-0e-8Rb" sceneMemberID="viewController">
+                <viewController id="wNO-0e-8Rb" customClass="AddLocationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kNP-JZ-r7S"/>
                         <viewControllerLayoutGuide type="bottom" id="6iv-Sf-B4g"/>
@@ -253,12 +253,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aau-8m-WAb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1332" y="1020"/>
+            <point key="canvasLocation" x="1388" y="996"/>
         </scene>
-        <!--View Controller-->
+        <!--Location Arrow View Controller - LocationArr-->
         <scene sceneID="c8P-E6-32F">
             <objects>
-                <viewController id="7Ea-Mc-Oek" sceneMemberID="viewController">
+                <viewController title="LocationArr" id="7Ea-Mc-Oek" customClass="LocationArrowViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Plw-4W-8Hb"/>
                         <viewControllerLayoutGuide type="bottom" id="HAI-SX-cyc"/>
@@ -274,7 +274,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHb-Kq-k4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1348" y="1700"/>
+            <point key="canvasLocation" x="1404" y="1700"/>
         </scene>
         <!--Navigation Controller - Locations-->
         <scene sceneID="BtD-rw-qfz">

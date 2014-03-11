@@ -7,12 +7,22 @@
 //
 
 #import "LocationTableViewController.h"
+#import "Parse/Parse.h"
+#import "FriendCell.h"
 
 @interface LocationTableViewController ()
-
+@property (nonatomic) NSMutableArray *locations;
 @end
 
 @implementation LocationTableViewController
+
+- (IBAction)goToLocationScreen:(id)sender {
+    [self performSegueWithIdentifier:@"addLocationSegue" sender:nil];
+}
+- (IBAction)logOutUser:(id)sender {
+    [PFUser logOut];
+    [self performSegueWithIdentifier:@"LocationLogoutSegue" sender:nil];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    PFUser *me = [PFUser currentUser];
+    _locations = me[@"locations"];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

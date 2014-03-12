@@ -60,17 +60,18 @@
     [self performSegueWithIdentifier:@"LogOutSegue" sender:nil];
 }
 
+- (void)addFriendScreen
+{
+    NSLog(@"Go to Add Friend Screen");
+    [self performSegueWithIdentifier:@"AddFriendSegue" sender:nil];
+}
+
 - (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath{
     //TODO: Later on, pull the data from the sender and use that to customize the arrow
     NSString *user = [_friends objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"PersonToArrow" sender:user];
 }
 
-- (void)addFriendScreen
-{
-    NSLog(@"Go to Add Friend Screen");
-    [self performSegueWithIdentifier:@"AddFriendSegue" sender:nil];
-}
 - (IBAction)editTable:(id)sender {
     [self setEditing:YES animated:YES];
     

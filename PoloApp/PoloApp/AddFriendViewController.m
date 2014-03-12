@@ -8,16 +8,12 @@
 
 #import "AddFriendViewController.h"
 #import <Parse/Parse.h>
-#import "locLatLong.h"
 
 @interface AddFriendViewController ()
 @property (nonatomic) NSMutableArray *friends;
-@property (nonatomic) NSMutableArray *locations;
 @property (nonatomic, strong) UIAlertView *alertNonexistent;
 @property (nonatomic, strong) UIAlertView *alertAlreadyAdded;
 @property (nonatomic, strong) UIAlertView *alertSelfAdded;
-@property float myLat, myLong;
-@property (nonatomic) CLLocationManager *locationManager;
 
 @end
 

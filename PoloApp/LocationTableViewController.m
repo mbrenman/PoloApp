@@ -16,14 +16,6 @@
 
 @implementation LocationTableViewController
 
-- (IBAction)goToLocationScreen:(id)sender {
-    [self performSegueWithIdentifier:@"addLocationSegue" sender:nil];
-}
-- (IBAction)logOutUser:(id)sender {
-    [PFUser logOut];
-    [self performSegueWithIdentifier:@"LocationLogoutSegue" sender:nil];
-}
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -32,6 +24,73 @@
     }
     return self;
 }
+
+/*- (IBAction)beginEditingTable:(id)sender {
+    if (self.editing==NO) {
+        [self setEditing:YES animated:YES];
+    } else {
+        [self setEditing:NO animated:YES];
+    }
+}
+ - (void)tableView:(UITableView *)tv commitEditingStyle:    (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // If row is deleted, remove it from the list.
+ if (editingStyle == UITableViewCellEditingStyleDelete)
+ {
+ for (NSString *i in _friends){
+ NSLog(@"%@", i);
+ }
+ //remove from local NSArray
+ [self.friends removeObjectAtIndex:indexPath.row];
+ // remove from database
+ PFUser *me = [PFUser currentUser];
+ me[@"friends"] = _friends;
+ [me saveInBackground];
+ //remove from local table
+ [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ [self.tableView reloadData];
+ }
+ }
+ 
+*/
+
+- (IBAction)logOutUser:(id)sender {
+    [PFUser logOut];
+    [self performSegueWithIdentifier:@"LocationLogoutSegue" sender:nil];
+}
+
+- (IBAction)goToLocationScreen:(id)sender {
+    [self performSegueWithIdentifier:@"addLocationSegue" sender:nil];
+}
+
+- (void) tableView: (UITableView *) tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *location = [_locations objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"locationToArrowSegue" sender:location];
+}
+
+- (IBAction)editTable:(id)sender {
+    [self setEditing:YES animated:YES];
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    
+    // Configure the cell...
+    int row = [indexPath row];
+    //PFObject *location = [_locations objectAtIndex:row];
+    
+    //cell.friendLabel.text = location.
+    return cell;
+}
+
+
+
+
+
 
 - (void)viewDidLoad
 {
@@ -52,31 +111,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return _locations.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
 
 /*
 // Override to support conditional editing of the table view.

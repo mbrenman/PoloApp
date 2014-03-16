@@ -33,24 +33,22 @@
     if (!_bezierArrowView){
         NSLog(@"making again");
         
-        CGFloat width = CGRectGetWidth(self.bounds);
+        CGFloat screenWidth = CGRectGetWidth(self.bounds);
+        CGFloat screenHeight = CGRectGetHeight(self.bounds);
         
-        _bezierArrowView = [[ArrowPathView alloc] initWithFrame:CGRectMake(((width-_arrowImage.size.width)/2), 140.0, _arrowImage.size.width, _arrowImage.size.height-60)];
+        //Rect sizes should change with the size of the screen for multi-device functionality
+        
+        CGFloat x_offset = screenWidth * .15f; //Allow 15 percent margin per side
+        CGFloat y_offset = screenHeight * .35f; //Allow for a 35 percent top margin
+        CGFloat width = screenWidth * 0.7f; //Only use 70 percent of available screen
+        CGFloat height = width * .6f;
+        
+        _bezierArrowView = [[ArrowPathView alloc] initWithFrame:CGRectMake(x_offset, y_offset, width, height)];
         [self addSubview:_bezierArrowView];
-//        
-//        _imageView = [ [ UIImageView alloc ] initWithFrame:CGRectMake(60.0, 120.0, _arrowImage.size.width, _arrowImage.size.height) ];
-//        _imageView.image = _arrowImage;
-//        [self addSubview:_imageView];
     }
     CGAffineTransform rotate = CGAffineTransformMakeRotation( _newRad );
-//    [_imageView setTransform:rotate];
     [_bezierArrowView setTransform:rotate];
 }
-//
-//- (void)setNeedsDisplay{
-//    [super setNeedsDisplay];
-//    [_bezierArrowView setNeedsDisplay];
-//}
 
 
 @end

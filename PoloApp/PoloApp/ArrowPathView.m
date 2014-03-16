@@ -34,21 +34,17 @@
         CGFloat height = CGRectGetHeight(self.bounds);
         CGFloat width = CGRectGetWidth(self.bounds);
         
-        CGContextRef context = UIGraphicsGetCurrentContext();
-
-        CGContextMoveToPoint(context, 0, height);
-        CGContextAddLineToPoint(context, width/2.0f, 0);
-        CGContextAddLineToPoint(context, width, height);
-        CGContextAddLineToPoint(context, width/2.0f, 25);
+        UIBezierPath *arrow = [UIBezierPath bezierPath];
+        CGFloat padding = 30;
         
-//        CGContextMoveToPoint(context, 50, height-50 );
-//        CGContextAddLineToPoint(context, 70,0);
-//        CGContextAddLineToPoint(context, width-135, 135);
-//        
-//        CGContextAddLineToPoint(context, width, height-70);
-    
-        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-        CGContextFillPath(context);
+        [arrow moveToPoint:CGPointMake(0.0f + padding, height - padding)];
+        [arrow addLineToPoint:CGPointMake(width/2, 0.0f + padding)];
+        [arrow addLineToPoint:CGPointMake(width - padding, height - padding)];
+        
+        [[UIColor whiteColor] set];
+        [arrow setLineWidth:padding];
+        [arrow stroke];
+        
         _drawn = YES;
     }
 }

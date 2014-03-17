@@ -34,7 +34,7 @@
                         <viewControllerLayoutGuide type="bottom" id="OEP-AZ-mmp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="H3x-c5-ceN" customClass="ArrowView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Vi-VG-jus">
@@ -65,7 +65,6 @@
                     <connections>
                         <outlet property="DistanceLabel" destination="j0t-5R-zTG" id="hb8-mM-ziX"/>
                         <outlet property="compassView" destination="H3x-c5-ceN" id="TRR-h6-6sb"/>
-                        <segue destination="ZfR-jF-EaM" kind="modal" identifier="ArrowToPerson" id="Mjy-iE-f7U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLl-xp-cSp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -134,7 +133,7 @@
                         <outlet property="addFriendButton" destination="Jlm-gG-3S5" id="6on-r6-ra2"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="LogOutSegue" id="TXm-gv-ivG"/>
                         <segue destination="7bK-gE-R1Q" kind="push" identifier="AddFriendSegue" id="GsT-ym-nQk"/>
-                        <segue destination="pLJ-TN-xqo" kind="modal" identifier="PersonToArrow" id="TJO-ak-dHW"/>
+                        <segue destination="pLJ-TN-xqo" kind="push" identifier="PersonToArrow" id="TJO-ak-dHW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RYc-HU-N7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -273,7 +272,7 @@
                     <connections>
                         <segue destination="wNO-0e-8Rb" kind="push" identifier="addLocationSegue" id="FaF-9A-m5Y"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="LocationLogoutSegue" id="2Xe-uF-Iuw"/>
-                        <segue destination="pLJ-TN-xqo" kind="modal" identifier="LocationToArrow" id="oIt-RW-7II"/>
+                        <segue destination="pLJ-TN-xqo" kind="push" identifier="LocationToArrow" id="oIt-RW-7II"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4T-rp-VVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -371,8 +370,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TJO-ak-dHW"/>
-        <segue reference="wOM-ry-IT9"/>
         <segue reference="2Xe-uF-Iuw"/>
+        <segue reference="oIt-RW-7II"/>
     </inferredMetricsTieBreakers>
 </document>

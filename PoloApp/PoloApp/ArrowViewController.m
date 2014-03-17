@@ -35,7 +35,10 @@ const float EARTH_RADIUS = 3963.1676;
     return self;
 }
 
-- (void) viewDidAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController setToolbarHidden:YES animated:NO];
+    [self.tabBarController.tabBar setHidden:YES];
 }
 
 - (void)viewDidLoad{
@@ -114,7 +117,8 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (IBAction)ArrowBackButtonPushed:(id)sender {
     NSLog(@"Pushed");
-    [self performSegueWithIdentifier:@"ArrowToPerson" sender:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+//    [self performSegueWithIdentifier:@"ArrowToPerson" sender:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{

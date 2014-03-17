@@ -105,6 +105,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.tableView reloadData];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning

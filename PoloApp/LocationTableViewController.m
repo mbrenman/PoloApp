@@ -81,8 +81,12 @@
     
     // Configure the cell...
     int row = [indexPath row];
-//    PFObject *location = [_locations objectAtIndex:row];
-    cell.friendLabel.text = @"test";
+    PFObject *location = [_locations objectAtIndex:row];
+    [location fetchIfNeeded];
+    
+    if (cell){
+        cell.friendLabel.text = location[@"name"];
+    }
 //    NSLog(location[@"name"]);
     
     return cell;

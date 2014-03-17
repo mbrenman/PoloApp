@@ -23,14 +23,17 @@ Needed before pushing to App Store:
 * Add custom nav bar
 * DONE Organize friends in list - alphabetize?
 * encrypt all location data between users - public/private keys for users? Can Parse do this?
+* Make loading locations faster
+* Facebook Login
+* Consistent styling across app
 
 New features:
 
-* Arbitrary points as friends — make a new type without API? Friend/Points as tab view controller?
+* DONEish - Arbitrary points as friends — make a new type without API? Friend/Points as tab view controller?
 * Whitelist of users that can always connect - how do we update from the non-user’s phone?
-* Show “waiting…” or “connecting…” before pulling target’s data or when target is at (0º, 0º) —> not connecting
+* DONE - Show “waiting…” or “connecting…” before pulling target’s data or when target is at (0º, 0º) —> not connecting
 * Add call or text button from the arrow screen (blank out if no supplied phone number)
 * Update friend list with contact nicknames/names if phone number is supplied and in contacts
-* Make adding friends faster
+* DONE - Make adding friends faster
 * Custom colors -- change icon too
 * Custom Skin for login, less parse-y

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Polo View Controller-->
@@ -213,7 +213,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="61" id="21n-qq-xz9">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="61" id="21n-qq-xz9" customClass="FriendCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="61"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="21n-qq-xz9" id="kNz-WT-OmC">
@@ -229,6 +229,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="friendLabel" destination="sen-E2-Tmn" id="OpZ-hW-J5q"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
@@ -286,7 +289,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6iv-Sf-B4g"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eKu-Jc-zyp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7uR-UP-YD1">
@@ -301,20 +304,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" title="Add Friend">
+                                <state key="normal" title="Add Location">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="AddButtonClick:" destination="7bK-gE-R1Q" eventType="touchUpInside" id="1JQ-Gd-bFT"/>
-                                    <action selector="addFriendClick:" destination="wNO-0e-8Rb" eventType="touchUpInside" id="P39-Ms-q36"/>
+                                    <action selector="addLocationClick:" destination="wNO-0e-8Rb" eventType="touchUpInside" id="2cP-S5-XLh"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="TgR-Kv-zWC"/>
                     <connections>
                         <outlet property="locationField" destination="7uR-UP-YD1" id="dGB-ih-sKo"/>
-                        <segue destination="ZfR-jF-EaM" kind="modal" identifier="AddLocationToTableView" id="pqH-eB-Ia8"/>
+                        <segue destination="ZfR-jF-EaM" kind="modal" identifier="LocationAdded" id="Vxr-6c-66l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aau-8m-WAb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -398,7 +401,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pqH-eB-Ia8"/>
+        <segue reference="Vxr-6c-66l"/>
         <segue reference="2Xe-uF-Iuw"/>
     </inferredMetricsTieBreakers>
 </document>

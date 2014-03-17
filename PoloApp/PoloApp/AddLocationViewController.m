@@ -20,7 +20,7 @@
 
 @implementation AddLocationViewController
 
-- (IBAction)addFriendClick:(id)sender {
+- (IBAction)addLocationClick:(id)sender {
     //get name and coordinates of new location
     NSString *newLocationName = [_locationField text];
     NSString *locLat = [NSString stringWithFormat:@"%f",_locationManager.location.coordinate.latitude];
@@ -38,7 +38,7 @@
     } else {
         [_locations addObject:newLocation];
         [me saveInBackground];
-        [self performSegueWithIdentifier:@"AddLocationToTableView" sender:nil];
+        [self performSegueWithIdentifier:@"LocationAdded" sender:nil];
     }
     
 }

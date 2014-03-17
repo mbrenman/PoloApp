@@ -94,8 +94,8 @@ const float EARTH_RADIUS = 3963.1676;
     _visible = FALSE;
     
     //Zero out location data when we get off of the arrow
-    _me[@"lat"] = [NSString stringWithFormat:@"%f", 0.0f];
-    _me[@"long"] = [NSString stringWithFormat:@"%f", 0.0f];
+    _me[@"lat"] = [[NSNull alloc] init];
+    _me[@"long"] = [[NSNull alloc] init];
     [_me saveInBackground];
     NSLog(@"should be zero");
     

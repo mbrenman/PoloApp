@@ -75,15 +75,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"FriendCell";
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     
     // Configure the cell...
     int row = [indexPath row];
-    //PFObject *location = [_locations objectAtIndex:row];
+//    PFObject *location = [_locations objectAtIndex:row];
+    cell.friendLabel.text = @"test";
+//    NSLog(location[@"name"]);
     
-    //cell.friendLabel.text = location.
     return cell;
 }
 
@@ -96,13 +97,20 @@
 {
     [super viewDidLoad];
     PFUser *me = [PFUser currentUser];
-    _locations = me[@"locations"];
+//    me[@"myLocations"] = [[NSMutableArray alloc] init];
+//    [me saveInBackground];
+    
+    _locations = me[@"myLocations"];
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+//    NSLog(_locations[1][@"name"]);
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSLog(@"IN THE LOCATION TABLE");
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,10 +118,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
-
 
 
 #pragma mark - Table view data source
@@ -128,7 +132,6 @@
     // Return the number of rows in the section.
     return _locations.count;
 }
-
 
 /*
 // Override to support conditional editing of the table view.

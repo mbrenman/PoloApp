@@ -38,7 +38,7 @@
     } else {
         [_locations addObject:newLocation];
         [me saveInBackground];
-        [self performSegueWithIdentifier:@"LocationAdded" sender:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }

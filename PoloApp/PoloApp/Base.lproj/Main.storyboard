@@ -317,7 +317,6 @@
                     <navigationItem key="navigationItem" id="TgR-Kv-zWC"/>
                     <connections>
                         <outlet property="locationField" destination="7uR-UP-YD1" id="dGB-ih-sKo"/>
-                        <segue destination="ZfR-jF-EaM" kind="modal" identifier="LocationAdded" id="Vxr-6c-66l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aau-8m-WAb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -401,7 +400,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Vxr-6c-66l"/>
-        <segue reference="2Xe-uF-Iuw"/>
+        <segue reference="Mjy-iE-f7U"/>
+        <segue reference="TXm-gv-ivG"/>
     </inferredMetricsTieBreakers>
 </document>

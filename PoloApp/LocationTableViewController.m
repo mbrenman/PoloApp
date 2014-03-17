@@ -83,11 +83,7 @@
     int row = [indexPath row];
     PFObject *location = [_locations objectAtIndex:row];
     [location fetchIfNeeded];
-    
-    if (cell){
-        cell.friendLabel.text = location[@"name"];
-    }
-//    NSLog(location[@"name"]);
+    cell.friendLabel.text = location[@"name"];
     
     return cell;
 }
@@ -100,21 +96,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    PFUser *me = [PFUser currentUser];
-//    me[@"myLocations"] = [[NSMutableArray alloc] init];
-//    [me saveInBackground];
-    
-    _locations = me[@"myLocations"];
-    
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 //    NSLog(_locations[1][@"name"]);
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    NSLog(@"IN THE LOCATION TABLE");
-    
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    PFUser *me = [PFUser currentUser];
+    _locations = me[@"myLocations"];
+//    [self.view setNeedsDisplay];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

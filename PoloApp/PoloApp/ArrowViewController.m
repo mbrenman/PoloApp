@@ -46,13 +46,20 @@ const float EARTH_RADIUS = 3963.1676;
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
     _haveMyLoc = NO;
-    _haveTargetLoc = NO;
+    
+    if (_staticLocation){
+        _otherLat = _staticLat;
+        _otherLong = _staticLong;
+        _haveTargetLoc = YES;
+    } else {
+        _haveTargetLoc = NO;
+        _otherLat = 0.0f;
+        _otherLong = 0.0f;
+    }
     
     _visible = YES;
     
     _radChange = 0.0f;
-    _otherLat = 0.0f;
-    _otherLong = 0.0f;
     
     //Open a new thread to update the target angle regularly
     [self performSelectorInBackground:@selector(regularInfoUpdate) withObject:nil];
@@ -172,37 +179,41 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (void)updateLocations
 {
-    PFQuery *query= [PFUser query];
-    [query whereKey:@"username" equalTo:_targetUserName];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+    if (!_staticLocation){
+        PFQuery *query= [PFUser query];
+        [query whereKey:@"username" equalTo:_targetUserName];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
         
-        //TODO: Only get the rest of the information if currentUser is in the target's whitelist
-        //      Otherwise, show the connecting pictures
+            //TODO: Only get the rest of the information if currentUser is in the target's whitelist
+            //      Otherwise, show the connecting pictures
         
-        float otherLat = [[object objectForKey:@"lat"] floatValue];
-        float otherLong = [[object objectForKey:@"long"] floatValue];
+            float otherLat = [[object objectForKey:@"lat"] floatValue];
+            float otherLong = [[object objectForKey:@"long"] floatValue];
         
-        [self setOtherLat:otherLat];
-        [self setOtherLong:otherLong];
+            [self setOtherLat:otherLat];
+            [self setOtherLong:otherLong];
         
-        //NSLog([NSString stringWithFormat:@"target location set %f, %f", otherLat, otherLong]);
+            //NSLog([NSString stringWithFormat:@"target location set %f, %f", otherLat, otherLong]);
         
-        _haveTargetLoc = YES;
-        [_compassView setNeedsDisplay];
-    }];
-    
+            _haveTargetLoc = YES;
+            [_compassView setNeedsDisplay];
+        }];
+    }
     
     //Find my current location
     _myLat = _locationManager.location.coordinate.latitude;
     _myLong = _locationManager.location.coordinate.longitude;
     
-    //Push my current location to the cloud (so partner can see it)
-    _me[@"lat"] = [NSString stringWithFormat:@"%f", _myLat];
-    _me[@"long"] = [NSString stringWithFormat:@"%f", _myLong];
+    if (!_staticLocation){
+        //Push my current location to the cloud (so partner can see it)
+        _me[@"lat"] = [NSString stringWithFormat:@"%f", _myLat];
+        _me[@"long"] = [NSString stringWithFormat:@"%f", _myLong];
     
-    if (_visible){
-        [_me saveInBackground];
+        if (_visible){
+            [_me saveInBackground];
+        }
     }
+    
     _haveMyLoc = YES;
     
     NSLog(@"my location set");

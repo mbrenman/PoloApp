@@ -56,12 +56,23 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    _locationManager=[[CLLocationManager alloc] init];
+	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	_locationManager.headingFilter = 1;
+	self.locationManager.delegate=self;
+    
+    [_locationManager startUpdatingHeading];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [_locationManager stopUpdatingHeading];
 }
 
 @end

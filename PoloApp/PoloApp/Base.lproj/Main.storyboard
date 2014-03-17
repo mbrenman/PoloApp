@@ -61,6 +61,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="wtF-RL-Cxc"/>
                     <connections>
                         <outlet property="DistanceLabel" destination="j0t-5R-zTG" id="hb8-mM-ziX"/>
                         <outlet property="compassView" destination="H3x-c5-ceN" id="TRR-h6-6sb"/>
@@ -274,6 +275,7 @@
                         <segue destination="wNO-0e-8Rb" kind="push" identifier="addLocationSegue" id="FaF-9A-m5Y"/>
                         <segue destination="7Ea-Mc-Oek" kind="modal" identifier="locationToArrowSegue" id="2lX-Kd-AUC"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="LocationLogoutSegue" id="2Xe-uF-Iuw"/>
+                        <segue destination="pLJ-TN-xqo" kind="modal" identifier="LocationToArrow" id="oIt-RW-7II"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4T-rp-VVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -400,7 +402,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="oIt-RW-7II"/>
         <segue reference="Mjy-iE-f7U"/>
-        <segue reference="TXm-gv-ivG"/>
+        <segue reference="2Xe-uF-Iuw"/>
     </inferredMetricsTieBreakers>
 </document>

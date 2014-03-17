@@ -9,6 +9,7 @@
 #import "LocationTableViewController.h"
 #import "Parse/Parse.h"
 #import "FriendCell.h"
+#import "ArrowViewController.h"
 
 @interface LocationTableViewController ()
 @property (nonatomic) NSMutableArray *locations;
@@ -63,9 +64,10 @@
     [self performSegueWithIdentifier:@"addLocationSegue" sender:nil];
 }
 
-- (void) tableView: (UITableView *) tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *location = [_locations objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"locationToArrowSegue" sender:location];
+- (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PFObject *location = [_locations objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"LocationToArrow" sender:location];
+//    [self performSegueWithIdentifier:@"locationToArrowSegue" sender:location];
 }
 
 - (IBAction)editTable:(id)sender {
@@ -173,16 +175,20 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    PFObject *loc = sender;
+    if ([segue.identifier isEqualToString:@"LocationToArrow"]){
+        [segue.destinationViewController setStaticLat:[(loc[@"lat"]) floatValue]];
+        [segue.destinationViewController setStaticLong:[(loc[@"long"]) floatValue]];
+        [segue.destinationViewController setStaticLocation:YES];
+    }
 }
 
- */
+
 
 @end

@@ -185,7 +185,8 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"PersonToArrow"]){
-        [segue.destinationViewController setTargetUserName:sender] ;
+        [segue.destinationViewController setTargetUserName:sender];
+        [segue.destinationViewController setStaticLocation:NO];
     }
 }
 

@@ -19,4 +19,7 @@
 @property (nonatomic) NSString *targetUserName;
 @property (weak, nonatomic) IBOutlet UILabel *DistanceLabel;
 
+@property (nonatomic) float staticLat, staticLong;
+@property (nonatomic) BOOL staticLocation;
+
 @end

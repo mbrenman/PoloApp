@@ -273,7 +273,6 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <segue destination="wNO-0e-8Rb" kind="push" identifier="addLocationSegue" id="FaF-9A-m5Y"/>
-                        <segue destination="7Ea-Mc-Oek" kind="modal" identifier="locationToArrowSegue" id="2lX-Kd-AUC"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="LocationLogoutSegue" id="2Xe-uF-Iuw"/>
                         <segue destination="pLJ-TN-xqo" kind="modal" identifier="LocationToArrow" id="oIt-RW-7II"/>
                     </connections>
@@ -324,35 +323,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aau-8m-WAb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1388" y="996"/>
-        </scene>
-        <!--Location Arrow View Controller - LocationArr-->
-        <scene sceneID="c8P-E6-32F">
-            <objects>
-                <viewController title="LocationArr" id="7Ea-Mc-Oek" customClass="LocationArrowViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Plw-4W-8Hb"/>
-                        <viewControllerLayoutGuide type="bottom" id="HAI-SX-cyc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pbW-1O-qAi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location Arrow Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geR-3z-cUh">
-                                <rect key="frame" x="73" y="273" width="175" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <segue destination="ZfR-jF-EaM" kind="modal" identifier="LocArrowToTableView" id="vGk-P9-w7f"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cHb-Kq-k4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1388" y="1700"/>
         </scene>
         <!--Navigation Controller - Locations-->
         <scene sceneID="BtD-rw-qfz">

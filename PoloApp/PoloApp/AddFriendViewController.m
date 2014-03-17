@@ -72,7 +72,7 @@
             if (![[me username] isEqualToString:newFriend]){
                 [_friends addObject:newFriend];
                 [me saveInBackground];
-                [self performSegueWithIdentifier:@"FriendAdded" sender:nil];
+                [self.navigationController popViewControllerAnimated:YES];
             } else {
                 [_alertSelfAdded show];
             }

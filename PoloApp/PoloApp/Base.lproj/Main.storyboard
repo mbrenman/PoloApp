@@ -179,7 +179,6 @@
                     <navigationItem key="navigationItem" id="RTC-mE-KDq"/>
                     <connections>
                         <outlet property="friendNameField" destination="NGR-ge-ucn" id="14B-6P-q9s"/>
-                        <segue destination="ZfR-jF-EaM" kind="modal" identifier="FriendAdded" id="GQs-7L-8kJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pUM-wc-ye7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -373,7 +372,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="oIt-RW-7II"/>
-        <segue reference="Mjy-iE-f7U"/>
+        <segue reference="wOM-ry-IT9"/>
         <segue reference="2Xe-uF-Iuw"/>
     </inferredMetricsTieBreakers>
 </document>

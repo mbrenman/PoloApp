@@ -59,6 +59,8 @@
     _locationManager=[[CLLocationManager alloc] init];
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	_locationManager.headingFilter = 1;
+    self.locationManager.delegate=self;
+    
     [_locationManager startUpdatingHeading];
 }
 

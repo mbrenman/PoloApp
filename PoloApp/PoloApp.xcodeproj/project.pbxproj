@@ -42,7 +42,6 @@
 		B303893918CE2C6100204B0B /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B303893818CE2C6100204B0B /* LocationTableViewController.m */; };
 		B303893C18CE2CD700204B0B /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B303893B18CE2CD700204B0B /* AddLocationViewController.m */; };
 		B303893F18CE2CF800204B0B /* LocationArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B303893E18CE2CF800204B0B /* LocationArrowViewController.m */; };
-		B3066D1618BF09F8004FC03F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3066D1518BF09F8004FC03F /* Parse.framework */; };
 		B34B145418CBCAD600758173 /* FriendListTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34B145318CBCAD600758173 /* FriendListTabBarController.m */; };
 		B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9918C06A2900C612F8 /* BackArrow2.png */; };
 		B3D45D9D18C0FBB700C612F8 /* FriendListUINavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */; };
@@ -134,7 +133,6 @@
 				AAD3964C189D978D00675698 /* CoreLocation.framework in Frameworks */,
 				AAD3964A189D978500675698 /* CFNetwork.framework in Frameworks */,
 				AAD39648189D977E00675698 /* AudioToolbox.framework in Frameworks */,
-				B3066D1618BF09F8004FC03F /* Parse.framework in Frameworks */,
 				AAD39613189D923A00675698 /* CoreGraphics.framework in Frameworks */,
 				AAD39615189D923A00675698 /* UIKit.framework in Frameworks */,
 				AAD39611189D923A00675698 /* Foundation.framework in Frameworks */,
@@ -310,7 +308,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Polo;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = mbrenman;
 				TargetAttributes = {
 					AAD3960C189D923A00675698 = {
@@ -444,7 +442,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -483,7 +480,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -561,7 +557,6 @@
 		AAD39643189D923A00675698 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PoloApp.app/PoloApp";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -584,7 +579,6 @@
 		AAD39644189D923A00675698 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PoloApp.app/PoloApp";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

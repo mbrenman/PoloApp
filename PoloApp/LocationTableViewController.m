@@ -26,35 +26,6 @@
     return self;
 }
 
-/*- (IBAction)beginEditingTable:(id)sender {
-    if (self.editing==NO) {
-        [self setEditing:YES animated:YES];
-    } else {
-        [self setEditing:NO animated:YES];
-    }
-}
- - (void)tableView:(UITableView *)tv commitEditingStyle:    (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // If row is deleted, remove it from the list.
- if (editingStyle == UITableViewCellEditingStyleDelete)
- {
- for (NSString *i in _friends){
- NSLog(@"%@", i);
- }
- //remove from local NSArray
- [self.friends removeObjectAtIndex:indexPath.row];
- // remove from database
- PFUser *me = [PFUser currentUser];
- me[@"friends"] = _friends;
- [me saveInBackground];
- //remove from local table
- [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- [self.tableView reloadData];
- }
- }
- 
-*/
-
 - (IBAction)logOutUser:(id)sender {
     [PFUser logOut];
     [self performSegueWithIdentifier:@"LocationLogoutSegue" sender:nil];
@@ -67,19 +38,12 @@
 - (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     PFObject *location = [_locations objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"LocationToArrow" sender:location];
-//    [self performSegueWithIdentifier:@"locationToArrowSegue" sender:location];
-}
-
-- (IBAction)editTable:(id)sender {
-    [self setEditing:YES animated:YES];
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"FriendCell";
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
     
     // Configure the cell...
     int row = [indexPath row];
@@ -113,13 +77,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-//    NSLog(_locations[1][@"name"]);
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -127,7 +84,6 @@
     [super viewWillAppear:animated];
     PFUser *me = [PFUser currentUser];
     _locations = me[@"myLocations"];
-//    [self.view setNeedsDisplay];
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.tabBarController.tabBar setHidden:NO];
@@ -205,7 +161,5 @@
         [segue.destinationViewController setStaticLocation:YES];
     }
 }
-
-
 
 @end

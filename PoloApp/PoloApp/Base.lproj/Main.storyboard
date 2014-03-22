@@ -34,7 +34,7 @@
                         <viewControllerLayoutGuide type="bottom" id="OEP-AZ-mmp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="H3x-c5-ceN" customClass="ArrowView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Vi-VG-jus">
@@ -112,17 +112,6 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="oHy-D9-Q86">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="v2m-l0-5XA">
-                            <rect key="frame" x="93" y="6" width="128" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <state key="normal" title="Edit">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="beginEditingTable:" destination="Gf3-if-SZ3" eventType="touchUpInside" id="XPg-0I-WbV"/>
-                            </connections>
-                        </button>
                         <barButtonItem key="rightBarButtonItem" title="Add Friend" id="Jlm-gG-3S5">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -370,7 +359,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2Xe-uF-Iuw"/>
-        <segue reference="oIt-RW-7II"/>
+        <segue reference="TJO-ak-dHW"/>
+        <segue reference="TXm-gv-ivG"/>
     </inferredMetricsTieBreakers>
 </document>

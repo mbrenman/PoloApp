@@ -25,14 +25,6 @@
     return self;
 }
 
-- (IBAction)beginEditingTable:(id)sender {
-    if (self.editing==NO) {
-        [self setEditing:YES animated:YES];
-    } else {
-        [self setEditing:NO animated:YES];
-    }
-}
-
 - (void)tableView:(UITableView *)tv commitEditingStyle:    (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // If row is deleted, remove it from the list.

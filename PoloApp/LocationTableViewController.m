@@ -90,10 +90,25 @@
     return cell;
 }
 
-
-
-
-
+- (void)tableView:(UITableView *)tv commitEditingStyle:    (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // If row is deleted, remove it from the list.
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        for (NSString *i in _locations){
+            NSLog(@"%@", i);
+        }
+        //remove from local NSArray
+        [_locations removeObjectAtIndex:indexPath.row];
+        // remove from database
+        PFUser *me = [PFUser currentUser];
+        me[@"myLocations"] = _locations;
+        [me saveInBackground];
+        //remove from local table
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadData];
+    }
+}
 
 - (void)viewDidLoad
 {

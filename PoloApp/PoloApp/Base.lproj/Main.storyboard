@@ -110,10 +110,10 @@
                     <navigationItem key="navigationItem" id="GgU-fE-g0C">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="oHy-D9-Q86">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add Friend" id="Jlm-gG-3S5">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
@@ -225,35 +225,16 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Locations" id="3NZ-4H-ixi">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="Vuu-wX-P7m">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bWX-Yy-Hsl">
-                                <rect key="frame" x="16" y="5" width="71" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="w6A-UD-hio">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="logOutUser:" destination="2ne-Yh-yDT" id="3rQ-Db-qJv"/>
+                                <action selector="logOutUser:" destination="2ne-Yh-yDT" id="xqT-7K-r5D"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" id="wj2-bU-hLX">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m9P-6G-JJ4">
-                                <rect key="frame" x="233" y="5" width="71" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Add Loc">
-                                    <color key="titleColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="goToLocationScreen:" destination="2ne-Yh-yDT" eventType="touchUpInside" id="cyk-mA-NWO"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Add Loc" id="aPB-UE-2hC">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="addLocation:" destination="2ne-Yh-yDT" id="Sl4-Xq-yaW"/>
+                                <action selector="goToLocationScreen:" destination="2ne-Yh-yDT" id="b64-Xk-ezQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

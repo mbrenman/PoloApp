@@ -52,7 +52,6 @@ const float EARTH_RADIUS = 3963.1676;
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
     _haveMyLoc = NO;
-    _haveTarget = NO;
     _otherUsername = nil;
     _otherUser = nil;
     _connection = nil;
@@ -61,16 +60,16 @@ const float EARTH_RADIUS = 3963.1676;
         _otherLong = _staticLong;
         _haveTargetLoc = YES;
     } else {
+        _haveTarget = NO;
         _haveTargetLoc = NO;
         _otherLat = 0.0f;
         _otherLong = 0.0f;
+        [self getTargetInBackground]; //Find the target user
     }
     
     _visible = YES;
     
     _radChange = 0.0f;
-    
-    [self getTargetInBackground]; //Find the target user
     
     //Open a new thread to update the target angle regularly
     [self performSelectorInBackground:@selector(regularInfoUpdate) withObject:nil];
@@ -94,9 +93,13 @@ const float EARTH_RADIUS = 3963.1676;
             _otherUser = (PFUser *)object;
             _haveTarget = YES;
         } else {
-        
-        //TODO: We should let the user know that they cannot connect here
-        
+            //TODO: We should let the user know that they cannot connect
+            [[[UIAlertView alloc] initWithTitle:@"Unknown User"
+                                        message:@"The user is either private or does not exist"
+                                       delegate:nil
+                              cancelButtonTitle:@"ok"
+                              otherButtonTitles:nil] show];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }
@@ -104,7 +107,7 @@ const float EARTH_RADIUS = 3963.1676;
 - (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
 {
     if (self.currentHeading == nil){
-    NSLog(@"WE SHOULD DISPLAY CALIBRATION!!!!");
+        NSLog(@"WE SHOULD DISPLAY CALIBRATION!!!!");
         return YES;
     } else {
         return NO;

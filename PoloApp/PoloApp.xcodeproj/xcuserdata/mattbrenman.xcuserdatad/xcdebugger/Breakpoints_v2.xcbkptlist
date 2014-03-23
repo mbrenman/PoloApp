@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocationTableViewController.m"
-            timestampString = "417160114.429911"
+            timestampString = "417248741.473504"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PoloApp/ArrowViewController.m"
-            timestampString = "417241801.977984"
+            timestampString = "417248360.305794"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "-updateLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -155,6 +155,16 @@
             endingLineNumber = "96"
             landmarkName = "-getTargetInBackground"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "CGContextSetFillColorWithColor:"
+            moduleName = "">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

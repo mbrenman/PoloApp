@@ -62,6 +62,8 @@
         for (NSString *i in _locations){
             NSLog(@"%@", i);
         }
+        
+        [[_locations objectAtIndex:indexPath.row] delete];
         //remove from local NSArray
         [_locations removeObjectAtIndex:indexPath.row];
         // remove from database

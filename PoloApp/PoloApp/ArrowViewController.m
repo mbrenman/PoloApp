@@ -93,7 +93,7 @@ const float EARTH_RADIUS = 3963.1676;
             _otherUser = (PFUser *)object;
             _haveTarget = YES;
         } else {
-            //TODO: We should let the user know that they cannot connect
+            //Let the user know that they cannot connect
             [[[UIAlertView alloc] initWithTitle:@"Unknown User"
                                         message:@"The user is either private or does not exist"
                                        delegate:nil
@@ -132,10 +132,8 @@ const float EARTH_RADIUS = 3963.1676;
     _visible = FALSE;
     
     //Zero out location data when we get off of the arrow
-    _me[@"lat"] = [[NSNull alloc] init];
-    _me[@"long"] = [[NSNull alloc] init];
     _me[@"connections"] = [[NSNull alloc] init];
-    //[_connection deleteInBackground]; //Removes object from parse
+    [_connection deleteInBackground]; //Removes object from parse
     [_me saveInBackground];
     NSLog(@"should be zero");
     
@@ -193,8 +191,6 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (float)findNewRadChangeForTarget
 {
-//    NSLog(@"findNewRad");
-    
     float radChange = 0;
     float change = 0.0f;
     
@@ -233,25 +229,19 @@ const float EARTH_RADIUS = 3963.1676;
     _myLat = _locationManager.location.coordinate.latitude;
     _myLong = _locationManager.location.coordinate.longitude;
     
-    if (!_staticLocation){
-        //Push my current location to the cloud (so partner can see it)
-        _me[@"lat"] = [NSString stringWithFormat:@"%f", _myLat];
-        _me[@"long"] = [NSString stringWithFormat:@"%f", _myLong];
-    
-        if (!_connection && _haveTarget){
-            NSLog(@"HHHHHHHHHHHHHHHHH");
-            _connection = [[PFObject alloc] initWithClassName:@"Connection"];
+    if (!_staticLocation && !_connection && _haveTarget){
+        _connection = [[PFObject alloc] initWithClassName:@"Connection"];
         
-            _connection[@"user"] = [[PFUser currentUser] username];
-            _connection[@"lat"] = [NSString stringWithFormat:@"%f", _myLat];
-            _connection[@"long"] = [NSString stringWithFormat:@"%f", _myLong];
+        _connection[@"user"] = [[PFUser currentUser] username];
+        _connection[@"lat"] = [NSString stringWithFormat:@"%f", _myLat];
+        _connection[@"long"] = [NSString stringWithFormat:@"%f", _myLong];
         
-            PFACL *acl = [PFACL ACLWithUser:[PFUser currentUser]];
-            [acl setReadAccess:YES forUser:_otherUser];
-            [_connection setACL:acl];
+        PFACL *acl = [PFACL ACLWithUser:[PFUser currentUser]];
+        [acl setReadAccess:YES forUser:_otherUser];
+        [_connection setACL:acl];
         
-            _me[@"connections"] = _connection;
-        }
+        _me[@"connections"] = _connection;
+        
         if (_visible){
             [_me saveInBackground];
         }

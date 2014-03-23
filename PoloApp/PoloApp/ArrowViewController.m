@@ -20,7 +20,10 @@ const float EARTH_RADIUS = 3963.1676;
 @property (strong, nonatomic) PFUser *me;
 @property (retain, nonatomic) CLHeading *currentHeading;
 @property float otherLat, otherLong;
-@property BOOL haveMyLoc, haveTargetLoc;
+@property NSString *otherUsername;
+@property PFUser *otherUser;
+@property PFObject *connection;
+@property BOOL haveMyLoc, haveTargetLoc, haveTarget;
 @property BOOL visible;
 @end
 
@@ -49,7 +52,10 @@ const float EARTH_RADIUS = 3963.1676;
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
     _haveMyLoc = NO;
-    
+    _haveTarget = NO;
+    _otherUsername = nil;
+    _otherUser = nil;
+    _connection = nil;
     if (_staticLocation){
         _otherLat = _staticLat;
         _otherLong = _staticLong;
@@ -64,6 +70,8 @@ const float EARTH_RADIUS = 3963.1676;
     
     _radChange = 0.0f;
     
+    [self getTargetInBackground]; //Find the target user
+    
     //Open a new thread to update the target angle regularly
     [self performSelectorInBackground:@selector(regularInfoUpdate) withObject:nil];
     
@@ -74,6 +82,23 @@ const float EARTH_RADIUS = 3963.1676;
 
 	[_locationManager startUpdatingHeading];
     _me = [PFUser currentUser];
+}
+
+- (void)getTargetInBackground
+{
+    PFQuery *query= [PFUser query];
+    [query whereKey:@"username" equalTo:_targetUserName];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+        if (object){
+            _otherUsername = [(PFUser *)object username];
+            _otherUser = (PFUser *)object;
+            _haveTarget = YES;
+        } else {
+        
+        //TODO: We should let the user know that they cannot connect here
+        
+        }
+    }];
 }
 
 - (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
@@ -106,6 +131,8 @@ const float EARTH_RADIUS = 3963.1676;
     //Zero out location data when we get off of the arrow
     _me[@"lat"] = [[NSNull alloc] init];
     _me[@"long"] = [[NSNull alloc] init];
+    _me[@"connections"] = [[NSNull alloc] init];
+    //[_connection deleteInBackground]; //Removes object from parse
     [_me saveInBackground];
     NSLog(@"should be zero");
     
@@ -175,7 +202,6 @@ const float EARTH_RADIUS = 3963.1676;
     change -= M_PI_2;
     
     radChange -= change;
-    //NSLog(@"Radchange: %f", radChange);
     return radChange;
 }
 
@@ -184,23 +210,19 @@ const float EARTH_RADIUS = 3963.1676;
 - (void)updateLocations
 {
     if (!_staticLocation){
-        PFQuery *query= [PFUser query];
-        [query whereKey:@"username" equalTo:_targetUserName];
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
-        
-            //TODO: Only get the rest of the information if currentUser is in the target's whitelist
-            //      Otherwise, show the connecting pictures
-        
-            float otherLat = [[object objectForKey:@"lat"] floatValue];
-            float otherLong = [[object objectForKey:@"long"] floatValue];
-        
-            [self setOtherLat:otherLat];
-            [self setOtherLong:otherLong];
-        
-            //NSLog([NSString stringWithFormat:@"target location set %f, %f", otherLat, otherLong]);
-        
-            _haveTargetLoc = YES;
-            [_compassView setNeedsDisplay];
+        PFQuery *connectionQuery = [PFQuery queryWithClassName:@"Connection"];
+        [connectionQuery whereKey:@"user" equalTo:_targetUserName];
+        [connectionQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if (object){
+                float otherLat = [[object objectForKey:@"lat"] floatValue];
+                float otherLong = [[object objectForKey:@"long"] floatValue];
+                
+                [self setOtherLat:otherLat];
+                [self setOtherLong:otherLong];
+                
+                _haveTargetLoc = YES;
+                [_compassView setNeedsDisplay];
+            }
         }];
     }
     
@@ -213,6 +235,20 @@ const float EARTH_RADIUS = 3963.1676;
         _me[@"lat"] = [NSString stringWithFormat:@"%f", _myLat];
         _me[@"long"] = [NSString stringWithFormat:@"%f", _myLong];
     
+        if (!_connection && _haveTarget){
+            NSLog(@"HHHHHHHHHHHHHHHHH");
+            _connection = [[PFObject alloc] initWithClassName:@"Connection"];
+        
+            _connection[@"user"] = [[PFUser currentUser] username];
+            _connection[@"lat"] = [NSString stringWithFormat:@"%f", _myLat];
+            _connection[@"long"] = [NSString stringWithFormat:@"%f", _myLong];
+        
+            PFACL *acl = [PFACL ACLWithUser:[PFUser currentUser]];
+            [acl setReadAccess:YES forUser:_otherUser];
+            [_connection setACL:acl];
+        
+            _me[@"connections"] = _connection;
+        }
         if (_visible){
             [_me saveInBackground];
         }

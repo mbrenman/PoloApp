@@ -78,7 +78,7 @@ const float EARTH_RADIUS = 3963.1676;
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	_locationManager.headingFilter = 1;
 	self.locationManager.delegate=self;
-
+    [_locationManager startUpdatingLocation];
 	[_locationManager startUpdatingHeading];
     _me = [PFUser currentUser];
 }
@@ -239,8 +239,10 @@ const float EARTH_RADIUS = 3963.1676;
     _myLat = _locationManager.location.coordinate.latitude;
     _myLong = _locationManager.location.coordinate.longitude;
     
-    if (!_staticLocation && !_connection && _haveTarget){
-        _connection = [[PFObject alloc] initWithClassName:@"Connection"];
+    if (!_staticLocation && _haveTarget){
+        if (!_connection){
+            _connection = [[PFObject alloc] initWithClassName:@"Connection"];
+        }
         
         _connection[@"user"] = [[PFUser currentUser] username];
         _connection[@"lat"] = [NSString stringWithFormat:@"%f", _myLat];

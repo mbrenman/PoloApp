@@ -227,6 +227,11 @@ const float EARTH_RADIUS = 3963.1676;
                 _haveTargetLoc = YES;
                 [_compassView setNeedsDisplay];
             }
+            if (error) {
+                if (_haveTargetLoc){
+                    [self popBackAViewController];
+                }
+            }
         }];
     }
     

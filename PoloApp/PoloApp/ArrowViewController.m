@@ -119,6 +119,7 @@ const float EARTH_RADIUS = 3963.1676;
     while (_visible)
     {
         [self updateLocations];
+        [self updateDistance];
         NSLog(@"while");
         sleep(UPDATE_SECONDS);
     }
@@ -164,7 +165,6 @@ const float EARTH_RADIUS = 3963.1676;
         _radChange = [self findNewRadChangeForTarget];
         newRad += _radChange;
 
-        [self updateDistance];
         [_compassView setNewRad:newRad];
         [_compassView setNeedsDisplay];
     } else {
@@ -175,19 +175,27 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (void)updateDistance
 {
-    float lat1 = [self degreesToRadians:_myLat];
-    float lat2 = [self degreesToRadians:_otherLat];
-    float long1 = [self degreesToRadians:_myLong];
-    float long2 = [self degreesToRadians:_otherLong];
+    if (_haveTargetLoc){
+        float lat1 = [self degreesToRadians:_myLat];
+        float lat2 = [self degreesToRadians:_otherLat];
+        float long1 = [self degreesToRadians:_myLong];
+        float long2 = [self degreesToRadians:_otherLong];
     
     
-    float dLat = lat1 - lat2;
-    float dLong = long1 - long2;
+        float dLat = lat1 - lat2;
+        float dLong = long1 - long2;
     
-    float a = sinf(dLat/2.0f) * sinf(dLat/2.0f) + sinf(dLong/2.0f) * sinf(dLong/2.0f) * cosf(lat1) * cosf(lat2);
-    float c = 2.0f * atan2((sqrtf(a)), (sqrtf(1.0f-a)));
-    float d = EARTH_RADIUS * c;
-    _DistanceLabel.text = [NSString stringWithFormat:@"%.2f mi", d];
+        float a = sinf(dLat/2.0f) * sinf(dLat/2.0f) + sinf(dLong/2.0f) * sinf(dLong/2.0f) * cosf(lat1) * cosf(lat2);
+        float c = 2.0f * atan2((sqrtf(a)), (sqrtf(1.0f-a)));
+        float d = EARTH_RADIUS * c;
+        
+//        NSLog([NSString stringWithFormat:@"%f, %f, %f, %f", _otherLat, _otherLong, _myLat, _myLong]);
+//        NSLog([NSString stringWithFormat:@"%f", d]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", d];
+        NSLog(@"LLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLA");
+        });
+    }
 }
 
 - (float)degreesToRadians: (float)degrees

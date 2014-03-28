@@ -97,7 +97,7 @@ const float EARTH_RADIUS = 3963.1676;
             [[[UIAlertView alloc] initWithTitle:@"Unknown User"
                                         message:@"The user is either private or does not exist"
                                        delegate:nil
-                              cancelButtonTitle:@"ok"
+                              cancelButtonTitle:@"OK"
                               otherButtonTitles:nil] show];
             [self.navigationController popViewControllerAnimated:YES];
         }

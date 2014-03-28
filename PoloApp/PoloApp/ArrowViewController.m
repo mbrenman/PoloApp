@@ -134,6 +134,7 @@ const float EARTH_RADIUS = 3963.1676;
     //Zero out location data when we get off of the arrow
     _me[@"connections"] = [[NSNull alloc] init];
     [_connection deleteInBackground]; //Removes object from parse
+    _connection = nil;
     [_me saveInBackground];
     NSLog(@"should be zero");
     

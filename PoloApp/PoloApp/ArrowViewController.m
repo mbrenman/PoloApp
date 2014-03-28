@@ -88,18 +88,18 @@ const float EARTH_RADIUS = 3963.1676;
     PFQuery *query= [PFUser query];
     [query whereKey:@"username" equalTo:_targetUserName];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
-        if (object){
+        if (!error){
             _otherUsername = [(PFUser *)object username];
             _otherUser = (PFUser *)object;
             _haveTarget = YES;
         } else {
             //Let the user know that they cannot connect
-            [[[UIAlertView alloc] initWithTitle:@"Unknown User"
-                                        message:@"The user is either private or does not exist"
-                                       delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil] show];
-            [self.navigationController popViewControllerAnimated:YES];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unknown User"
+                                                            message:@"The user is either private or does not exist"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
         }
     }];
 }
@@ -145,8 +145,13 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (IBAction)ArrowBackButtonPushed:(id)sender {
     NSLog(@"Pushed");
-    [self.navigationController popViewControllerAnimated:YES];
+    [self popBackAViewController];
 //    [self performSegueWithIdentifier:@"ArrowToPerson" sender:nil];
+}
+
+- (void)popBackAViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{

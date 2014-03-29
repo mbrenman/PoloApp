@@ -25,6 +25,7 @@ const float EARTH_RADIUS = 3963.1676;
 @property PFObject *connection;
 @property BOOL haveMyLoc, haveTargetLoc, haveTarget;
 @property BOOL visible;
+@property int testNum;
 @end
 
 @implementation ArrowViewController
@@ -55,6 +56,7 @@ const float EARTH_RADIUS = 3963.1676;
     _otherUsername = nil;
     _otherUser = nil;
     _connection = nil;
+    
     if (_staticLocation){
         _otherLat = _staticLat;
         _otherLong = _staticLong;
@@ -77,9 +79,9 @@ const float EARTH_RADIUS = 3963.1676;
 	_locationManager=[[CLLocationManager alloc] init];
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	_locationManager.headingFilter = 1;
-	self.locationManager.delegate=self;
+    [_locationManager setDelegate:self];
+    [_locationManager startUpdatingHeading];
     [_locationManager startUpdatingLocation];
-	[_locationManager startUpdatingHeading];
     _me = [PFUser currentUser];
 }
 
@@ -141,6 +143,7 @@ const float EARTH_RADIUS = 3963.1676;
     
     //Stop the view from trying to update when we turn the device
     [_locationManager stopUpdatingHeading];
+    [_locationManager stopUpdatingLocation];
     
     //Purge whitelist
 }
@@ -170,7 +173,13 @@ const float EARTH_RADIUS = 3963.1676;
     } else {
         NSLog(@"denied.");
     }
-    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *newLoc = [locations lastObject];
+    _myLat = newLoc.coordinate.latitude;
+    _myLong = newLoc.coordinate.longitude;
 }
 
 - (void)updateDistance
@@ -189,13 +198,18 @@ const float EARTH_RADIUS = 3963.1676;
         float c = 2.0f * atan2((sqrtf(a)), (sqrtf(1.0f-a)));
         float d = EARTH_RADIUS * c;
         
-//        NSLog([NSString stringWithFormat:@"%f, %f, %f, %f", _otherLat, _otherLong, _myLat, _myLong]);
-//        NSLog([NSString stringWithFormat:@"%f", d]);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", d];
-        NSLog(@"LLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLALLALALALALALLA");
-        });
+//        d = arc4random();
+        
+        NSNumber *distance = [[NSNumber alloc] initWithFloat:d];
+        
+        [self performSelectorOnMainThread:@selector(updateLabelWithDistance:) withObject:distance waitUntilDone:YES];
     }
+}
+
+- (void)updateLabelWithDistance:(NSNumber *)distance
+{
+    _DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", [distance floatValue]];
+    NSLog([NSString stringWithFormat:@"%f", [distance floatValue]]);
 }
 
 - (float)degreesToRadians: (float)degrees
@@ -243,10 +257,6 @@ const float EARTH_RADIUS = 3963.1676;
             }
         }];
     }
-    
-    //Find my current location
-    _myLat = _locationManager.location.coordinate.latitude;
-    _myLong = _locationManager.location.coordinate.longitude;
     
     if (!_staticLocation && _haveTarget){
         if (!_connection){

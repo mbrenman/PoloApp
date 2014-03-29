@@ -39,7 +39,7 @@
         //Rect sizes should change with the size of the screen for multi-device functionality
         
         CGFloat x_offset = screenWidth * .15f; //Allow 15 percent margin per side
-        CGFloat y_offset = screenHeight * .35f; //Allow for a 35 percent top margin
+        CGFloat y_offset = screenHeight * .30f; //Allow for a 35 percent top margin
         CGFloat width = screenWidth * 0.7f; //Only use 70 percent of available screen
         CGFloat height = width * .6f;
         

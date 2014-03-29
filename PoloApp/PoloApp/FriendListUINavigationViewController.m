@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     //enabled for now so I can see on add friend page, we need a better image for this
-      [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"rect4445.png"] forBarMetrics:UIBarMetricsDefault];
+    //  [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"rect4445.png"] forBarMetrics:UIBarMetricsDefault];
 	// Do any additional setup after loading the view.
 }
 

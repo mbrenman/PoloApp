@@ -177,6 +177,7 @@
         <scene sceneID="KD6-jO-9AT">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="ZfR-jF-EaM" customClass="FriendListTabBarController" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="IUU-MR-q5G">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -306,9 +307,9 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="vLj-vA-AMQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Locations" image="tag.png" id="vBf-zk-GUb"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="4Jq-WT-mx2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="4Jq-WT-mx2">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -326,9 +327,9 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dek-XN-y0q" customClass="FriendListUINavigationViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="woman.png" id="CVx-8X-BB5"/>
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="WUU-iL-uiZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="WUU-iL-uiZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -353,7 +354,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TXm-gv-ivG"/>
         <segue reference="oIt-RW-7II"/>
+        <segue reference="2Xe-uF-Iuw"/>
     </inferredMetricsTieBreakers>
 </document>

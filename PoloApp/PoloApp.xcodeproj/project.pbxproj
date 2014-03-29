@@ -42,6 +42,8 @@
 		B303893918CE2C6100204B0B /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B303893818CE2C6100204B0B /* LocationTableViewController.m */; };
 		B303893C18CE2CD700204B0B /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B303893B18CE2CD700204B0B /* AddLocationViewController.m */; };
 		B303893F18CE2CF800204B0B /* LocationArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B303893E18CE2CF800204B0B /* LocationArrowViewController.m */; };
+		B326CF5018E749A300499A87 /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B326CF4E18E749A300499A87 /* tag.png */; };
+		B326CF5118E749A300499A87 /* woman.png in Resources */ = {isa = PBXBuildFile; fileRef = B326CF4F18E749A300499A87 /* woman.png */; };
 		B34B145418CBCAD600758173 /* FriendListTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34B145318CBCAD600758173 /* FriendListTabBarController.m */; };
 		B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9918C06A2900C612F8 /* BackArrow2.png */; };
 		B3D45D9D18C0FBB700C612F8 /* FriendListUINavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */; };
@@ -110,6 +112,8 @@
 		B303893D18CE2CF800204B0B /* LocationArrowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationArrowViewController.h; sourceTree = "<group>"; };
 		B303893E18CE2CF800204B0B /* LocationArrowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationArrowViewController.m; sourceTree = "<group>"; };
 		B3066D1518BF09F8004FC03F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		B326CF4E18E749A300499A87 /* tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tag.png; sourceTree = "<group>"; };
+		B326CF4F18E749A300499A87 /* woman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woman.png; sourceTree = "<group>"; };
 		B34B145218CBCAD600758173 /* FriendListTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendListTabBarController.h; path = ../FriendListTabBarController.h; sourceTree = "<group>"; };
 		B34B145318CBCAD600758173 /* FriendListTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendListTabBarController.m; path = ../FriendListTabBarController.m; sourceTree = "<group>"; };
 		B3D45D9918C06A2900C612F8 /* BackArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackArrow2.png; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 		AAD39617189D923A00675698 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B326CF4E18E749A300499A87 /* tag.png */,
+				B326CF4F18E749A300499A87 /* woman.png */,
 				B3D45DA018C1031000C612F8 /* rect4445.png */,
 				AA046079189E8719001A5785 /* PoloTitle.png */,
 				AA04607B189E9AD8001A5785 /* icon.png */,
@@ -348,6 +354,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B326CF5018E749A300499A87 /* tag.png in Resources */,
 				AAD39629189D923A00675698 /* Images.xcassets in Resources */,
 				AAD3961B189D923A00675698 /* InfoPlist.strings in Resources */,
 				AA04607C189E9AD8001A5785 /* icon.png in Resources */,
@@ -357,6 +364,7 @@
 				B3D45D9F18C100B600C612F8 /* rect4444.png in Resources */,
 				AA046078189E7BF8001A5785 /* chevron.jpeg in Resources */,
 				AA04607A189E8719001A5785 /* PoloTitle.png in Resources */,
+				B326CF5118E749A300499A87 /* woman.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -180,11 +180,13 @@ const float EARTH_RADIUS = 3963.1676;
     CLLocation *newLoc = [locations lastObject];
     _myLat = newLoc.coordinate.latitude;
     _myLong = newLoc.coordinate.longitude;
+    
+    _haveMyLoc = YES;
 }
 
 - (void)updateDistance
 {
-    if (_haveTargetLoc){
+    if (_haveTargetLoc && _haveMyLoc){
         float lat1 = [self degreesToRadians:_myLat];
         float lat2 = [self degreesToRadians:_otherLat];
         float long1 = [self degreesToRadians:_myLong];
@@ -197,8 +199,6 @@ const float EARTH_RADIUS = 3963.1676;
         float a = sinf(dLat/2.0f) * sinf(dLat/2.0f) + sinf(dLong/2.0f) * sinf(dLong/2.0f) * cosf(lat1) * cosf(lat2);
         float c = 2.0f * atan2((sqrtf(a)), (sqrtf(1.0f-a)));
         float d = EARTH_RADIUS * c;
-        
-//        d = arc4random();
         
         NSNumber *distance = [[NSNumber alloc] initWithFloat:d];
         
@@ -277,8 +277,6 @@ const float EARTH_RADIUS = 3963.1676;
             [_me saveInBackground];
         }
     }
-    
-    _haveMyLoc = YES;
     
     NSLog(@"my location set");
 }

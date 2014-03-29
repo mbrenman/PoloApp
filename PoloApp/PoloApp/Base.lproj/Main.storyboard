@@ -305,7 +305,7 @@
         <scene sceneID="BtD-rw-qfz">
             <objects>
                 <navigationController definesPresentationContext="YES" id="vLj-vA-AMQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Locations" id="vBf-zk-GUb"/>
+                    <tabBarItem key="tabBarItem" title="Locations" image="tag.png" id="vBf-zk-GUb"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="4Jq-WT-mx2">
@@ -343,6 +343,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="tag.png" width="30" height="30"/>
         <image name="woman.png" width="30" height="30"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

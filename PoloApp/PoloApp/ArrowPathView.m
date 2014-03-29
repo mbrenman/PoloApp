@@ -35,14 +35,14 @@
         CGFloat width = CGRectGetWidth(self.bounds);
         
         UIBezierPath *arrow = [UIBezierPath bezierPath];
-        CGFloat padding = 30;
+        CGFloat padding = 22;
         
         [arrow moveToPoint:CGPointMake(0.0f + padding, height - padding)];
         [arrow addLineToPoint:CGPointMake(width/2, 0.0f + padding)];
         [arrow addLineToPoint:CGPointMake(width - padding, height - padding)];
         
         [[UIColor whiteColor] set];
-        [arrow setLineWidth:padding];
+        [arrow setLineWidth:padding+8];
         [arrow stroke];
         
         _drawn = YES;

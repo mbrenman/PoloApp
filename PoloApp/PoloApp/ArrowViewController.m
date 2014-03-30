@@ -82,6 +82,7 @@ const float EARTH_RADIUS = 3963.1676;
     [_locationManager setDelegate:self];
     [_locationManager startUpdatingHeading];
     [_locationManager startUpdatingLocation];
+    
     _me = [PFUser currentUser];
 }
 
@@ -109,7 +110,6 @@ const float EARTH_RADIUS = 3963.1676;
 - (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
 {
     if (self.currentHeading == nil){
-        NSLog(@"WE SHOULD DISPLAY CALIBRATION!!!!");
         return YES;
     } else {
         return NO;

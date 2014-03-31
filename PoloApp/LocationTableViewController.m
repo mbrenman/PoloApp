@@ -59,20 +59,23 @@
     // If row is deleted, remove it from the list.
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        for (NSString *i in _locations){
-            NSLog(@"%@", i);
-        }
         //Delete the actual item
         [[_locations objectAtIndex:indexPath.row] delete];
+        //[[_locationNames objectAtIndex:indexPath.row] delete];
+        
         //remove from local NSArray
         [_locations removeObjectAtIndex:indexPath.row];
-        // remove from database
-        PFUser *me = [PFUser currentUser];
-        me[@"myLocations"] = _locations;
-        [me saveInBackground];
+        [_locationNames removeObjectAtIndex:indexPath.row];
+        
+        //remove from database
+         PFUser *me = [PFUser currentUser];
+         me[@"myLocations"] = _locations;
+         me[@"myLocationNames"] = _locationNames;
+         [me saveInBackground];
+        
         //remove from local table
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView reloadData];
+        [self.tableView reloadData];  
     }
 }
 
@@ -86,6 +89,7 @@
     [super viewWillAppear:animated];
     PFUser *me = [PFUser currentUser];
     _locationNames = me[@"myLocationNames"];
+    _locations = me[@"myLocations"];
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.tabBarController.tabBar setHidden:NO];

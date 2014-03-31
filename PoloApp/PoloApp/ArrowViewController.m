@@ -26,6 +26,7 @@ const float EARTH_RADIUS = 3963.1676;
 @property BOOL haveMyLoc, haveTargetLoc, haveTarget;
 @property BOOL visible;
 @property int testNum;
+@property NSMutableArray *locations;
 @end
 
 @implementation ArrowViewController
@@ -45,6 +46,28 @@ const float EARTH_RADIUS = 3963.1676;
     [self.tabBarController.tabBar setHidden:YES];
 }
 
+- (void) getStaticTargetInBackground {
+    _me = [PFUser currentUser];
+    _locations = _me[@"myLocations"];
+    PFObject *target;
+    
+    for (PFObject *temp in _locations) {
+        [temp fetchIfNeeded];
+        
+        NSString *tempName = temp[@"name"];
+        NSString *senderName = (NSString *)_staticSender;
+        
+        if ([tempName isEqualToString:senderName]) {
+            target = temp;
+            break;
+        }
+    }
+    _otherLat = [target[@"lat"] floatValue];
+    _otherLong = [target[@"long"] floatValue];
+    _haveTarget = YES;
+    _haveTargetLoc = YES;
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self locationManagerShouldDisplayHeadingCalibration:_locationManager];
@@ -58,9 +81,11 @@ const float EARTH_RADIUS = 3963.1676;
     _connection = nil;
     
     if (_staticLocation){
-        _otherLat = _staticLat;
-        _otherLong = _staticLong;
-        _haveTargetLoc = YES;
+        _haveTarget = NO;
+        _haveTargetLoc = NO;
+        _otherLat = 0.0f;
+        _otherLong = 0.0f;
+        [self performSelectorInBackground:@selector(getStaticTargetInBackground) withObject:nil];
     } else {
         _haveTarget = NO;
         _haveTargetLoc = NO;

@@ -50,9 +50,7 @@
     // Configure the cell...
     int row = [indexPath row];
     NSString *location = [_locationNames objectAtIndex:row];
-    //[location fetchIfNeeded];
     cell.friendLabel.text = location;
-    
     return cell;
 }
 
@@ -158,26 +156,8 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    PFUser *me = [PFUser currentUser];
-    _locations = me[@"myLocations"];
-    PFObject *target;
-    
-    for (PFObject *temp in _locations) {
-        [temp fetchIfNeeded];
-        
-        NSString *tempName = temp[@"name"];
-        NSString *senderName = (NSString *)sender;
-        
-        if ([tempName isEqualToString:senderName]) {
-            target = temp;
-            NSLog(@"WEHAVEAtargetis: %@", target);
-            break;
-        }
-    }
-    NSLog(@"targetis: %@", target);
     if ([segue.identifier isEqualToString:@"LocationToArrow"]){
-        [segue.destinationViewController setStaticLat:[(target[@"lat"]) floatValue]];
-        [segue.destinationViewController setStaticLong:[(target[@"long"]) floatValue]];
+        [segue.destinationViewController setStaticSender:sender];
         [segue.destinationViewController setStaticLocation:YES];
     }
 }

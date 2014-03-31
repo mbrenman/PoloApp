@@ -38,12 +38,12 @@
     } else {
         [_locations addObject:newLocation];
         [me saveInBackground];
-        [self.navigationController popViewControllerAnimated:YES];
     }
     
     _locationNames = me[@"myLocationNames"];
     if (_locationNames == nil) {
         me[@"myLocationNames"] = [[NSMutableArray alloc] initWithObjects:newLocationName, nil];
+        [self.navigationController popViewControllerAnimated:YES];
     } else {
         [_locationNames addObject:newLocationName];
         [me saveInBackground];

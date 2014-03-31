@@ -13,6 +13,8 @@
 
 @interface LocationTableViewController ()
 @property (nonatomic) NSMutableArray *locations;
+@property (nonatomic) NSMutableArray *locationNames;
+
 @end
 
 @implementation LocationTableViewController
@@ -36,7 +38,7 @@
 }
 
 - (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    PFObject *location = [_locations objectAtIndex:indexPath.row];
+    PFObject *location = [_locationNames objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"LocationToArrow" sender:location];
 }
 
@@ -47,9 +49,9 @@
     
     // Configure the cell...
     int row = [indexPath row];
-    PFObject *location = [_locations objectAtIndex:row];
-    [location fetchIfNeeded];
-    cell.friendLabel.text = location[@"name"];
+    NSString *location = [_locationNames objectAtIndex:row];
+    //[location fetchIfNeeded];
+    cell.friendLabel.text = location;
     
     return cell;
 }
@@ -85,7 +87,7 @@
 {
     [super viewWillAppear:animated];
     PFUser *me = [PFUser currentUser];
-    _locations = me[@"myLocations"];
+    _locationNames = me[@"myLocationNames"];
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.tabBarController.tabBar setHidden:NO];
@@ -108,7 +110,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _locations.count;
+    return _locationNames.count;
 }
 
 /*
@@ -156,10 +158,26 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    PFObject *loc = sender;
+    PFUser *me = [PFUser currentUser];
+    _locations = me[@"myLocations"];
+    PFObject *target;
+    
+    for (PFObject *temp in _locations) {
+        [temp fetchIfNeeded];
+        
+        NSString *tempName = temp[@"name"];
+        NSString *senderName = (NSString *)sender;
+        
+        if ([tempName isEqualToString:senderName]) {
+            target = temp;
+            NSLog(@"WEHAVEAtargetis: %@", target);
+            break;
+        }
+    }
+    NSLog(@"targetis: %@", target);
     if ([segue.identifier isEqualToString:@"LocationToArrow"]){
-        [segue.destinationViewController setStaticLat:[(loc[@"lat"]) floatValue]];
-        [segue.destinationViewController setStaticLong:[(loc[@"long"]) floatValue]];
+        [segue.destinationViewController setStaticLat:[(target[@"lat"]) floatValue]];
+        [segue.destinationViewController setStaticLong:[(target[@"long"]) floatValue]];
         [segue.destinationViewController setStaticLocation:YES];
     }
 }

@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>3508E52C-04E4-4F50-9965-2BDCF590379D</string>
+	<string>1A1426E5-75C6-4FFF-AF22-FE2B2A1C2340</string>
 	<key>IDESourceControlProjectName</key>
 	<string>PoloApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>61C55BC1-1BC0-4C52-BD29-D8C237F24963</key>
-		<string>https://github.com/mbrenman/PoloApp</string>
+		<key>C31B7EC5-56B3-4BF3-A1D7-1873A6CF63E5</key>
+		<string>ssh://github.com/mbrenman/PoloApp.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>PoloApp/PoloApp.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>61C55BC1-1BC0-4C52-BD29-D8C237F24963</key>
+		<key>C31B7EC5-56B3-4BF3-A1D7-1873A6CF63E5</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/mbrenman/PoloApp</string>
+	<string>ssh://github.com/mbrenman/PoloApp.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>61C55BC1-1BC0-4C52-BD29-D8C237F24963</string>
+	<string>C31B7EC5-56B3-4BF3-A1D7-1873A6CF63E5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>61C55BC1-1BC0-4C52-BD29-D8C237F24963</string>
+			<string>C31B7EC5-56B3-4BF3-A1D7-1873A6CF63E5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>PoloApp</string>
 		</dict>

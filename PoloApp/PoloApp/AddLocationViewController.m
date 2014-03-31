@@ -13,8 +13,8 @@
 
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSMutableArray *locations;
+@property (nonatomic, strong) NSMutableArray *locationNames;
 @property (strong, nonatomic) IBOutlet UITextField *locationField;
-
 
 @end
 
@@ -41,6 +41,14 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     
+    _locationNames = me[@"myLocationNames"];
+    if (_locationNames == nil) {
+        me[@"myLocationNames"] = [[NSMutableArray alloc] initWithObjects:newLocationName, nil];
+    } else {
+        [_locationNames addObject:newLocationName];
+        [me saveInBackground];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

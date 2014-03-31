@@ -65,21 +65,21 @@
     _friends = me[@"friends"];
     if (_friends == nil){
         NSLog(@"ha ha. no friends for you. geek.");
-        me[@"friends"] = [[NSMutableArray alloc] initWithObjects:newFriend, nil];
-    } else {
-        //Only add new friend if user does not already have the friend
-        if (![_friends containsObject:newFriend]){
-            if (![[me username] isEqualToString:newFriend]){
-                [_friends addObject:newFriend];
-                [me saveInBackground];
-                [self.navigationController popViewControllerAnimated:YES];
-            } else {
-                [_alertSelfAdded show];
-            }
-        } else {
-            [_alertAlreadyAdded show];
-        }
+        me[@"friends"] = [[NSMutableArray alloc] init];
+        _friends = me[@"friends"];
     }
+    //Only add new friend if user does not already have the friend
+    if (![_friends containsObject:newFriend]){
+        if (![[me username] isEqualToString:newFriend]){
+            [_friends addObject:newFriend];
+            [me saveInBackground];
+        } else {self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+            [_alertSelfAdded show];
+        }
+    } else {
+        [_alertAlreadyAdded show];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
         
 - (void)viewDidLoad

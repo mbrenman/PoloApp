@@ -96,6 +96,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    PFUser *me = [PFUser currentUser];
+    _friends = me[@"friends"];
+    
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.tabBarController.tabBar setHidden:NO];

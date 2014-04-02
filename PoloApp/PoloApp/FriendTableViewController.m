@@ -11,10 +11,21 @@
 #import "ArrowViewController.h"
 
 @interface FriendTableViewController ()
+@property (strong, nonatomic) IBOutlet UIButton *numOfFriendRequestsLabel;
 @property (nonatomic) NSMutableArray *friends;
+@property (nonatomic) NSMutableArray *friendRequests;
 @end
 
 @implementation FriendTableViewController
+
+- (IBAction)friendRequestButtonPush:(id)sender {
+    if([_friendRequests count] != 0) {
+        [self performSegueWithIdentifier:@"friendTableToFriendTableRequests" sender:nil];
+    }
+}
+
+
+//add function that updates text of UIButton
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -96,6 +107,7 @@
 {
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
+    _friendRequests = me[@"myFriendRequests"];
     
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];

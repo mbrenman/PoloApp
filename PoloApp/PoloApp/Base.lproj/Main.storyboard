@@ -71,6 +71,35 @@
             </objects>
             <point key="canvasLocation" x="1372" y="346"/>
         </scene>
+        <!--Friend Request Table View Controller-->
+        <scene sceneID="6oK-7N-one">
+            <objects>
+                <tableViewController id="NP1-tA-YBd" customClass="FriendRequestTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8c6-fY-Q8G" customClass="Friend">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="aTb-TO-bii">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aTb-TO-bii" id="2zM-Jb-pv7">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="NP1-tA-YBd" id="Jm9-K9-RmD"/>
+                            <outlet property="delegate" destination="NP1-tA-YBd" id="dkw-1a-Njv"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="2EE-sf-kPc"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yf-gH-ZzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1860" y="-403"/>
+        </scene>
         <!--Friend Table View Controller-->
         <scene sceneID="fNB-h4-yfZ">
             <objects>
@@ -113,6 +142,17 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="oHy-D9-Q86">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SUf-sK-b3k">
+                            <rect key="frame" x="93" y="6" width="128" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="0 Friend Requests">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="friendRequestButtonPush:" destination="Gf3-if-SZ3" eventType="touchUpInside" id="tF9-5h-R3Z"/>
+                            </connections>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" title="Add Friend" id="Jlm-gG-3S5">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -122,9 +162,11 @@
                     <connections>
                         <outlet property="LogoutButton" destination="oHy-D9-Q86" id="NRg-0p-NMu"/>
                         <outlet property="addFriendButton" destination="Jlm-gG-3S5" id="6on-r6-ra2"/>
+                        <outlet property="numOfFriendRequestsLabel" destination="SUf-sK-b3k" id="4XF-nf-sw9"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="LogOutSegue" id="TXm-gv-ivG"/>
                         <segue destination="7bK-gE-R1Q" kind="push" identifier="AddFriendSegue" id="GsT-ym-nQk"/>
                         <segue destination="pLJ-TN-xqo" kind="push" identifier="PersonToArrow" id="TJO-ak-dHW"/>
+                        <segue destination="NP1-tA-YBd" kind="push" identifier="friendTableToFriendTableRequests" id="yrA-3B-p2m"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RYc-HU-N7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -351,7 +393,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TXm-gv-ivG"/>
-        <segue reference="TJO-ak-dHW"/>
+        <segue reference="2Xe-uF-Iuw"/>
+        <segue reference="oIt-RW-7II"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -87,7 +87,7 @@
     } else {
         [_alertAlreadyAdded show];
     }
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
         
 - (void)viewDidLoad

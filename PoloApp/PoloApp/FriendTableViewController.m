@@ -26,12 +26,12 @@
 }
 
 - (void) updateButtonText{
-    /*
     int numOfFriendReqs = (int)[_friendRequests count];
     NSString *stringNumFriendReqs = [[NSNumber numberWithInt:numOfFriendReqs] stringValue];
-    NSMutableString *title = [[NSMutableString alloc] initWithString:[stringNumFriendReqs stringByAppendingString:@" Friend Requests"]];*/
-                              
-    [_numOfFriendRequestsLabel setTitle:@"temp button title" forState:UIControlStateNormal];
+    NSMutableString *title = [[NSMutableString alloc] initWithString:[stringNumFriendReqs stringByAppendingString:@" Friend Requests"]];
+    [_numOfFriendRequestsLabel setTitle:title forState:UIControlStateNormal];
+    [_numOfFriendRequestsLabel setNeedsDisplay];
+   //TODO: find a way to make this appear immediately
 }
 
 - (void) findFriendRequesters{
@@ -50,6 +50,7 @@
             }
         }
      ];
+    [self updateButtonText];
 }
 
 

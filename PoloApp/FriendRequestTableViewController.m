@@ -27,14 +27,15 @@
 
 - (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     //Todo: figure out what to do here
-    //probably pop an alert and prompt them to...
+    //probably pop up an alert and prompt them to...
     //accept or lose the friend
     
     //IF they accept we need to
     //  1. add the friend
+    // 1.5. remove them from the local table
     //  2. set the bool to accepted
     //ELSE
-    //  simply remove the object    
+    //  simply remove the object
 }
 
 - (void)viewDidLoad

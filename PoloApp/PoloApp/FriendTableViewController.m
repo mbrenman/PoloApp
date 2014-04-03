@@ -46,12 +46,12 @@
     [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 _friendRequests = (NSMutableArray*)objects;
+                [self updateButtonText];
             } else {
                 //handle error
             }
         }
      ];
-    [self updateButtonText];
 }
 
 - (void) handleAcceptedFriendRequests{
@@ -137,7 +137,6 @@
     
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
-    [self updateButtonText];
 
     // sort _friends removed because it breaks remove... need to fix this
    /* _friends = (NSMutableArray*)[_friends sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];*/
@@ -153,7 +152,6 @@
 {
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
-    [self updateButtonText];
     [self findFriendRequesters];
     [self handleAcceptedFriendRequests];
     

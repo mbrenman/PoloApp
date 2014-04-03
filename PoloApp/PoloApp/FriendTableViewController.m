@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *numOfFriendRequestsLabel;
 @property (nonatomic) NSMutableArray *friends;
 @property (nonatomic) NSMutableArray *friendRequests;
+@property (nonatomic) NSMutableArray *acceptedFriendRequests;
 @end
 
 @implementation FriendTableViewController
@@ -22,8 +23,9 @@
 - (IBAction)friendRequestButtonPush:(id)sender {
     if([_friendRequests count] != 0) {
         [self performSegueWithIdentifier:@"friendTableToFriendTableRequests" sender:nil];
+    } else {
+        //TODO: else display alert WHY DID I WRITE THIS?
     }
-    //TODO: else display alert
 }
 
 - (void) updateButtonText{
@@ -39,19 +41,34 @@
 - (void) findFriendRequesters{
     PFUser *me = [PFUser currentUser];
     PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendRequest"];
+    [requesterQuery whereKey:@"accepted" equalTo:[NSNumber numberWithBool:NO]];
     [requesterQuery whereKey:@"target" equalTo:me.username];
     [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 _friendRequests = (NSMutableArray*)objects;
-               // for (PFObject* each in _friendRequests) {
-               //     NSLog(@"%@", each[@"requester"]);
-               // }
             } else {
                 //handle error
             }
         }
      ];
     [self updateButtonText];
+}
+
+- (void) handleAcceptedFriendRequests{
+    PFUser *me = [PFUser currentUser];
+    PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendRequest"];
+    
+    [requesterQuery whereKey:@"accepted" equalTo:[NSNumber numberWithBool:YES]];
+    [requesterQuery whereKey:@"requester" equalTo:me.username];
+    
+    [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            _acceptedFriendRequests = (NSMutableArray*)objects;
+        } else {
+            //handle error
+        }
+    }];
+    //TODO: loop through accepted friend requests and add them all then delete all the objects
 }
 
 

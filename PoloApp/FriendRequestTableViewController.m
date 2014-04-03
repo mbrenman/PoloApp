@@ -29,6 +29,12 @@
     //Todo: figure out what to do here
     //probably pop an alert and prompt them to...
     //accept or lose the friend
+    
+    //IF they accept we need to
+    //  1. add the friend
+    //  2. set the bool to accepted
+    //ELSE
+    //  simply remove the object    
 }
 
 - (void)viewDidLoad

@@ -41,12 +41,14 @@
 - (IBAction)AddButtonClick:(id)sender {
     NSString *newFriend = [_friendNameField text];
     [self AddFriendIfExistsinDB:newFriend];
+    NSLog(@"ADDBUTTONCLOCK");
 }
 
 - (void)AddFriendIfExistsinDB: (NSString *)newFriend
 {
     //TODO: can we make this faster?
-    
+    NSLog(@"101010101011001010101");
+
     PFQuery *query= [PFUser query];
     [query whereKey:@"username" equalTo: newFriend];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -64,14 +66,28 @@
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
     if (_friends == nil){
-        NSLog(@"ha ha. no friends for you. geek.");
-        me[@"friends"] = [[NSMutableArray alloc] init];
+        me[@"f  riends"] = [[NSMutableArray alloc] init];
         _friends = me[@"friends"];
     }
     //Only add new friend if user does not already have the friend
     if (![_friends containsObject:newFriend]){
         if (![[me username] isEqualToString:newFriend]){
             [_friends addObject:newFriend];
+            //create a friend request object
+            NSMutableArray *myFriendRequests = me[@"myFriendRequests"];
+            
+            PFObject *friendRequest = [PFObject objectWithClassName:@"friendRequest"];
+            friendRequest[@"requester"] = [me username];
+            friendRequest[@"target"] = newFriend;
+            friendRequest[@"accepted"] = [NSNumber numberWithBool:NO];
+            
+            if (myFriendRequests == nil) {
+                me[@"myFriendRequests"] = [[NSMutableArray alloc] initWithObjects:friendRequest, nil];
+            } else {
+                [myFriendRequests addObject:newFriend];
+                [me saveInBackground];
+            }
+            me[@"myFriendRequests"] = [[NSMutableArray alloc] init];
             [me saveInBackground];
         } else {self.navigationController.navigationBar.tintColor = [UIColor blackColor];
             [_alertSelfAdded show];

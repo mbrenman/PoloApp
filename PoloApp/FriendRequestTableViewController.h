@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FriendRequestTableViewController : UITableViewController
+@property (nonatomic,strong) NSMutableArray* requesters;
+
 
 @end

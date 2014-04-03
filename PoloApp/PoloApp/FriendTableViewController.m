@@ -9,6 +9,7 @@
 #import "FriendTableViewController.h"
 #import "FriendCell.h"
 #import "ArrowViewController.h"
+#import "FriendRequestTableViewController.h"
 
 @interface FriendTableViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *numOfFriendRequestsLabel;
@@ -31,20 +32,20 @@
     NSMutableString *title = [[NSMutableString alloc] initWithString:[stringNumFriendReqs stringByAppendingString:@" Friend Requests"]];
     [_numOfFriendRequestsLabel setTitle:title forState:UIControlStateNormal];
     [_numOfFriendRequestsLabel setNeedsDisplay];
+    
    //TODO: find a way to make this appear immediately
 }
 
 - (void) findFriendRequesters{
-    NSLog(@"IN:");
     PFUser *me = [PFUser currentUser];
     PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendRequest"];
     [requesterQuery whereKey:@"target" equalTo:me.username];
     [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 _friendRequests = (NSMutableArray*)objects;
-                for (PFObject* each in _friendRequests) {
-                    NSLog(@"%@", each[@"requester"]);
-                }
+               // for (PFObject* each in _friendRequests) {
+               //     NSLog(@"%@", each[@"requester"]);
+               // }
             } else {
                 //handle error
             }
@@ -52,8 +53,6 @@
      ];
     [self updateButtonText];
 }
-
-
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -106,7 +105,6 @@
 
 - (IBAction)editTable:(id)sender {
     [self setEditing:YES animated:YES];
-    
 }
 
 - (void)viewDidLoad
@@ -231,6 +229,9 @@
     if ([segue.identifier isEqualToString:@"PersonToArrow"]){
         [segue.destinationViewController setTargetUserName:sender];
         [segue.destinationViewController setStaticLocation:NO];
+    }
+    if ([segue.identifier isEqualToString:@"friendTableToFriendTableRequests"]){
+        [segue.destinationViewController setRequesters:_friendRequests];
     }
 }
 

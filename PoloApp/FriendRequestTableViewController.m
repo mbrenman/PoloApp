@@ -7,6 +7,8 @@
 //
 
 #import "FriendRequestTableViewController.h"
+#import "Parse/Parse.h"
+#import "FriendCell.h"
 
 @interface FriendRequestTableViewController ()
 
@@ -23,10 +25,18 @@
     return self;
 }
 
+- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //Todo: figure out what to do here
+    //probably pop an alert and prompt them to...
+    //accept or lose the friend
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    for (PFObject* each in _requesters){
+        NSLog(@"requester: %@", each[@"requester"]);
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -44,28 +54,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return _requesters.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"FriendCell";
+    FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     
+    int row = [indexPath row];
+    
+    PFObject *temp = [_requesters objectAtIndex:row];
+    cell.friendLabel.text = temp[@"requester"];
+
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

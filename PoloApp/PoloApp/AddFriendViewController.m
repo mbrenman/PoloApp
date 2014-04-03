@@ -47,8 +47,6 @@
 - (void)AddFriendIfExistsinDB: (NSString *)newFriend
 {
     //TODO: can we make this faster?
-    NSLog(@"101010101011001010101");
-
     PFQuery *query= [PFUser query];
     [query whereKey:@"username" equalTo: newFriend];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -65,10 +63,12 @@
 {
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
+    
     if (_friends == nil){
         me[@"friends"] = [[NSMutableArray alloc] init];
         _friends = me[@"friends"];
     }
+    
     //Only add new friend if user does not already have the friend
     if (![_friends containsObject:newFriend]){
         if (![[me username] isEqualToString:newFriend]){
@@ -81,8 +81,7 @@
             friendRequest[@"target"] = newFriend;
             friendRequest[@"accepted"] = [NSNumber numberWithBool:NO];
             [friendRequest saveInBackground];
-           
-        } else {self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+        } else {
             [_alertSelfAdded show];
         }
     } else {

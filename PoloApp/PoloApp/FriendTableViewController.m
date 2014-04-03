@@ -33,7 +33,27 @@
                               
     [_numOfFriendRequestsLabel setTitle:@"temp button title" forState:UIControlStateNormal];
 }
-//add function that updates text of UIButton
+
+- (void) findFriendRequesters{
+    NSLog(@"IN:");
+    PFUser *me = [PFUser currentUser];
+    PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendRequest"];
+    [requesterQuery whereKey:@"target" equalTo:me.username];
+    [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                _friendRequests = (NSMutableArray*)objects;
+                for (PFObject* each in _friendRequests) {
+                    NSLog(@"%@", each[@"requester"]);
+                }
+            } else {
+                //handle error
+            }
+        }
+     ];
+}
+
+
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -101,7 +121,6 @@
     
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
-    _friendRequests = me[@"friends"];
     [self updateButtonText];
 
     // sort _friends removed because it breaks remove... need to fix this
@@ -118,9 +137,8 @@
 {
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
-    _friendRequests = me[@"myFriendRequests"];
     [self updateButtonText];
-
+    [self findFriendRequesters];
     
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];

@@ -11,6 +11,7 @@
 #import "FriendCell.h"
 
 @interface FriendRequestTableViewController ()
+@property (nonatomic) UIActionSheet *actionSheet;
 
 @end
 
@@ -25,7 +26,7 @@
     return self;
 }
 
-- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //Todo: figure out what to do here
     //probably pop up an alert and prompt them to...
     //accept or lose the friend
@@ -36,6 +37,10 @@
     //  2. set the bool to accepted
     //ELSE
     //  simply remove the object
+    
+    [_actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    
+    
 }
 
 - (void)viewDidLoad
@@ -44,6 +49,13 @@
     for (PFObject* each in _requesters){
         NSLog(@"requester: %@", each[@"requester"]);
     }
+    
+    _actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                delegate:self
+                cancelButtonTitle:@"Cancel"
+                destructiveButtonTitle:nil
+                otherButtonTitles:@"Confirm Friend",@"Reject Friend",nil];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

@@ -155,6 +155,7 @@
     _friends = me[@"friends"];
     [self updateButtonText];
     [self findFriendRequesters];
+    [self handleAcceptedFriendRequests];
     
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];

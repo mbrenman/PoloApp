@@ -66,29 +66,22 @@
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
     if (_friends == nil){
-        me[@"f  riends"] = [[NSMutableArray alloc] init];
+        me[@"friends"] = [[NSMutableArray alloc] init];
         _friends = me[@"friends"];
     }
     //Only add new friend if user does not already have the friend
     if (![_friends containsObject:newFriend]){
         if (![[me username] isEqualToString:newFriend]){
             [_friends addObject:newFriend];
-            //create a friend request object
-            NSMutableArray *myFriendRequests = me[@"myFriendRequests"];
-            
+            [me saveInBackground];
+
+            //create a friend request object            
             PFObject *friendRequest = [PFObject objectWithClassName:@"friendRequest"];
             friendRequest[@"requester"] = [me username];
             friendRequest[@"target"] = newFriend;
             friendRequest[@"accepted"] = [NSNumber numberWithBool:NO];
-            
-            if (myFriendRequests == nil) {
-                me[@"myFriendRequests"] = [[NSMutableArray alloc] initWithObjects:friendRequest, nil];
-            } else {
-                [myFriendRequests addObject:newFriend];
-                [me saveInBackground];
-            }
-            me[@"myFriendRequests"] = [[NSMutableArray alloc] init];
-            [me saveInBackground];
+            [friendRequest saveInBackground];
+           
         } else {self.navigationController.navigationBar.tintColor = [UIColor blackColor];
             [_alertSelfAdded show];
         }

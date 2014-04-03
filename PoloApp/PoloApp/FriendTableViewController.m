@@ -22,9 +22,17 @@
     if([_friendRequests count] != 0) {
         [self performSegueWithIdentifier:@"friendTableToFriendTableRequests" sender:nil];
     }
+    //TODO: else display alert
 }
 
-
+- (void) updateButtonText{
+    /*
+    int numOfFriendReqs = (int)[_friendRequests count];
+    NSString *stringNumFriendReqs = [[NSNumber numberWithInt:numOfFriendReqs] stringValue];
+    NSMutableString *title = [[NSMutableString alloc] initWithString:[stringNumFriendReqs stringByAppendingString:@" Friend Requests"]];*/
+                              
+    [_numOfFriendRequestsLabel setTitle:@"temp button title" forState:UIControlStateNormal];
+}
 //add function that updates text of UIButton
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -93,6 +101,9 @@
     
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
+    _friendRequests = me[@"friends"];
+    [self updateButtonText];
+
     // sort _friends removed because it breaks remove... need to fix this
    /* _friends = (NSMutableArray*)[_friends sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];*/
     
@@ -108,6 +119,8 @@
     PFUser *me = [PFUser currentUser];
     _friends = me[@"friends"];
     _friendRequests = me[@"myFriendRequests"];
+    [self updateButtonText];
+
     
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];

@@ -63,6 +63,14 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    NSLog([NSString stringWithFormat:@"%d", buttonIndex]);
+    
+    if (buttonIndex == 0){
+        //Confirm Friend Clicked
+    } else if (buttonIndex == 1){
+        //Reject Friend Clicked
+    }
+    //Otherwise cancel was clicked, so we do nothing
     
     //Deselect the friend when a choice is made
     [[self tableView] deselectRowAtIndexPath:(NSIndexPath *)[[self tableView] indexPathForSelectedRow] animated:YES];

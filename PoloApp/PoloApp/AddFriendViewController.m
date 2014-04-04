@@ -81,6 +81,9 @@
             friendRequest[@"target"] = newFriend;
             friendRequest[@"accepted"] = [NSNumber numberWithBool:NO];
             [friendRequest saveInBackground];
+            
+            //Pop view when friend can be successfully added
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
             [_alertSelfAdded show];
         }

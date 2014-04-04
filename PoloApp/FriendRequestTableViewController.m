@@ -39,8 +39,6 @@
     //  simply remove the object
     
     [_actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-    
-    
 }
 
 - (void)viewDidLoad
@@ -61,6 +59,13 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    //Deselect the friend when a choice is made
+    [[self tableView] deselectRowAtIndexPath:(NSIndexPath *)[[self tableView] indexPathForSelectedRow] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

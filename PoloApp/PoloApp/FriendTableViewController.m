@@ -30,9 +30,15 @@
 
 - (void) updateButtonText{
     int numOfFriendReqs = (int)[_friendRequests count];
-    NSString *stringNumFriendReqs = [[NSNumber numberWithInt:numOfFriendReqs] stringValue];
-    NSMutableString *title = [[NSMutableString alloc] initWithString:[stringNumFriendReqs stringByAppendingString:@" Friend Requests"]];
-    [_numOfFriendRequestsLabel setTitle:title forState:UIControlStateNormal];
+    if (numOfFriendReqs == 0) {
+        [_numOfFriendRequestsLabel setTitle:@"" forState:UIControlStateNormal];
+    } else if (numOfFriendReqs == 1){
+        [_numOfFriendRequestsLabel setTitle:@"1 Friend Request" forState:UIControlStateNormal];
+    } else {
+        NSString *stringNumFriendReqs = [[NSNumber numberWithInt:numOfFriendReqs] stringValue];
+        NSMutableString *title = [[NSMutableString alloc] initWithString:[stringNumFriendReqs stringByAppendingString:@" Friend Requests"]];
+        [_numOfFriendRequestsLabel setTitle:title forState:UIControlStateNormal];
+    }
     [_numOfFriendRequestsLabel setNeedsDisplay];
     
    //TODO: find a way to make this appear immediately

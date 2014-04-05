@@ -68,7 +68,13 @@
             //handle error
         }
     }];
-    //TODO: loop through accepted friend requests and add them all then delete all the objects
+    //loop through accepted friend requests and add them all then delete all the objects
+    for (PFObject* request in _acceptedFriendRequests) {
+        [me[@"friends"] addObject:request[@"target"]];
+        [me saveInBackground];
+        [request deleteInBackground];
+        [self.tableView reloadData];
+    }
 }
 
 

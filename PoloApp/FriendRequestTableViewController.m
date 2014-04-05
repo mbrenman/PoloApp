@@ -30,10 +30,7 @@
 {
     
     PFObject *temp = [_requesters objectAtIndex:indexPath.row];
-    _actionSheet.accessibilityValue = [temp objectId];
-    
-    
-    
+    _actionSheet.accessibilityValue = [temp objectId];   
     _actionSheet.tag = indexPath.row;
 
     [_actionSheet showInView:[UIApplication sharedApplication].keyWindow];
@@ -61,8 +58,6 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog([NSString stringWithFormat:@"%d", buttonIndex]);
-    
     if (buttonIndex == 0){
         //Confirm Friend Clicked
         // 1. add the friend
@@ -92,8 +87,8 @@
         [friendRequest saveInBackground];
         
     } else if (buttonIndex == 1){
-        //simply remove the object
         //Reject Friend Clicked
+        //simply remove the object
         [_requesters removeObjectAtIndex:_actionSheet.tag];
         [self.tableView reloadData];
         
@@ -103,7 +98,7 @@
         [friendRequest deleteInBackground];
     }
     //Otherwise cancel was clicked, so we do nothing
-    
+
     //Deselect the friend when a choice is made
     [[self tableView] deselectRowAtIndexPath:(NSIndexPath *)[[self tableView] indexPathForSelectedRow] animated:YES];
 }

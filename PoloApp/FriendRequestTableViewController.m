@@ -66,7 +66,7 @@
     if (buttonIndex == 0){
         //Confirm Friend Clicked
         // 1. add the friend
-        NSLog(@"ID: %@", _actionSheet.accessibilityValue);
+
         PFQuery *friendRequestQuery = [PFQuery queryWithClassName:@"friendRequest"];
         PFObject *friendRequest = [friendRequestQuery getObjectWithId:_actionSheet.accessibilityValue];
         
@@ -92,8 +92,15 @@
         [friendRequest saveInBackground];
         
     } else if (buttonIndex == 1){
+        //simply remove the object
         //Reject Friend Clicked
-        ////  simply remove the object
+        [_requesters removeObjectAtIndex:_actionSheet.tag];
+        [self.tableView reloadData];
+        
+        PFQuery *friendRequestQuery = [PFQuery queryWithClassName:@"friendRequest"];
+        PFObject *friendRequest = [friendRequestQuery getObjectWithId:_actionSheet.accessibilityValue];
+        [friendRequest saveInBackground];
+        [friendRequest deleteInBackground];
     }
     //Otherwise cancel was clicked, so we do nothing
     

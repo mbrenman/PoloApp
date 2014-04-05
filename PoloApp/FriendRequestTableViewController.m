@@ -101,6 +101,9 @@
 
     //Deselect the friend when a choice is made
     [[self tableView] deselectRowAtIndexPath:(NSIndexPath *)[[self tableView] indexPathForSelectedRow] animated:YES];
+    if (_requesters.count == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

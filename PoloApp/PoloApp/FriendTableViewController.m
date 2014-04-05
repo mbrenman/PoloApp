@@ -80,6 +80,7 @@
         [me saveInBackground];
         [request deleteInBackground];
         [self.tableView reloadData];
+        //TODO: make this appear immediately (nonvital)
     }
 }
 

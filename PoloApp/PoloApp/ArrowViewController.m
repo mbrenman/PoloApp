@@ -25,6 +25,7 @@ const float EARTH_RADIUS = 3963.1676;
 @property PFObject *connection;
 @property BOOL haveMyLoc, haveTargetLoc, haveTarget;
 @property BOOL visible;
+@property BOOL isInMiles;
 @property int testNum;
 @property NSMutableArray *locations;
 @end
@@ -38,6 +39,15 @@ const float EARTH_RADIUS = 3963.1676;
         // Custom initialization
     }
     return self;
+}
+
+- (IBAction)toggleFeetMiles:(id)sender {
+    if (_isInMiles) {
+        _isInMiles = false;
+    } else {
+        _isInMiles = true;
+    }
+    [self updateDistance];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -233,8 +243,11 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (void)updateLabelWithDistance:(NSNumber *)distance
 {
-    _DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", [distance floatValue]];
-    NSLog([NSString stringWithFormat:@"%f", [distance floatValue]]);
+    if (_isInMiles) {
+        _DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", [distance floatValue]];
+    } else {
+        _DistanceLabel.text = [NSString stringWithFormat:@"%.0f ft", [distance floatValue] * 5280];}
+    //NSLog([NSString stringWithFormat:@"%f", [distance floatValue]]);
 }
 
 - (float)degreesToRadians: (float)degrees

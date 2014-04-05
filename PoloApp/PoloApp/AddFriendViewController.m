@@ -72,8 +72,8 @@
     //Only add new friend if user does not already have the friend
     if (![_friends containsObject:newFriend]){
         if (![[me username] isEqualToString:newFriend]){
-            [_friends addObject:newFriend];
-            [me saveInBackground];
+            //[_friends addObject:newFriend];
+            //[me saveInBackground];
 
             //create a friend request object            
             PFObject *friendRequest = [PFObject objectWithClassName:@"friendRequest"];

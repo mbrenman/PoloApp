@@ -26,18 +26,16 @@
     return self;
 }
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //Todo: figure out what to do here
-    //probably pop up an alert and prompt them to...
-    //accept or lose the friend
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    //IF they accept we need to
-    //  1. add the friend
-    // 1.5. remove them from the local table
-    //  2. set the bool to accepted
-    //ELSE
-    //  simply remove the object
+    PFObject *temp = [_requesters objectAtIndex:indexPath.row];
+    _actionSheet.accessibilityValue = [temp objectId];
     
+    
+    
+    _actionSheet.tag = indexPath.row;
+
     [_actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 
@@ -67,8 +65,35 @@
     
     if (buttonIndex == 0){
         //Confirm Friend Clicked
+        // 1. add the friend
+        NSLog(@"ID: %@", _actionSheet.accessibilityValue);
+        PFQuery *friendRequestQuery = [PFQuery queryWithClassName:@"friendRequest"];
+        PFObject *friendRequest = [friendRequestQuery getObjectWithId:_actionSheet.accessibilityValue];
+        
+        NSString *newFriend = friendRequest[@"requester"];
+
+        PFUser* me = [PFUser currentUser];
+        NSMutableArray *friends = me[@"friends"];
+        if (![friends containsObject:newFriend]){
+            if (![[me username] isEqualToString:newFriend]){
+                [friends addObject:newFriend];
+                [me saveInBackground];
+            } else {
+                //display alert
+            }
+        } else {
+            //dislay alert
+        }
+        // 2. remove them from the local table
+        [_requesters removeObjectAtIndex:_actionSheet.tag];
+        [self.tableView reloadData];
+        // 3. set the bool to accepted
+        friendRequest[@"accepted"] = [NSNumber numberWithBool:YES];
+        [friendRequest saveInBackground];
+        
     } else if (buttonIndex == 1){
         //Reject Friend Clicked
+        ////  simply remove the object
     }
     //Otherwise cancel was clicked, so we do nothing
     

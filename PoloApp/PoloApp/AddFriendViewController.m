@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UIAlertView *alertNonexistent;
 @property (nonatomic, strong) UIAlertView *alertAlreadyAdded;
 @property (nonatomic, strong) UIAlertView *alertSelfAdded;
+@property (nonatomic, strong) UIAlertView *alertPendingRequest;
 
 @end
 
@@ -72,19 +73,38 @@
     //Only add new friend if user does not already have the friend
     if (![_friends containsObject:newFriend]){
         if (![[me username] isEqualToString:newFriend]){
-            //[_friends addObject:newFriend];
-            //[me saveInBackground];
+         //   if (there exists no friend request with requester me.currentuser && target newFriend){
+            PFQuery* query = [PFQuery queryWithClassName:@"friendRequest"];
+            __block NSMutableArray *existingFriendRequets;
+            [query whereKey:@"target" equalTo:newFriend];
+            [query whereKey:@"requester" equalTo:me.username];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (!error) {
+                    NSLog(@"populating existingFriendRequests");
+                    existingFriendRequets = (NSMutableArray*)objects;
+                    
+                    if (existingFriendRequets.count == 0){
+                        NSLog(@"CREATING friend requestobject");
+                        //create a friend request object
+                        PFObject *friendRequest = [PFObject objectWithClassName:@"friendRequest"];
+                        friendRequest[@"requester"] = [me username];
+                        friendRequest[@"target"] = newFriend;
+                        friendRequest[@"accepted"] = [NSNumber numberWithBool:NO];
+                        [friendRequest saveInBackground];
+                        
+                        //Pop view when friend can be successfully added
+                        [self.navigationController popViewControllerAnimated:YES];
+                    } else {
+                        NSLog(@"show pending alert");
+                        [_alertPendingRequest show];
+                    }
 
-            //create a friend request object            
-            PFObject *friendRequest = [PFObject objectWithClassName:@"friendRequest"];
-            friendRequest[@"requester"] = [me username];
-            friendRequest[@"target"] = newFriend;
-            friendRequest[@"accepted"] = [NSNumber numberWithBool:NO];
-            [friendRequest saveInBackground];
-            
-            //Pop view when friend can be successfully added
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
+                    
+                } else {
+                    //handle error
+                }
+            }];
+            } else {
             [_alertSelfAdded show];
         }
     } else {
@@ -119,6 +139,13 @@
                           delegate:self
                           cancelButtonTitle:@"Dismiss"
                           otherButtonTitles:nil];
+    
+    _alertPendingRequest = [[UIAlertView alloc]
+                       initWithTitle:@"Error"
+                       message:@"Friend request currently pending"
+                       delegate:self
+                       cancelButtonTitle:@"Dismiss"
+                       otherButtonTitles:nil];
 }
 
 - (void)didReceiveMemoryWarning

@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1071" y="726"/>
+            <point key="canvasLocation" x="-767" y="696"/>
         </scene>
         <!--Arrow View Controller-->
         <scene sceneID="ikw-Ok-Ttj">

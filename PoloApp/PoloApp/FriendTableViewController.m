@@ -76,7 +76,12 @@
     }];
     //loop through accepted friend requests and add them all then delete all the objects
     for (PFObject* request in _acceptedFriendRequests) {
-        [me[@"friends"] addObject:request[@"target"]];
+        _friends = me[@"friends"];
+        if (_friends == nil) {
+            me[@"friends"] = [[NSMutableArray alloc] initWithObjects:request[@"target"], nil];
+        } else {
+            [me[@"friends"] addObject:request[@"target"]];
+        }
         [me saveInBackground];
         [request deleteInBackground];
         [self.tableView reloadData];
@@ -128,7 +133,7 @@
 }
 
 - (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath{
-    //TODO: Later on, pull the data from the sender and use that to customize the arrow
+    //TODO: Later on3, pull the data from the sender and use that to customize the arrow
     NSString *user = [_friends objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"PersonToArrow" sender:user];
 }

@@ -79,7 +79,7 @@
         _friends = me[@"friends"];
         if (_friends == nil) {
             me[@"friends"] = [[NSMutableArray alloc] initWithObjects:request[@"target"], nil];
-        } else {
+        } else if (![_friends containsObject:request[@"target"]]) {
             [me[@"friends"] addObject:request[@"target"]];
         }
         [me saveInBackground];

@@ -10,6 +10,7 @@
 #import "Parse/Parse.h"
 #import "FriendCell.h"
 #import "ArrowViewController.h"
+#import "iAd/iAd.h"
 
 @interface LocationTableViewController ()
 @property (nonatomic) NSMutableArray *locations;
@@ -87,6 +88,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.canDisplayBannerAds = YES;
     PFUser *me = [PFUser currentUser];
     _locationNames = me[@"myLocationNames"];
     _locations = me[@"myLocations"];

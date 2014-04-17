@@ -131,6 +131,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <adBannerView key="tableFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5vj-A7-rtP">
+                            <rect key="frame" x="0.0" y="152" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        </adBannerView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="16" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="60" id="dR3-9c-t5f" customClass="FriendCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="60"/>

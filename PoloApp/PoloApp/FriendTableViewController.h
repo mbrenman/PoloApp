@@ -9,8 +9,9 @@
 @import UIKit;
 @class FriendCell;
 #import <Parse/Parse.h>
+#import "iAd/iAd.h"
 
-@interface FriendTableViewController : UITableViewController
+@interface FriendTableViewController : UITableViewController <ADBannerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addFriendButton;
 

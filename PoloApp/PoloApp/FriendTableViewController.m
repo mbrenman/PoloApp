@@ -10,6 +10,7 @@
 #import "FriendCell.h"
 #import "ArrowViewController.h"
 #import "FriendRequestTableViewController.h"
+#import "iAd/iAd.h"
 
 @interface FriendTableViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *numOfFriendRequestsLabel;
@@ -145,6 +146,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.canDisplayBannerAds = YES;
     
     //Set up buttons with their targets
     [_logoutButton setTarget:self];

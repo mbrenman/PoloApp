@@ -6,7 +6,7 @@ A navigational assistant by Matt Brenman and Julian Locke for TuftsHack Spring 2
 Polo TODO
 =========
 Update:
-I think all we have left is iAd and Push Notifications
+I think all we have left is iAd and Push Notifications (and maybe add location by address option)
 
 Needed before pushing to App Store:
 * DONE-Limit API requests from Parse per connection — download target’s data less frequently and animate, it shouldn’t change terribly often (maybe every 5 seconds?)

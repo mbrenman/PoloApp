@@ -14,8 +14,8 @@ Needed before pushing to App Store:
 * DONE-Limit API requests from Parse per connection — download target’s data less frequently and animate, it shouldn’t change terribly often (maybe every 5 seconds?)
 * DONE-Connect to any user in friend list
 * DONE-Only can add friend if the friend exists in DB
-* Users have a whitelist of current callers
-* Connections should only happen if on whitelist
+* DONE - Users have a whitelist of current callers
+* DONE - Connections should only happen if on whitelist
 * DONE-Fix add friend issue when the user has no friends
 * DONE-Make user zero-out location data on closing out of arrow view
 * DONE-Fix crash on logout after seeing the arrow
@@ -23,13 +23,15 @@ Needed before pushing to App Store:
 * Make usernames NOT case sensitive (importance?)
 * DONE-Remove testflight
 * DONE delete friends
-* integrate iAd
+* DONE - integrate iAd
 * Add custom nav bar
 * DONE Organize friends in list - alphabetize?
 * encrypt all location data between users - public/private keys for users? Can Parse do this?
-* Make loading locations faster
-* Facebook Login
+* DONE - Make loading locations faster
 * Consistent styling across app
+* Website
+* Push notification
+* Location update call timing changes with distance
 
 New features:
 

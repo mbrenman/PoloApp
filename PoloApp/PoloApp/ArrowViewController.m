@@ -144,11 +144,7 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
 {
-    if (self.currentHeading == nil){
-        return YES;
-    } else {
-        return NO;
-    }
+    return YES;
 }
 
 - (void)regularInfoUpdate

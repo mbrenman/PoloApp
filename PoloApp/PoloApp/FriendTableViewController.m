@@ -122,6 +122,9 @@
 
 - (void)logoutUser
 {
+    [PFInstallation.currentInstallation removeObjectForKey:@"user"];
+    [PFInstallation.currentInstallation saveEventually];
+    
     [PFUser logOut];
     //Segue back to the login screen
     [self performSegueWithIdentifier:@"LogOutSegue" sender:nil];
@@ -147,6 +150,10 @@
 {
     [super viewDidLoad];
     self.canDisplayBannerAds = YES;
+    
+    //Set device to be associated with user
+    [PFInstallation.currentInstallation setObject:PFUser.currentUser forKey:@"user"];
+    [PFInstallation.currentInstallation saveInBackground];
     
     //Set up buttons with their targets
     [_logoutButton setTarget:self];
@@ -263,6 +270,18 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"PersonToArrow"]){
+        
+        //Find the user
+        PFQuery *userQuery = [PFUser query];
+        [userQuery whereKey:@"username" equalTo:sender];
+        
+        // Push the notification
+        PFQuery *devicesFilter = [PFInstallation query];
+        [devicesFilter whereKey:@"user" matchesQuery:userQuery];
+        
+        [PFPush sendPushMessageToQueryInBackground:devicesFilter
+                                       withMessage:@"CONNECT WITH ME"];
+        
         [segue.destinationViewController setTargetUserName:sender];
         [segue.destinationViewController setStaticLocation:NO];
     }

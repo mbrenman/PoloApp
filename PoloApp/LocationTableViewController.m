@@ -30,6 +30,10 @@
 }
 
 - (IBAction)logOutUser:(id)sender {
+    //Remove user and device association
+    [PFInstallation.currentInstallation removeObjectForKey:@"user"];
+    [PFInstallation.currentInstallation saveEventually];
+    
     [PFUser logOut];
     [self performSegueWithIdentifier:@"LocationLogoutSegue" sender:nil];
 }

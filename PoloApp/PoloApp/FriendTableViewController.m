@@ -280,7 +280,7 @@
         [devicesFilter whereKey:@"user" matchesQuery:userQuery];
         
         [PFPush sendPushMessageToQueryInBackground:devicesFilter
-                                       withMessage:@"CONNECT WITH ME"];
+                                       withMessage:@"CONNECT WITH ME"]; //TODO: add username here and payload that auto connects the receiver with the caller.
         
         [segue.destinationViewController setTargetUserName:sender];
         [segue.destinationViewController setStaticLocation:NO];

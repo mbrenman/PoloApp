@@ -270,18 +270,22 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"PersonToArrow"]){
-        
         //Find the user
         PFQuery *userQuery = [PFUser query];
         [userQuery whereKey:@"username" equalTo:sender];
         
-        // Push the notification
+        // Find the device
         PFQuery *devicesFilter = [PFInstallation query];
         [devicesFilter whereKey:@"user" matchesQuery:userQuery];
         
-        [PFPush sendPushMessageToQueryInBackground:devicesFilter
-                                       withMessage:@"CONNECT WITH ME"]; //TODO: add username here and payload that auto connects the receiver with the caller.
+        //Create the message
+        NSString *pushMessage = [NSString stringWithFormat:@"%@ would like to connect with you", [[PFUser currentUser] username]];
         
+        //Send the message
+        [PFPush sendPushMessageToQueryInBackground:devicesFilter
+                                       withMessage:pushMessage]; //TODO: add username here and payload that auto connects the receiver with the caller.
+
+        //Send information to next view controller
         [segue.destinationViewController setTargetUserName:sender];
         [segue.destinationViewController setStaticLocation:NO];
     }

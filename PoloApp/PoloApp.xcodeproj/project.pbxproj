@@ -106,17 +106,17 @@
 		AAD3965D189DD88F00675698 /* FriendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewController.m; sourceTree = "<group>"; };
 		AAD3965F189DDB0C00675698 /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
 		AAD39660189DDB0C00675698 /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
-		B303893718CE2C6100204B0B /* LocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationTableViewController.h; path = ../LocationTableViewController.h; sourceTree = "<group>"; };
-		B303893818CE2C6100204B0B /* LocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationTableViewController.m; path = ../LocationTableViewController.m; sourceTree = "<group>"; };
+		B303893718CE2C6100204B0B /* LocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTableViewController.h; sourceTree = "<group>"; };
+		B303893818CE2C6100204B0B /* LocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTableViewController.m; sourceTree = "<group>"; };
 		B303893A18CE2CD700204B0B /* AddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
 		B303893B18CE2CD700204B0B /* AddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
 		B3066D1518BF09F8004FC03F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		B326CF4E18E749A300499A87 /* tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tag.png; sourceTree = "<group>"; };
 		B326CF4F18E749A300499A87 /* woman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woman.png; sourceTree = "<group>"; };
-		B34B145218CBCAD600758173 /* FriendListTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendListTabBarController.h; path = ../FriendListTabBarController.h; sourceTree = "<group>"; };
-		B34B145318CBCAD600758173 /* FriendListTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendListTabBarController.m; path = ../FriendListTabBarController.m; sourceTree = "<group>"; };
-		B35C18BC18EC950B00D29FDE /* FriendRequestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendRequestTableViewController.h; path = ../FriendRequestTableViewController.h; sourceTree = "<group>"; };
-		B35C18BD18EC950B00D29FDE /* FriendRequestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendRequestTableViewController.m; path = ../FriendRequestTableViewController.m; sourceTree = "<group>"; };
+		B34B145218CBCAD600758173 /* FriendListTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListTabBarController.h; sourceTree = "<group>"; };
+		B34B145318CBCAD600758173 /* FriendListTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListTabBarController.m; sourceTree = "<group>"; };
+		B35C18BC18EC950B00D29FDE /* FriendRequestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestTableViewController.h; sourceTree = "<group>"; };
+		B35C18BD18EC950B00D29FDE /* FriendRequestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestTableViewController.m; sourceTree = "<group>"; };
 		B37A9F5519008B3B0002BEA1 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		B3D45D9918C06A2900C612F8 /* BackArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackArrow2.png; sourceTree = "<group>"; };
 		B3D45D9B18C0FBB700C612F8 /* FriendListUINavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListUINavigationViewController.h; sourceTree = "<group>"; };
@@ -206,9 +206,9 @@
 				B303893718CE2C6100204B0B /* LocationTableViewController.h */,
 				B303893818CE2C6100204B0B /* LocationTableViewController.m */,
 				B35C18BC18EC950B00D29FDE /* FriendRequestTableViewController.h */,
+				B303893A18CE2CD700204B0B /* AddLocationViewController.h */,
 				B35C18BD18EC950B00D29FDE /* FriendRequestTableViewController.m */,
 				AAD39622189D923A00675698 /* Main.storyboard */,
-				B303893A18CE2CD700204B0B /* AddLocationViewController.h */,
 				B303893B18CE2CD700204B0B /* AddLocationViewController.m */,
 				B34B145218CBCAD600758173 /* FriendListTabBarController.h */,
 				B34B145318CBCAD600758173 /* FriendListTabBarController.m */,

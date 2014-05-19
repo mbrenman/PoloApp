@@ -26,26 +26,42 @@
     NSString *locLat = [NSString stringWithFormat:@"%f",_locationManager.location.coordinate.latitude];
     NSString *locLong =[NSString stringWithFormat:@"%f",_locationManager.location.coordinate.longitude];
     
-    PFObject *newLocation = [PFObject objectWithClassName:@"myLocationsObject"];
-    newLocation[@"name"] = newLocationName;
-    newLocation[@"lat"] = locLat;
-    newLocation[@"long"] = locLong;
-    
+    //Get current user
     PFUser *me = [PFUser currentUser];
-    _locations = me[@"myLocations"];
-    if (_locations == nil) {
-        me[@"myLocations"] = [[NSMutableArray alloc] initWithObjects:newLocation, nil];
-    } else {
-        [_locations addObject:newLocation];
-        [me saveInBackground];
+    
+    //Check if location name already exists
+    NSArray *names = me[@"myLocationNames"];
+    BOOL nameAlreadyUsed = false;
+    for (NSString *name in names) {
+        if ([name isEqualToString:newLocationName]){
+            nameAlreadyUsed = true;
+        }
     }
     
-    _locationNames = me[@"myLocationNames"];
-    if (_locationNames == nil) {
-        me[@"myLocationNames"] = [[NSMutableArray alloc] initWithObjects:newLocationName, nil];
-        [self.navigationController popViewControllerAnimated:YES];
+    //Only add name if the name hasn't been used already (for this user)
+    if (nameAlreadyUsed){
+        //Alert the user to choose a different name
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Name Already Used"
+                              message:@"Please use a different name"
+                              delegate:self
+                              cancelButtonTitle:@"Dismiss"
+                              otherButtonTitles:nil];
+        [alert show];
     } else {
-        [_locationNames addObject:newLocationName];
+        //Create new location
+        PFObject *newLocation = [PFObject objectWithClassName:@"myLocationsObject"];
+        newLocation[@"name"] = newLocationName;
+        newLocation[@"lat"] = locLat;
+        newLocation[@"long"] = locLong;
+    
+        //Add the new location
+        [me addObject:newLocation forKey:@"myLocations"];
+
+        //Add the new location name
+        [me addObject:newLocationName forKey:@"myLocationNames"];
+        
+        //Save user and change screens
         [me saveInBackground];
         [self.navigationController popViewControllerAnimated:YES];
     }

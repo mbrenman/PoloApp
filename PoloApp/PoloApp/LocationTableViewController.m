@@ -65,7 +65,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         //Delete the actual item
-        [[_locations objectAtIndex:indexPath.row] delete];
+        [[_locations objectAtIndex:indexPath.row] deleteInBackground];
         //[[_locationNames objectAtIndex:indexPath.row] delete];
         
         //remove from local NSArray

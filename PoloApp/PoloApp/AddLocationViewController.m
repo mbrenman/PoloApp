@@ -66,12 +66,12 @@
         //Add location name to location name list
         if (_locationNames == nil) {
             me[@"myLocationNames"] = [[NSMutableArray alloc] initWithObjects:newLocationName, nil];
-            [self.navigationController popViewControllerAnimated:YES];
         } else {
             [_locationNames addObject:newLocationName];
-            [me saveInBackground];
             [self.navigationController popViewControllerAnimated:YES];
         }
+        [me saveInBackground];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

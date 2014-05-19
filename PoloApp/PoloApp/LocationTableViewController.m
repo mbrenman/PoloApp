@@ -64,13 +64,33 @@
     // If row is deleted, remove it from the list.
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        //Delete the actual item
-        [[_locations objectAtIndex:indexPath.row] deleteInBackground];
-        //[[_locationNames objectAtIndex:indexPath.row] delete];
+        NSLog([NSString stringWithFormat:@"IT ISSS %d", indexPath.row]);
+        
+        BOOL found = false;
+        NSString *deleteName = [_locationNames objectAtIndex:indexPath.row];
+        for (PFObject *temp in _locations) {
+            if (!found){
+                [temp fetchIfNeeded];
+            
+                NSString *tempName = temp[@"name"];
+            
+                if ([tempName isEqualToString:deleteName]) {
+                    //Delete the actual object
+                    [temp deleteInBackground];
+                    [_locations removeObject:temp];
+                    found = true;
+                    NSLog(@"SHOULD BE DELETED");
+                }
+            }
+            if (found) {
+                break;
+            }
+        }
         
         //remove from local NSArray
-        [_locations removeObjectAtIndex:indexPath.row];
-        [_locationNames removeObjectAtIndex:indexPath.row];
+        if (found){
+            [_locationNames removeObjectAtIndex:indexPath.row];
+        }
         
         //remove from database
          PFUser *me = [PFUser currentUser];
@@ -79,8 +99,10 @@
          [me saveInBackground];
         
         //remove from local table
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView reloadData];  
+        if (found){
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView reloadData];
+        }
     }
 }
 
@@ -94,8 +116,10 @@
     [super viewWillAppear:animated];
     self.canDisplayBannerAds = YES;
     PFUser *me = [PFUser currentUser];
-    _locationNames = me[@"myLocationNames"];
     _locations = me[@"myLocations"];
+    
+    _locationNames = me[@"myLocationNames"];
+    _locationNames = [NSMutableArray arrayWithArray:[_locationNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.tabBarController.tabBar setHidden:NO];

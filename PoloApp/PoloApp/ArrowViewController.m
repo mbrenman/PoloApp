@@ -61,11 +61,11 @@ const float EARTH_RADIUS = 3963.1676;
     _locations = _me[@"myLocations"];
     PFObject *target;
     
+    NSString *senderName = (NSString *)_staticSender;
     for (PFObject *temp in _locations) {
         [temp fetchIfNeeded];
         
         NSString *tempName = temp[@"name"];
-        NSString *senderName = (NSString *)_staticSender;
         
         if ([tempName isEqualToString:senderName]) {
             target = temp;

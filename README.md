@@ -32,6 +32,7 @@ Needed before pushing to App Store:
 * Website
 * Push notification
 * Location update call timing changes with distance
+* Should we send a "missed call" notification if they hang up?
 
 New features:
 

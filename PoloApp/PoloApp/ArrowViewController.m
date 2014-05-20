@@ -20,7 +20,6 @@ const float EARTH_RADIUS = 3963.1676;
 @property (strong, nonatomic) PFUser *me;
 @property (retain, nonatomic) CLHeading *currentHeading;
 @property float otherLat, otherLong;
-@property NSString *otherUsername;
 @property PFUser *otherUser;
 @property PFObject *connection;
 @property BOOL haveMyLoc, haveTargetLoc, haveTarget;
@@ -87,7 +86,6 @@ const float EARTH_RADIUS = 3963.1676;
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
     _haveMyLoc = NO;
-    _otherUsername = nil;
     _otherUser = nil;
     _connection = nil;
     
@@ -130,7 +128,6 @@ const float EARTH_RADIUS = 3963.1676;
     [query whereKey:@"username" equalTo:_targetUserName];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
         if (!error){
-            _otherUsername = [(PFUser *)object username];
             _otherUser = (PFUser *)object;
             _haveTarget = YES;
         } else {

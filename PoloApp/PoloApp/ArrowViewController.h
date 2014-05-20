@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet ArrowView *compassView;
 @property (nonatomic) NSString *targetUserName;
 @property (weak, nonatomic) IBOutlet UILabel *DistanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *TargetLabel;
 
 @property (nonatomic) id staticSender;
 @property (nonatomic) BOOL staticLocation;

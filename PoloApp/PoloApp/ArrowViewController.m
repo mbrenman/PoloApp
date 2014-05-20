@@ -82,6 +82,7 @@ const float EARTH_RADIUS = 3963.1676;
     [super viewDidLoad];
     [self locationManagerShouldDisplayHeadingCalibration:_locationManager];
     _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:60];
+    _TargetLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:30];
     
     [_compassView setArrowImage:[UIImage imageNamed:@"chevron.jpeg"]];
     
@@ -91,12 +92,14 @@ const float EARTH_RADIUS = 3963.1676;
     _connection = nil;
     
     if (_staticLocation){
+        _TargetLabel.text = _staticSender;
         _haveTarget = NO;
         _haveTargetLoc = NO;
         _otherLat = 0.0f;
         _otherLong = 0.0f;
         [self performSelectorInBackground:@selector(getStaticTargetInBackground) withObject:nil];
     } else {
+        _TargetLabel.text = _targetUserName;
         _haveTarget = NO;
         _haveTargetLoc = NO;
         _otherLat = 0.0f;

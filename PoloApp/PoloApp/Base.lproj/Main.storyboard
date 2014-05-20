@@ -68,12 +68,20 @@
                                     <action selector="toggleFeetMiles:" destination="pLJ-TN-xqo" eventType="touchUpInside" id="Gh3-Hl-KJu"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5j-nZ-hCg">
+                                <rect key="frame" x="20" y="64" width="280" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="wtF-RL-Cxc"/>
                     <connections>
                         <outlet property="DistanceLabel" destination="j0t-5R-zTG" id="hb8-mM-ziX"/>
+                        <outlet property="TargetLabel" destination="l5j-nZ-hCg" id="OTT-B1-5GL"/>
                         <outlet property="compassView" destination="H3x-c5-ceN" id="TRR-h6-6sb"/>
                     </connections>
                 </viewController>

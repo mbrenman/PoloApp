@@ -35,8 +35,9 @@ Needed before pushing to App Store:
 * Should we send a "missed call" notification if they hang up?
 * Settings page (allow user to delete their app, maybe colors, etc)
 * Should we only add a user to friends if they are accepted? (like only allow calls if friend request accepted)
-* Alphabetize lists
+* DONE - Alphabetize lists
 * Add in things like crashlytics and testflight
+* Make only one location manager that gets passed around for better accuracy - can we have it in the tab bar controller and still get access?
 
 New features:
 

@@ -115,7 +115,7 @@
         [me saveInBackground];
         //remove from local table
          [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView reloadData];    
+        [self.tableView reloadData];
     }
 }
 

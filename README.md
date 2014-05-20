@@ -30,9 +30,13 @@ Needed before pushing to App Store:
 * DONE - Make loading locations faster
 * Consistent styling across app
 * Website
-* Push notification
+* Push notifications (somewhat done)
 * Location update call timing changes with distance
 * Should we send a "missed call" notification if they hang up?
+* Settings page (allow user to delete their app, maybe colors, etc)
+* Should we only add a user to friends if they are accepted? (like only allow calls if friend request accepted)
+* Alphabetize lists
+* Add in things like crashlytics and testflight
 
 New features:
 
@@ -40,6 +44,8 @@ New features:
 * Whitelist of users that can always connect - how do we update from the non-user’s phone?
 * DONE - Show “waiting…” or “connecting…” before pulling target’s data or when target is at (0º, 0º) —> not connecting
 * Add call or text button from the arrow screen (blank out if no supplied phone number)
+* Add map button from arrow screen
+* Ability to drop pins for new locations (click on map)
 * Update friend list with contact nicknames/names if phone number is supplied and in contacts
 * DONE - Make adding friends faster
 * Custom colors -- change icon too

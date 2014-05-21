@@ -6,17 +6,9 @@
 	<array>
 		<dict>
 			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Phone Number</string>
-			<key>Key</key>
-			<string>phone_number_preference</string>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Units</string>
+			<string>Metric Units</string>
 			<key>Key</key>
 			<string>units_preference</string>
 			<key>DefaultValue</key>

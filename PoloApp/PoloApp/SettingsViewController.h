@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UISwitch *unitsSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *SaveSettingsButton;
+
 
 @end

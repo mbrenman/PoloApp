@@ -393,11 +393,11 @@
             </objects>
             <point key="canvasLocation" x="-150" y="1819"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - Settings-->
         <scene sceneID="OiK-mi-jt4">
             <objects>
                 <navigationController definesPresentationContext="YES" id="y09-3T-0bc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="OmO-Y4-99l"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="OmO-Y4-99l"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="74P-Ec-MdJ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

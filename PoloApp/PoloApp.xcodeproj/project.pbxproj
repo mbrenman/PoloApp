@@ -39,6 +39,7 @@
 		AAD39658189D97C300675698 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD39657189D97C300675698 /* SystemConfiguration.framework */; };
 		AAD3965E189DD88F00675698 /* FriendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD3965D189DD88F00675698 /* FriendTableViewController.m */; };
 		AAD39661189DDB0C00675698 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD39660189DDB0C00675698 /* FriendCell.m */; };
+		AAE891A0192C3E020062846F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE8919F192C3E020062846F /* SettingsViewController.m */; };
 		B303893918CE2C6100204B0B /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B303893818CE2C6100204B0B /* LocationTableViewController.m */; };
 		B303893C18CE2CD700204B0B /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B303893B18CE2CD700204B0B /* AddLocationViewController.m */; };
 		B326CF5018E749A300499A87 /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B326CF4E18E749A300499A87 /* tag.png */; };
@@ -106,6 +107,8 @@
 		AAD3965D189DD88F00675698 /* FriendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewController.m; sourceTree = "<group>"; };
 		AAD3965F189DDB0C00675698 /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
 		AAD39660189DDB0C00675698 /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
+		AAE8919E192C3E020062846F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		AAE8919F192C3E020062846F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B303893718CE2C6100204B0B /* LocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTableViewController.h; sourceTree = "<group>"; };
 		B303893818CE2C6100204B0B /* LocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTableViewController.m; sourceTree = "<group>"; };
 		B303893A18CE2CD700204B0B /* AddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 				AA4FE88718C41BEB0089058E /* ArrowPathView.m */,
 				AA046069189E321C001A5785 /* ArrowViewController.h */,
 				AA04606A189E321C001A5785 /* ArrowViewController.m */,
+				AAE8919E192C3E020062846F /* SettingsViewController.h */,
+				AAE8919F192C3E020062846F /* SettingsViewController.m */,
 				AAD39628189D923A00675698 /* Images.xcassets */,
 				AAD39617189D923A00675698 /* Supporting Files */,
 			);
@@ -399,6 +404,7 @@
 				AA046068189E1B2C001A5785 /* AddFriendViewController.m in Sources */,
 				B3D45D9D18C0FBB700C612F8 /* FriendListUINavigationViewController.m in Sources */,
 				B35C18BE18EC950B00D29FDE /* FriendRequestTableViewController.m in Sources */,
+				AAE891A0192C3E020062846F /* SettingsViewController.m in Sources */,
 				AAD3961D189D923A00675698 /* main.m in Sources */,
 				B303893C18CE2CD700204B0B /* AddLocationViewController.m in Sources */,
 			);

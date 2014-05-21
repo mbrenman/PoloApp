@@ -264,6 +264,7 @@
                     <connections>
                         <segue destination="dek-XN-y0q" kind="relationship" relationship="viewControllers" id="dD3-zK-y3I"/>
                         <segue destination="vLj-vA-AMQ" kind="relationship" relationship="viewControllers" id="nUq-zD-MzD"/>
+                        <segue destination="tCq-Vl-BUl" kind="relationship" relationship="viewControllers" id="zNa-Tb-x0a"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qf-Fz-R4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -372,6 +373,25 @@
             </objects>
             <point key="canvasLocation" x="1388" y="996"/>
         </scene>
+        <!--Settings View Controller - Settings-->
+        <scene sceneID="OBN-iu-bCP">
+            <objects>
+                <viewController id="tCq-Vl-BUl" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9jg-Rc-s2V"/>
+                        <viewControllerLayoutGuide type="bottom" id="KFA-Pk-OL1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ugr-Aa-09T">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="Y10-CL-rLa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ePy-vz-w5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-366" y="1823"/>
+        </scene>
         <!--Navigation Controller - Locations-->
         <scene sceneID="BtD-rw-qfz">
             <objects>
@@ -424,7 +444,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TXm-gv-ivG"/>
-        <segue reference="TJO-ak-dHW"/>
+        <segue reference="2Xe-uF-Iuw"/>
+        <segue reference="oIt-RW-7II"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,13 @@
 
 #import "PoloAppDelegate.h"
 #import <Parse/Parse.h>
+#import "PoloLocationManager.h"
+
+@interface PoloAppDelegate()
+
+@property PoloLocationManager *locationManager;
+
+@end
 
 @implementation PoloAppDelegate
 

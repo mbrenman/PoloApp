@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+@class CLLocationManager;
+@class CLHeading;
 
 @interface PoloLocationManager : NSObject
+
+@property (nonatomic, strong) CLLocationManager *manager;
+@property (nonatomic, strong) CLHeading *heading;
+
+@property float myLat, myLong;
+
+-(void)startUpdatingMyLocation;
+-(void)stopUpdatingMyLocation;
 
 @end

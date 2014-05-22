@@ -7,6 +7,7 @@
 //
 
 @import UIKit;
+@class PoloLocationManager;
 
 @interface PoloAppDelegate : UIResponder <UIApplicationDelegate>
 

@@ -7,7 +7,21 @@
 //
 
 #import "PoloLocationManager.h"
+@import CoreLocation;
+
+@interface PoloLocationManager()
+
+@property (nonatomic) CLLocationManager *locationManager;
+
+@end
 
 @implementation PoloLocationManager
+
+-(void)startUpdatingMyLocation {
+    //doshit
+}
+-(void)stopUpdatingMyLocation {
+    //doshit
+}
 
 @end

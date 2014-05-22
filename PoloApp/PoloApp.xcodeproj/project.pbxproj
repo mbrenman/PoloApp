@@ -48,6 +48,7 @@
 		B34B145418CBCAD600758173 /* FriendListTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34B145318CBCAD600758173 /* FriendListTabBarController.m */; };
 		B35C18BE18EC950B00D29FDE /* FriendRequestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35C18BD18EC950B00D29FDE /* FriendRequestTableViewController.m */; };
 		B37A9F5619008B3B0002BEA1 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B37A9F5519008B3B0002BEA1 /* iAd.framework */; };
+		B3818AB9192EAA30000E81F4 /* PoloLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3818AB8192EAA30000E81F4 /* PoloLocationManager.m */; };
 		B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9918C06A2900C612F8 /* BackArrow2.png */; };
 		B3D45D9D18C0FBB700C612F8 /* FriendListUINavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */; };
 		B3D45D9F18C100B600C612F8 /* rect4444.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9E18C100B600C612F8 /* rect4444.png */; };
@@ -123,6 +124,8 @@
 		B35C18BC18EC950B00D29FDE /* FriendRequestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestTableViewController.h; sourceTree = "<group>"; };
 		B35C18BD18EC950B00D29FDE /* FriendRequestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestTableViewController.m; sourceTree = "<group>"; };
 		B37A9F5519008B3B0002BEA1 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		B3818AB7192EAA30000E81F4 /* PoloLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoloLocationManager.h; sourceTree = "<group>"; };
+		B3818AB8192EAA30000E81F4 /* PoloLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoloLocationManager.m; sourceTree = "<group>"; };
 		B3D45D9918C06A2900C612F8 /* BackArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackArrow2.png; sourceTree = "<group>"; };
 		B3D45D9B18C0FBB700C612F8 /* FriendListUINavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListUINavigationViewController.h; sourceTree = "<group>"; };
 		B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListUINavigationViewController.m; sourceTree = "<group>"; };
@@ -208,33 +211,16 @@
 		AAD39616189D923A00675698 /* PoloApp */ = {
 			isa = PBXGroup;
 			children = (
-				B303893718CE2C6100204B0B /* LocationTableViewController.h */,
-				B303893818CE2C6100204B0B /* LocationTableViewController.m */,
-				B35C18BC18EC950B00D29FDE /* FriendRequestTableViewController.h */,
-				B35C18BD18EC950B00D29FDE /* FriendRequestTableViewController.m */,
-				B303893A18CE2CD700204B0B /* AddLocationViewController.h */,
-				B303893B18CE2CD700204B0B /* AddLocationViewController.m */,
+				B3818ABA192EAA5B000E81F4 /* Locations */,
+				B3818ABB192EAA74000E81F4 /* Friends */,
 				AAD39622189D923A00675698 /* Main.storyboard */,
-				B34B145218CBCAD600758173 /* FriendListTabBarController.h */,
-				B34B145318CBCAD600758173 /* FriendListTabBarController.m */,
+				B3818AB7192EAA30000E81F4 /* PoloLocationManager.h */,
+				B3818AB8192EAA30000E81F4 /* PoloLocationManager.m */,
 				AAD3961F189D923A00675698 /* PoloAppDelegate.h */,
 				AAD39620189D923A00675698 /* PoloAppDelegate.m */,
-				B3D45D9B18C0FBB700C612F8 /* FriendListUINavigationViewController.h */,
-				B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */,
-				AA046066189E1B2C001A5785 /* AddFriendViewController.h */,
-				AA046067189E1B2C001A5785 /* AddFriendViewController.m */,
-				AAD3965C189DD88F00675698 /* FriendTableViewController.h */,
-				AAD3965D189DD88F00675698 /* FriendTableViewController.m */,
-				AAD3965F189DDB0C00675698 /* FriendCell.h */,
-				AAD39660189DDB0C00675698 /* FriendCell.m */,
 				AAD39625189D923A00675698 /* LoginSignupViewController.h */,
 				AAD39626189D923A00675698 /* LoginSignupViewController.m */,
-				AA046072189E3F31001A5785 /* ArrowView.h */,
-				AA046073189E3F31001A5785 /* ArrowView.m */,
-				AA4FE88618C41BEB0089058E /* ArrowPathView.h */,
-				AA4FE88718C41BEB0089058E /* ArrowPathView.m */,
-				AA046069189E321C001A5785 /* ArrowViewController.h */,
-				AA04606A189E321C001A5785 /* ArrowViewController.m */,
+				B3818ABC192EAA8F000E81F4 /* ArrowView */,
 				AAE8919E192C3E020062846F /* SettingsViewController.h */,
 				AAE8919F192C3E020062846F /* SettingsViewController.m */,
 				AAE891A1192C46E00062846F /* Settings.bundle */,
@@ -279,6 +265,49 @@
 				AAD39638189D923A00675698 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3818ABA192EAA5B000E81F4 /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				B303893718CE2C6100204B0B /* LocationTableViewController.h */,
+				B303893818CE2C6100204B0B /* LocationTableViewController.m */,
+				B303893A18CE2CD700204B0B /* AddLocationViewController.h */,
+				B303893B18CE2CD700204B0B /* AddLocationViewController.m */,
+			);
+			name = Locations;
+			sourceTree = "<group>";
+		};
+		B3818ABB192EAA74000E81F4 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				AAD3965F189DDB0C00675698 /* FriendCell.h */,
+				AAD39660189DDB0C00675698 /* FriendCell.m */,
+				B35C18BC18EC950B00D29FDE /* FriendRequestTableViewController.h */,
+				B35C18BD18EC950B00D29FDE /* FriendRequestTableViewController.m */,
+				B34B145218CBCAD600758173 /* FriendListTabBarController.h */,
+				B34B145318CBCAD600758173 /* FriendListTabBarController.m */,
+				B3D45D9B18C0FBB700C612F8 /* FriendListUINavigationViewController.h */,
+				B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */,
+				AA046066189E1B2C001A5785 /* AddFriendViewController.h */,
+				AA046067189E1B2C001A5785 /* AddFriendViewController.m */,
+				AAD3965C189DD88F00675698 /* FriendTableViewController.h */,
+				AAD3965D189DD88F00675698 /* FriendTableViewController.m */,
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
+		B3818ABC192EAA8F000E81F4 /* ArrowView */ = {
+			isa = PBXGroup;
+			children = (
+				AA046072189E3F31001A5785 /* ArrowView.h */,
+				AA046073189E3F31001A5785 /* ArrowView.m */,
+				AA4FE88618C41BEB0089058E /* ArrowPathView.h */,
+				AA4FE88718C41BEB0089058E /* ArrowPathView.m */,
+				AA046069189E321C001A5785 /* ArrowViewController.h */,
+				AA04606A189E321C001A5785 /* ArrowViewController.m */,
+			);
+			name = ArrowView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,6 +439,7 @@
 				B35C18BE18EC950B00D29FDE /* FriendRequestTableViewController.m in Sources */,
 				AAE891A0192C3E020062846F /* SettingsViewController.m in Sources */,
 				AAD3961D189D923A00675698 /* main.m in Sources */,
+				B3818AB9192EAA30000E81F4 /* PoloLocationManager.m in Sources */,
 				B303893C18CE2CD700204B0B /* AddLocationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

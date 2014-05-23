@@ -20,6 +20,7 @@
 -(void)startUpdatingMyLocation {
     //doshit
 }
+
 -(void)stopUpdatingMyLocation {
     //doshit
 }

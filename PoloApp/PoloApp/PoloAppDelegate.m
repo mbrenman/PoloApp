@@ -12,11 +12,22 @@
 
 @interface PoloAppDelegate()
 
-@property PoloLocationManager *locationManager;
+@property (strong, nonatomic) PoloLocationManager *locationManager;
 
 @end
 
 @implementation PoloAppDelegate
+
++(instancetype)delegate {
+    return (PoloAppDelegate *)([UIApplication sharedApplication].delegate);
+}
+
+- (PoloLocationManager*)locationManager{
+    if (!_locationManager) {
+        _locationManager = [[PoloLocationManager alloc] init];
+    }
+    return _locationManager;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

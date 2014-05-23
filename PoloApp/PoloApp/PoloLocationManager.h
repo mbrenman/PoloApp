@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@class CLHeading;
+@import CoreLocation;
 
-@interface PoloLocationManager : NSObject
+@interface PoloLocationManager : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLHeading *myHeading;
 @property float myLat, myLong;

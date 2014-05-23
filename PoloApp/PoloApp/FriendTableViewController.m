@@ -11,6 +11,8 @@
 #import "ArrowViewController.h"
 #import "FriendRequestTableViewController.h"
 #import "iAd/iAd.h"
+#import "PoloLocationManager.h"
+#import "PoloAppDelegate.h"
 
 @interface FriendTableViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *numOfFriendRequestsLabel;
@@ -149,6 +151,10 @@
 {
     [super viewDidLoad];
     self.canDisplayBannerAds = YES;
+    NSLog(@"PLM");
+    
+    PoloLocationManager *myLocationManager = [PoloAppDelegate delegate].locationManager;
+    [myLocationManager startUpdatingMyLocation];
     
     //Set device to be associated with user
     [PFInstallation.currentInstallation setObject:PFUser.currentUser forKey:@"user"];

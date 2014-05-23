@@ -12,5 +12,8 @@
 @interface PoloAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (readonly, strong, nonatomic) PoloLocationManager *locationManager;
+
++(instancetype)delegate;
 
 @end

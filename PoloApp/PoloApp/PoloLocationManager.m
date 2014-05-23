@@ -7,41 +7,60 @@
 //
 
 #import "PoloLocationManager.h"
-@import CoreLocation;
+#import "PoloAppDelegate.h"
 
 @interface PoloLocationManager()
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocationManager *clLocationManager;
 
 @end
 
 @implementation PoloLocationManager
 
--(CLLocationManager*)locationManager{
-    if (!_locationManager){
-        _locationManager = [[CLLocationManager alloc] init];
+-(CLLocationManager*)clLocationManager{
+    if (!_clLocationManager){
+        _clLocationManager = [[CLLocationManager alloc] init];
+        _clLocationManager.delegate = self;
     }
-    return _locationManager;
+    return _clLocationManager;
 }
 
 -(void)startUpdatingMyLocation {
-    //doshit
-    [self.locationManager startUpdatingHeading];
-    [self.locationManager startUpdatingLocation];
+    NSLog(@"in PLM: %@", self.clLocationManager);
+    [self.clLocationManager startUpdatingHeading];
+    [self.clLocationManager startUpdatingLocation];
+    NSLog(@"in PLM2: %@", self.clLocationManager);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    self.myLat = manager.location.coordinate.latitude;
-    self.myLong = manager.location.coordinate.longitude;
+    NSLog(@"in did Update");
+    CLLocation *newLoc = [locations lastObject];
+    self.myLat = newLoc.coordinate.latitude;
+    self.myLong = newLoc.coordinate.longitude;
+    NSLog(@" -- myLat = %f", self.myLat);
+    NSLog(@" -- myLong = %f", self.myLong);
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-    self.myHeading = manager.heading;
+    
+    self.myHeading = newHeading;
+    NSLog(@" -- myHeading - %@", self.myHeading);
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+    NSLog(@"Error while getting core location : %@",[error localizedFailureReason]);
+    if ([error code] == kCLErrorDenied) {
+        //you had denied
+    }
+    [manager stopUpdatingLocation];
 }
 
 -(void)stopUpdatingMyLocation {
-    _locationManager = nil;
+    _clLocationManager = nil;
 }
 
 @end

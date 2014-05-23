@@ -11,18 +11,34 @@
 
 @interface PoloLocationManager()
 
-@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end
 
 @implementation PoloLocationManager
 
+-(CLLocationManager*)locationManager{
+    if (!_locationManager){
+        _locationManager = [[CLLocationManager alloc] init];
+    }
+    return _locationManager;
+}
+
 -(void)startUpdatingMyLocation {
     //doshit
+    [self.locationManager startUpdatingHeading];
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *myLoc = [locations lastObject];
+    _myLat = myLoc.coordinate.latitude;
+    _myLong = myLoc.coordinate.longitude;
 }
 
 -(void)stopUpdatingMyLocation {
-    //doshit
+    _locationManager = nil;
 }
 
 @end

@@ -32,9 +32,12 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    CLLocation *myLoc = [locations lastObject];
-    _myLat = myLoc.coordinate.latitude;
-    _myLong = myLoc.coordinate.longitude;
+    self.myLat = manager.location.coordinate.latitude;
+    self.myLong = manager.location.coordinate.longitude;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
+    self.myHeading = manager.heading;
 }
 
 -(void)stopUpdatingMyLocation {

@@ -10,8 +10,8 @@
 @class CLHeading;
 
 @interface PoloLocationManager : NSObject
-@property (nonatomic, strong) CLHeading *heading;
 
+@property (nonatomic, strong) CLHeading *myHeading;
 @property float myLat, myLong;
 
 -(void)startUpdatingMyLocation;

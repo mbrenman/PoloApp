@@ -151,10 +151,6 @@
 {
     [super viewDidLoad];
     self.canDisplayBannerAds = YES;
-    NSLog(@"PLM");
-    
-    PoloLocationManager *myLocationManager = [PoloAppDelegate delegate].locationManager;
-    [myLocationManager startUpdatingMyLocation];
     
     //Set device to be associated with user
     [PFInstallation.currentInstallation setObject:PFUser.currentUser forKey:@"user"];

@@ -26,10 +26,10 @@
 }
 
 -(void)startUpdatingMyLocation {
-    NSLog(@"in PLM: %@", self.clLocationManager);
+    self.clLocationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	self.clLocationManager.headingFilter = 1;
     [self.clLocationManager startUpdatingHeading];
     [self.clLocationManager startUpdatingLocation];
-    NSLog(@"in PLM2: %@", self.clLocationManager);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations

@@ -152,6 +152,9 @@
     [super viewDidLoad];
     self.canDisplayBannerAds = YES;
     
+    PoloLocationManager *myLocationManager = [PoloAppDelegate delegate].locationManager;
+    [myLocationManager startUpdatingMyLocation];
+    
     //Set device to be associated with user
     [PFInstallation.currentInstallation setObject:PFUser.currentUser forKey:@"user"];
     [PFInstallation.currentInstallation saveInBackground];

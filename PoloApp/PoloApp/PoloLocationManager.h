@@ -5,9 +5,7 @@
 //  Created by Susanne Heincke on 5/22/14.
 //  Copyright (c) 2014 mbrenman. All rights reserved.
 //
-
-
-
+//
 //how to use:
 //when you want it to start do:
 //

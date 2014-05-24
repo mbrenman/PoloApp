@@ -8,10 +8,12 @@
 
 #import "AddLocationViewController.h"
 #import <Parse/Parse.h>
+#import "PoloLocationManager.h"
+#import "PoloAppDelegate.h"
 
 @interface AddLocationViewController ()
 
-@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) PoloLocationManager *locationManager;
 @property (nonatomic, strong) NSMutableArray *locations;
 @property (nonatomic, strong) NSMutableArray *locationNames;
 @property (strong, nonatomic) IBOutlet UITextField *locationField;
@@ -22,15 +24,16 @@
 
 - (IBAction)addLocationClick:(id)sender {
     //get name and coordinates of new location
-    NSString *newLocationName = [_locationField text];
-    NSString *locLat = [NSString stringWithFormat:@"%f",_locationManager.location.coordinate.latitude];
-    NSString *locLong =[NSString stringWithFormat:@"%f",_locationManager.location.coordinate.longitude];
+    NSString *newLocationName = [self.locationField text];
+    
+    NSString *locLat = [NSString stringWithFormat:@"%f", self.locationManager.myLat];
+    NSString *locLong =[NSString stringWithFormat:@"%f", self.locationManager.myLong];
     
     PFUser *me = [PFUser currentUser];
     
-    _locationNames = me[@"myLocationNames"];
+    self.locationNames = me[@"myLocationNames"];
     BOOL nameAlreadyUsed = false;
-    for (NSString *name in _locationNames) {
+    for (NSString *name in self.locationNames) {
         if ([name isEqualToString:newLocationName]){
             nameAlreadyUsed = true;
         }
@@ -55,19 +58,19 @@
         newLocation[@"long"] = locLong;
         
         //Add object to locations
-        _locations = me[@"myLocations"];
-        if (_locations == nil) {
+        self.locations = me[@"myLocations"];
+        if (self.locations == nil) {
             me[@"myLocations"] = [[NSMutableArray alloc] initWithObjects:newLocation, nil];
         } else {
-            [_locations addObject:newLocation];
+            [self.locations addObject:newLocation];
             [me saveInBackground];
         }
     
         //Add location name to location name list
-        if (_locationNames == nil) {
+        if (self.locationNames == nil) {
             me[@"myLocationNames"] = [[NSMutableArray alloc] initWithObjects:newLocationName, nil];
         } else {
-            [_locationNames addObject:newLocationName];
+            [self.locationNames addObject:newLocationName];
             [self.navigationController popViewControllerAnimated:YES];
         }
         [me saveInBackground];
@@ -87,13 +90,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    _locationManager=[[CLLocationManager alloc] init];
-	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-	_locationManager.headingFilter = 1;
-    [_locationManager setDelegate:(id)self]; //silence warning
-    
-    [_locationManager startUpdatingHeading];
+    self.locationManager = [PoloAppDelegate delegate].locationManager;
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,7 +101,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [_locationManager stopUpdatingHeading];
+
 }
 
 @end

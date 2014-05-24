@@ -41,6 +41,50 @@ const float EARTH_RADIUS = 3963.1676;
     return self;
 }
 
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:50];
+    _TargetLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:30];
+    
+    _haveMyLoc = NO;
+    _otherUser = nil;
+    _connection = nil;
+    
+    if (_staticLocation){
+        _TargetLabel.text = _staticSender;
+        _haveTarget = NO;
+        _haveTargetLoc = NO;
+        _otherLat = 0.0f;
+        _otherLong = 0.0f;
+        [self performSelectorInBackground:@selector(getStaticTargetInBackground) withObject:nil];
+    } else {
+        _TargetLabel.text = _targetUserName;
+        _haveTarget = NO;
+        _haveTargetLoc = NO;
+        _otherLat = 0.0f;
+        _otherLong = 0.0f;
+        [self getTargetInBackground]; //Find the target user
+    }
+    
+    _visible = YES;
+    
+    _radChange = 0.0f;
+    
+    //Open a new thread to update the target location regularly
+    [self performSelectorInBackground:@selector(regularInfoUpdate) withObject:nil];
+    
+    //set up location manager
+	_locationManager = [PoloAppDelegate delegate].locationManager;
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingMyLocation];
+    if (self.locationManager.myLat != 0) {
+        self.haveMyLoc = YES;
+    }
+    [self headingWasUpdated];
+    _me = [PFUser currentUser];
+}
+
+
 - (IBAction)toggleFeetMiles:(id)sender {
     if (_isInMiles) {
         _isInMiles = false;
@@ -78,47 +122,6 @@ const float EARTH_RADIUS = 3963.1676;
     _haveTargetLoc = YES;
 }
 
-- (void)viewDidLoad{
-    [super viewDidLoad];
-    _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:50];
-    _TargetLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:30];
-    
-    _haveMyLoc = NO;
-    _otherUser = nil;
-    _connection = nil;
-    
-    if (_staticLocation){
-        _TargetLabel.text = _staticSender;
-        _haveTarget = NO;
-        _haveTargetLoc = NO;
-        _otherLat = 0.0f;
-        _otherLong = 0.0f;
-        [self performSelectorInBackground:@selector(getStaticTargetInBackground) withObject:nil];
-    } else {
-        _TargetLabel.text = _targetUserName;
-        _haveTarget = NO;
-        _haveTargetLoc = NO;
-        _otherLat = 0.0f;
-        _otherLong = 0.0f;
-        [self getTargetInBackground]; //Find the target user
-    }
-    
-    _visible = YES;
-    
-    _radChange = 0.0f;
-    
-    //Open a new thread to update the target angle regularly
-    [self performSelectorInBackground:@selector(regularInfoUpdate) withObject:nil];
-    
-    //set up location manager
-	_locationManager = [PoloAppDelegate delegate].locationManager;
-    self.locationManager.delegate = self;
-    [self.locationManager startUpdatingMyLocation];
-    if (self.locationManager.myLat != 0) {
-        self.haveMyLoc = YES;
-    }
-    _me = [PFUser currentUser];
-}
 
 - (void)getTargetInBackground
 {
@@ -146,7 +149,6 @@ const float EARTH_RADIUS = 3963.1676;
     {
         [self updateLocations];
         [self updateDistance];
-        NSLog(@"while");
         sleep(UPDATE_SECONDS);
     }
 }
@@ -182,8 +184,6 @@ const float EARTH_RADIUS = 3963.1676;
 }
 
 - (void)headingWasUpdated{
-    NSLog(@"inHeadingWasUpdated");
-    NSLog(@"%@", (_haveMyLoc) ? @"doeshavemyloc" : @"NOdoesn'thavemyloc");
     if (_haveMyLoc && _haveTargetLoc){
         // Convert Degree to Radian to point the arrow
         float newRad =  -self.locationManager.myHeading.trueHeading * M_PI / 180.0f;
@@ -292,8 +292,6 @@ const float EARTH_RADIUS = 3963.1676;
             [_me saveInBackground];
         }
     }
-    
-    NSLog(@"my location set");
 }
 
 - (void)didReceiveMemoryWarning

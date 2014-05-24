@@ -91,6 +91,7 @@
 {
     [super viewDidLoad];
     self.locationManager = [PoloAppDelegate delegate].locationManager;
+    [self.locationManager startUpdatingMyLocation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,7 +102,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-
+    [self.locationManager stopUpdatingMyLocation];
 }
 
 @end

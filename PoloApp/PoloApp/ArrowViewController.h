@@ -7,7 +7,6 @@
 //
 
 @import UIKit;
-@import CoreLocation;
 @import QuartzCore;
 
 #import <Parse/Parse.h>

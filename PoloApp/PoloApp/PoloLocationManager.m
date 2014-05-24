@@ -17,6 +17,13 @@
 
 @implementation PoloLocationManager
 
+-(void)setMyHeading:(CLHeading*)heading{
+    _myHeading = heading;
+    if (self.delegate) {
+        [self.delegate headingWasUpdated];
+    }
+}
+
 -(CLLocationManager*)clLocationManager{
     if (!_clLocationManager){
         _clLocationManager = [[CLLocationManager alloc] init];
@@ -26,41 +33,43 @@
 }
 
 -(void)startUpdatingMyLocation {
+    [self locationManagerShouldDisplayHeadingCalibration:self.clLocationManager];
     self.clLocationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	self.clLocationManager.headingFilter = 1;
     [self.clLocationManager startUpdatingHeading];
     [self.clLocationManager startUpdatingLocation];
 }
 
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
+{
+    return YES;
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    NSLog(@"in did Update");
     CLLocation *newLoc = [locations lastObject];
     self.myLat = newLoc.coordinate.latitude;
     self.myLong = newLoc.coordinate.longitude;
-    NSLog(@" -- myLat = %f", self.myLat);
-    NSLog(@" -- myLong = %f", self.myLong);
-
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-    
     self.myHeading = newHeading;
-    NSLog(@" -- myHeading - %@", self.myHeading);
+   // NSLog(@" -- myHeading - %@", self.myHeading);
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error
-{
-    NSLog(@"Error while getting core location : %@",[error localizedFailureReason]);
-    if ([error code] == kCLErrorDenied) {
-        //you had denied
-    }
-    [manager stopUpdatingLocation];
-}
+//- (void)locationManager:(CLLocationManager *)manager
+//       didFailWithError:(NSError *)error
+//{
+//    NSLog(@"Error while getting core location : %@",[error localizedFailureReason]);
+//    if ([error code] == kCLErrorDenied) {
+//        //you had denied
+//    }
+//    [manager stopUpdatingLocation];
+//}
 
 -(void)stopUpdatingMyLocation {
-    _clLocationManager = nil;
+    [_clLocationManager stopUpdatingHeading];
+    [_clLocationManager stopUpdatingLocation];
 }
 
 @end

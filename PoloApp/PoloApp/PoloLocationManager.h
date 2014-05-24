@@ -30,7 +30,13 @@
 #import <Foundation/Foundation.h>
 @import CoreLocation;
 
+@protocol PoloLocationManagerDelegate <NSObject>
+-(void)headingWasUpdated;
+@end
+
 @interface PoloLocationManager : NSObject <CLLocationManagerDelegate>
+
+@property (weak, nonatomic) id<PoloLocationManagerDelegate> delegate;
 
 @property (nonatomic, strong) CLHeading *myHeading;
 @property float myLat, myLong;

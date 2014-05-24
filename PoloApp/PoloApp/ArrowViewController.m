@@ -9,14 +9,15 @@
 #import "ArrowViewController.h"
 #import "ArrowView.h"
 #import <Parse/Parse.h>
+#import "PoloAppDelegate.h"
+#import "PoloLocationManager.h"
 
 const unsigned int UPDATE_SECONDS = 1;
 const float EARTH_RADIUS = 3963.1676;
 
-@interface ArrowViewController ()
+@interface ArrowViewController() <PoloLocationManagerDelegate>
 @property float radChange;
-@property float myLat, myLong;
-@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic, strong) PoloLocationManager *locationManager;
 @property (strong, nonatomic) PFUser *me;
 @property (retain, nonatomic) CLHeading *currentHeading;
 @property float otherLat, otherLong;
@@ -79,9 +80,8 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self locationManagerShouldDisplayHeadingCalibration:_locationManager];
-    _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:60];
-    _TargetLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:30];
+    _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:50];
+    _TargetLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:30];
     
     _haveMyLoc = NO;
     _otherUser = nil;
@@ -110,13 +110,13 @@ const float EARTH_RADIUS = 3963.1676;
     //Open a new thread to update the target angle regularly
     [self performSelectorInBackground:@selector(regularInfoUpdate) withObject:nil];
     
-	_locationManager=[[CLLocationManager alloc] init];
-	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-	_locationManager.headingFilter = 1;
-    [_locationManager setDelegate:self];
-    [_locationManager startUpdatingHeading];
-    [_locationManager startUpdatingLocation];
-    
+    //set up location manager
+	_locationManager = [PoloAppDelegate delegate].locationManager;
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingMyLocation];
+    if (self.locationManager.myLat != 0) {
+        self.haveMyLoc = YES;
+    }
     _me = [PFUser currentUser];
 }
 
@@ -138,11 +138,6 @@ const float EARTH_RADIUS = 3963.1676;
             [alert show];
         }
     }];
-}
-
-- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
-{
-    return YES;
 }
 
 - (void)regularInfoUpdate
@@ -171,9 +166,7 @@ const float EARTH_RADIUS = 3963.1676;
     NSLog(@"should be zero");
     
     //Stop the view from trying to update when we turn the device
-    [_locationManager stopUpdatingHeading];
-    [_locationManager stopUpdatingLocation];
-    
+    [self.locationManager stopUpdatingMyLocation];
     //Purge whitelist
 }
 
@@ -188,11 +181,12 @@ const float EARTH_RADIUS = 3963.1676;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-    
+- (void)headingWasUpdated{
+    NSLog(@"inHeadingWasUpdated");
+    NSLog(@"%@", (_haveMyLoc) ? @"doeshavemyloc" : @"NOdoesn'thavemyloc");
     if (_haveMyLoc && _haveTargetLoc){
         // Convert Degree to Radian to point the arrow
-        float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
+        float newRad =  -self.locationManager.myHeading.trueHeading * M_PI / 180.0f;
     
         _radChange = [self findNewRadChangeForTarget];
         newRad += _radChange;
@@ -204,21 +198,12 @@ const float EARTH_RADIUS = 3963.1676;
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    CLLocation *newLoc = [locations lastObject];
-    _myLat = newLoc.coordinate.latitude;
-    _myLong = newLoc.coordinate.longitude;
-    
-    _haveMyLoc = YES;
-}
-
 - (void)updateDistance
 {
     if (_haveTargetLoc && _haveMyLoc){
-        float lat1 = [self degreesToRadians:_myLat];
+        float lat1 = [self degreesToRadians:self.locationManager.myLat];
         float lat2 = [self degreesToRadians:_otherLat];
-        float long1 = [self degreesToRadians:_myLong];
+        float long1 = [self degreesToRadians:self.locationManager.myLong];
         float long2 = [self degreesToRadians:_otherLong];
     
     
@@ -254,8 +239,8 @@ const float EARTH_RADIUS = 3963.1676;
     float radChange = 0;
     float change = 0.0f;
     
-    float dLat = _otherLat - _myLat;
-    float dLong = _otherLong - _myLong;
+    float dLat = _otherLat - self.locationManager.myLat;
+    float dLong = _otherLong - self.locationManager.myLong;
     
     change = atan2(dLat, dLong);
     change -= M_PI_2;
@@ -263,8 +248,6 @@ const float EARTH_RADIUS = 3963.1676;
     radChange -= change;
     return radChange;
 }
-
-
 
 - (void)updateLocations
 {
@@ -296,8 +279,8 @@ const float EARTH_RADIUS = 3963.1676;
         }
         
         _connection[@"user"] = [[PFUser currentUser] username];
-        _connection[@"lat"] = [NSString stringWithFormat:@"%f", _myLat];
-        _connection[@"long"] = [NSString stringWithFormat:@"%f", _myLong];
+        _connection[@"lat"] = [NSString stringWithFormat:@"%f", self.locationManager.myLat];
+        _connection[@"long"] = [NSString stringWithFormat:@"%f", self.locationManager.myLong];
         
         PFACL *acl = [PFACL ACLWithUser:[PFUser currentUser]];
         [acl setReadAccess:YES forUser:_otherUser];

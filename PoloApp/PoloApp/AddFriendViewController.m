@@ -98,8 +98,6 @@
                         NSLog(@"show pending alert");
                         [_alertPendingRequest show];
                     }
-
-                    
                 } else {
                     //handle error
                 }

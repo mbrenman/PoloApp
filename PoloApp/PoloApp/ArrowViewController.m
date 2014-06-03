@@ -14,6 +14,7 @@
 
 const unsigned int UPDATE_SECONDS = 1;
 const float EARTH_RADIUS = 3963.1676;
+const float FEET_PER_MILE = 5280;
 
 @interface ArrowViewController() <PoloLocationManagerDelegate>
 @property float radChange;
@@ -230,7 +231,7 @@ const float EARTH_RADIUS = 3963.1676;
     if (_isLargerDistance) {
         _DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", [distance floatValue]];
     } else {
-        _DistanceLabel.text = [NSString stringWithFormat:@"%.0f ft", [distance floatValue] * 5280];}
+        _DistanceLabel.text = [NSString stringWithFormat:@"%.0f ft", [distance floatValue] * FEET_PER_MILE];}
     //NSLog([NSString stringWithFormat:@"%f", [distance floatValue]]);
 }
 

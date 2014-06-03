@@ -15,6 +15,8 @@
 const unsigned int UPDATE_SECONDS = 1;
 const float EARTH_RADIUS = 3963.1676;
 const float FEET_PER_MILE = 5280;
+const float KM_PER_MILE = 1.60934;
+const float METERS_PER_MILE = 1609.34;
 
 @interface ArrowViewController() <PoloLocationManagerDelegate>
 @property float radChange;
@@ -226,13 +228,21 @@ const float FEET_PER_MILE = 5280;
     }
 }
 
-- (void)updateLabelWithDistance:(NSNumber *)distance
+- (void)updateLabelWithDistance:(NSNumber *)distanceInMiles
 {
-    if (_isLargerDistance) {
-        _DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", [distance floatValue]];
+    if (_useMetricUnits){
+        if (_isLargerDistance) {
+            _DistanceLabel.text = [NSString stringWithFormat:@"%.3f km", [distanceInMiles floatValue] * KM_PER_MILE];
+        } else {
+            _DistanceLabel.text = [NSString stringWithFormat:@"%.0f m", [distanceInMiles floatValue] * METERS_PER_MILE];
+        }
     } else {
-        _DistanceLabel.text = [NSString stringWithFormat:@"%.0f ft", [distance floatValue] * FEET_PER_MILE];}
-    //NSLog([NSString stringWithFormat:@"%f", [distance floatValue]]);
+        if (_isLargerDistance) {
+            _DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", [distanceInMiles floatValue]];
+        } else {
+            _DistanceLabel.text = [NSString stringWithFormat:@"%.0f ft", [distanceInMiles floatValue] * FEET_PER_MILE];
+        }
+    }
 }
 
 - (float)degreesToRadians: (float)degrees

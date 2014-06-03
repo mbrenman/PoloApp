@@ -65,7 +65,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="toggleFeetMiles:" destination="pLJ-TN-xqo" eventType="touchUpInside" id="Gh3-Hl-KJu"/>
+                                    <action selector="toggleDistanceGranularity:" destination="pLJ-TN-xqo" eventType="touchUpInside" id="Nti-13-nz8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5j-nZ-hCg">

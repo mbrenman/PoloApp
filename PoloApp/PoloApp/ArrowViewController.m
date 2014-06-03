@@ -26,7 +26,7 @@ const float EARTH_RADIUS = 3963.1676;
 @property BOOL haveMyLoc, haveTargetLoc, haveTarget;
 @property BOOL visible;
 @property BOOL isLargerDistance;
-@property int testNum;
+@property BOOL useMetricUnits;
 @property NSMutableArray *locations;
 @end
 
@@ -85,7 +85,7 @@ const float EARTH_RADIUS = 3963.1676;
 }
 
 
-- (IBAction)toggleFeetMiles:(id)sender {
+- (IBAction)toggleDistanceGranularity:(id)sender {
     if (_isLargerDistance) {
         _isLargerDistance = false;
     } else {
@@ -98,6 +98,12 @@ const float EARTH_RADIUS = 3963.1676;
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self.tabBarController.tabBar setHidden:YES];
+    [self setUnitsBasedOnSettings];
+}
+
+- (void) setUnitsBasedOnSettings {
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _useMetricUnits = [defaults boolForKey:@"units_preference"];
 }
 
 - (void) getStaticTargetInBackground {

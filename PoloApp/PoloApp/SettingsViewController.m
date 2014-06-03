@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "iAd/iAd.h"
 
 @interface SettingsViewController ()
 
@@ -43,6 +44,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.canDisplayBannerAds = YES;
     
     //Round the corners on the save settings button
     _saveSettingsButton.layer.cornerRadius = 10;

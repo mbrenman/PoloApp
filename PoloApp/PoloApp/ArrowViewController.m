@@ -25,7 +25,7 @@ const float EARTH_RADIUS = 3963.1676;
 @property PFObject *connection;
 @property BOOL haveMyLoc, haveTargetLoc, haveTarget;
 @property BOOL visible;
-@property BOOL isInMiles;
+@property BOOL isLargerDistance;
 @property int testNum;
 @property NSMutableArray *locations;
 @end
@@ -86,10 +86,10 @@ const float EARTH_RADIUS = 3963.1676;
 
 
 - (IBAction)toggleFeetMiles:(id)sender {
-    if (_isInMiles) {
-        _isInMiles = false;
+    if (_isLargerDistance) {
+        _isLargerDistance = false;
     } else {
-        _isInMiles = true;
+        _isLargerDistance = true;
     }
     [self updateDistance];
 }
@@ -206,7 +206,6 @@ const float EARTH_RADIUS = 3963.1676;
         float long1 = [self degreesToRadians:self.locationManager.myLong];
         float long2 = [self degreesToRadians:_otherLong];
     
-    
         float dLat = lat1 - lat2;
         float dLong = long1 - long2;
     
@@ -222,7 +221,7 @@ const float EARTH_RADIUS = 3963.1676;
 
 - (void)updateLabelWithDistance:(NSNumber *)distance
 {
-    if (_isInMiles) {
+    if (_isLargerDistance) {
         _DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", [distance floatValue]];
     } else {
         _DistanceLabel.text = [NSString stringWithFormat:@"%.0f ft", [distance floatValue] * 5280];}

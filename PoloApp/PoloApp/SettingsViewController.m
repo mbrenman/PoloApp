@@ -43,6 +43,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //Round the corners on the save settings button
+    _saveSettingsButton.layer.cornerRadius = 10;
+    _saveSettingsButton.clipsToBounds = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated

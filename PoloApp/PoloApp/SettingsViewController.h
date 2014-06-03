@@ -10,7 +10,7 @@
 
 @interface SettingsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISwitch *unitsSwitch;
-@property (weak, nonatomic) IBOutlet UIButton *SaveSettingsButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveSettingsButton;
 
 
 @end

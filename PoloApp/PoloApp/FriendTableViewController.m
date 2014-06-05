@@ -208,6 +208,10 @@
     static NSString *CellIdentifier = @"FriendCell";
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    //  We can use this method if we want to round the corners of the cells
+    //    cell.layer.cornerRadius = 10;
+    //    cell.clipsToBounds = YES;
+    
     // Configure the cell...
     
     int row = [indexPath row];

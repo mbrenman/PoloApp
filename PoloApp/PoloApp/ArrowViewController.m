@@ -77,7 +77,7 @@ const float METERS_PER_MILE = 1609.34;
     [self performSelectorInBackground:@selector(regularInfoUpdate) withObject:nil];
     
     //set up location manager
-	_locationManager = [PoloAppDelegate delegate].locationManager;
+	_locationManager = [[PoloAppDelegate delegate] locationManager];
     self.locationManager.delegate = self;
     [self.locationManager startUpdatingMyLocation];
     if (self.locationManager.myLat != 0) {

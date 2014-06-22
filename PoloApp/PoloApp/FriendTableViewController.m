@@ -19,6 +19,7 @@
 @property (nonatomic) NSMutableArray *friends;
 @property (nonatomic) NSMutableArray *friendRequests;
 @property (nonatomic) NSMutableArray *acceptedFriendRequests;
+@property (nonatomic) NSMutableArray *toBeDeleted;
 @end
 
 @implementation FriendTableViewController
@@ -26,8 +27,6 @@
 - (IBAction)friendRequestButtonPush:(id)sender {
     if([_friendRequests count] != 0) {
         [self performSegueWithIdentifier:@"friendTableToFriendTableRequests" sender:nil];
-    } else {
-        //TODO: else display alert WHY DID I WRITE THIS?
     }
 }
 
@@ -43,8 +42,6 @@
         [_numOfFriendRequestsLabel setTitle:title forState:UIControlStateNormal];
     }
     [_numOfFriendRequestsLabel setNeedsDisplay];
-    
-   //TODO: find a way to make this appear immediately
 }
 
 - (void) findFriendRequesters{
@@ -72,6 +69,28 @@
             }
         }
      ];
+}
+
+-(void) handleDeletedFriends{
+    PFUser *me = [PFUser currentUser];
+    PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendDeletionRequest"];
+    [requesterQuery whereKey:@"target" equalTo:me.username];
+    
+    [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.toBeDeleted = (NSMutableArray*)objects;
+            //NSLog(@"OBJECTS: %@",objects);
+        } else {
+            //handle error
+        }
+    }];
+    
+    for (PFObject *object in self.toBeDeleted) {
+        [self.friends removeObject:object[@"requester"]];
+        me[@"friends"] = self.friends;
+        [me saveInBackground];
+        [object deleteInBackground];
+    }
 }
 
 - (void) handleAcceptedFriendRequests{
@@ -117,15 +136,22 @@
 
 - (void)tableView:(UITableView *)tv commitEditingStyle:    (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog([_friends objectAtIndex:indexPath.row]);
+    //NSLog([_friends objectAtIndex:indexPath.row]);
     
     // If row is deleted, remove it from the list.
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         //remove from local NSArray
+        NSString *removedFriendName = [_friends objectAtIndex:indexPath.row];
+        PFUser *me = [PFUser currentUser];
+        
+        PFObject *friendDeletionRequest = [PFObject objectWithClassName:@"friendDeletionRequest"];
+        friendDeletionRequest[@"requester"] = [me username];
+        friendDeletionRequest[@"target"] = removedFriendName;
+        [friendDeletionRequest saveInBackground];
+        
         [_friends removeObjectAtIndex:indexPath.row];
         // remove from database
-        PFUser *me = [PFUser currentUser];
         me[@"friends"] = _friends;
         [me saveInBackground];
         //remove from local table
@@ -190,6 +216,7 @@
     
     [self findFriendRequesters];
     [self handleAcceptedFriendRequests];
+    [self handleDeletedFriends];
     
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];

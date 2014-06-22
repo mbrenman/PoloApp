@@ -55,6 +55,17 @@
     [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 _friendRequests = (NSMutableArray*)objects;
+                for (PFObject *friendrequest in self.friendRequests) {
+                    NSString *requester = friendrequest[@"requester"];
+                    for (NSString *friend in self.friends) {
+                        if ([requester isEqualToString:friend]) {
+                            [self.friendRequests removeObject:friendrequest];
+                            friendrequest[@"accepted"] = [NSNumber numberWithBool:YES];
+                            [friendrequest saveInBackground];
+                            [me saveInBackground];
+                        }
+                    }
+                }
                 [self updateButtonText];
             } else {
                 //handle error
@@ -84,6 +95,8 @@
             me[@"friends"] = [[NSMutableArray alloc] initWithObjects:request[@"target"], nil];
         } else if (![_friends containsObject:request[@"target"]]) {
             [me[@"friends"] addObject:request[@"target"]];
+        } else {
+            [request deleteInBackground];
         }
         [me saveInBackground];
         [request deleteInBackground];

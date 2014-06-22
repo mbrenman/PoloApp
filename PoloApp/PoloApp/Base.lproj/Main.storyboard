@@ -414,7 +414,6 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="Y10-CL-rLa"/>
                     <navigationItem key="navigationItem" title="Settings" id="jcW-0h-al1"/>
                     <connections>
                         <outlet property="SaveSettingsButton" destination="x64-IM-1s0" id="TmL-tJ-8qW"/>

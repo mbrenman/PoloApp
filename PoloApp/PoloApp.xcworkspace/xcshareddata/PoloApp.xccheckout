@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>66BA3C8F-0E13-439D-ADA2-E91101D74BEF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PoloApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>12B6F14A-44D6-40DC-B848-7B3279CA379B</key>
+		<string>ssh://github.com/mbrenman/PoloApp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PoloApp/PoloApp.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>12B6F14A-44D6-40DC-B848-7B3279CA379B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/mbrenman/PoloApp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>12B6F14A-44D6-40DC-B848-7B3279CA379B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>12B6F14A-44D6-40DC-B848-7B3279CA379B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PoloApp</string>
+		</dict>
+	</array>
+</dict>
+</plist>

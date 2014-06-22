@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -153,7 +153,7 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNp-jo-XnI">
                                             <rect key="frame" x="56" y="-4" width="209" height="68"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -293,7 +293,7 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sen-E2-Tmn">
                                             <rect key="frame" x="34" y="-1" width="256" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -424,13 +424,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePy-vz-w5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-150" y="1819"/>
+            <point key="canvasLocation" x="776" y="1995"/>
         </scene>
         <!--Navigation Controller - Settings-->
         <scene sceneID="OiK-mi-jt4">
             <objects>
                 <navigationController definesPresentationContext="YES" id="y09-3T-0bc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="OmO-Y4-99l"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="text-left.png" id="OmO-Y4-99l"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="74P-Ec-MdJ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -440,7 +440,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VdE-zF-XGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-750" y="1819"/>
+            <point key="canvasLocation" x="238" y="1845"/>
         </scene>
         <!--Navigation Controller - Locations-->
         <scene sceneID="BtD-rw-qfz">
@@ -485,6 +485,7 @@
     </scenes>
     <resources>
         <image name="tag.png" width="30" height="30"/>
+        <image name="text-left.png" width="30" height="30"/>
         <image name="woman.png" width="30" height="30"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -494,7 +495,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2Xe-uF-Iuw"/>
-        <segue reference="oIt-RW-7II"/>
+        <segue reference="TXm-gv-ivG"/>
+        <segue reference="TJO-ak-dHW"/>
     </inferredMetricsTieBreakers>
 </document>

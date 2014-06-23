@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "019912D56CBD4E929B058683"
-               BuildableName = "libPods-AFNetworking.a"
-               BlueprintName = "Pods-AFNetworking"
+               BlueprintIdentifier = "FD0743169D0746A0884D0EB6"
+               BuildableName = "libPods-FontAwesomeIconFactory.a"
+               BlueprintName = "Pods-FontAwesomeIconFactory"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

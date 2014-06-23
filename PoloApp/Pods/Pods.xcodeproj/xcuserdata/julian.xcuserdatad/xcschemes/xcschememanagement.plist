@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
+		<key>Pods-FontAwesomeIconFactory.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>019912D56CBD4E929B058683</key>
+		<key>A326425075C34ED38A1CFB9C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>11C1789150F2473B837DC01B</key>
+		<key>FD0743169D0746A0884D0EB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

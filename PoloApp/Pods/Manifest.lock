@@ -1,10 +1,10 @@
 PODS:
-  - AFNetworking (1.3.4)
+  - FontAwesomeIconFactory (1.3)
 
 DEPENDENCIES:
-  - AFNetworking (~> 1.0)
+  - FontAwesomeIconFactory
 
 SPEC CHECKSUMS:
-  AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
+  FontAwesomeIconFactory: a60171039c8067b7fd04d0300f0a7f8fc5cffbae
 
 COCOAPODS: 0.33.1

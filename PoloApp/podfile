@@ -1,3 +1,5 @@
-platform :ios, :deployment_target => "3.2"  
+  
 
-pod 'AFNetworking', '~> 1.0'
+#pod 'AFNetworking', '~> 1.0'
+pod 'FontAwesomeIconFactory'
+

@@ -19,25 +19,24 @@ Needed before pushing to App Store:
 * DONE-Fix add friend issue when the user has no friends
 * DONE-Make user zero-out location data on closing out of arrow view
 * DONE-Fix crash on logout after seeing the arrow
-* Maybe something with calibration?
+* DONE Maybe something with calibration?
 * Make usernames NOT case sensitive (importance?)
 * DONE-Remove testflight
 * DONE delete friends
 * DONE - integrate iAd
-* Add custom nav bar
 * DONE Organize friends in list - alphabetize?
 * encrypt all location data between users - public/private keys for users? Can Parse do this?
 * DONE - Make loading locations faster
-* Consistent styling across app
+* DONE Consistent styling across app
 * Website
 * Push notifications (somewhat done)
 * Location update call timing changes with distance
 * Should we send a "missed call" notification if they hang up?
 * Settings page (allow user to delete their app, maybe colors, etc)
-* Should we only add a user to friends if they are accepted? (like only allow calls if friend request accepted)
+* DONE Should we only add a user to friends if they are accepted? (like only allow calls if friend request accepted)
 * DONE - Alphabetize lists
 * Add in things like crashlytics and testflight
-* Make only one location manager that gets passed around for better accuracy - can we have it in the tab bar controller and still get access?
+* DONE Make only one location manager that gets passed around for better accuracy - can we have it in the tab bar controller and still get access?
 
 New features:
 
@@ -50,4 +49,4 @@ New features:
 * Update friend list with contact nicknames/names if phone number is supplied and in contacts
 * DONE - Make adding friends faster
 * Custom colors -- change icon too
-* Custom Skin for login, less parse-y
+* DONE Custom Skin for login, less parse-y

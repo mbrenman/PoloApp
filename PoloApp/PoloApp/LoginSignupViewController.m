@@ -51,8 +51,11 @@
         
         bounds = signUpViewController.signUpView.logo.bounds;
         label = [[UILabel alloc] initWithFrame: bounds];
+        label.textAlignment = UITextAlignmentCenter;
         [label setText:@"Polo"];
-        [label setTextColor:[UIColor orangeColor]];
+        [label setTextColor:[UIColor whiteColor]];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:35];
+        [label setAdjustsFontSizeToFitWidth: YES];
         signUpViewController.signUpView.logo = label;
         
         signUpViewController.view.backgroundColor = [UIColor blackColor];

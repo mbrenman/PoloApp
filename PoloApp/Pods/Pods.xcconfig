@@ -1,5 +1,5 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/FontAwesomeIconFactory"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers" -isystem "${PODS_ROOT}/Headers/FontAwesomeIconFactory"
-OTHER_LDFLAGS = -ObjC -framework CoreGraphics -framework CoreText
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/FontAwesomeIconFactory" "${PODS_ROOT}/Headers/iOS-Color-Picker"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers" -isystem "${PODS_ROOT}/Headers/FontAwesomeIconFactory" -isystem "${PODS_ROOT}/Headers/iOS-Color-Picker"
+OTHER_LDFLAGS = -ObjC -framework CoreGraphics -framework CoreText -framework Foundation -framework QuartzCore -framework UIKit
 PODS_ROOT = ${SRCROOT}/Pods

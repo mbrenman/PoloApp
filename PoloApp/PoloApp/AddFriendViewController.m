@@ -67,7 +67,7 @@
     
     if (_friends == nil){
         me[@"friends"] = [[NSMutableArray alloc] init];
-        _friends = me[@"friends"];
+        _friends = [[NSMutableArray alloc] init];
     }
     
     //Only add new friend if user does not already have the friend

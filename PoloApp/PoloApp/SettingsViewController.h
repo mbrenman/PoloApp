@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FCColorPickerViewController.h>
 
-@interface SettingsViewController : UIViewController
+
+@interface SettingsViewController : UIViewController <FCColorPickerViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *unitsSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *saveSettingsButton;
+
+-(IBAction)chooseColor:(id)sender;
 
 
 @end

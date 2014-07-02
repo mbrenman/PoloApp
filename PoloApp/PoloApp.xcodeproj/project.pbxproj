@@ -56,8 +56,8 @@
 		B95DA1331953E383007E667B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95DA1321953E383007E667B /* Social.framework */; };
 		B95DA1351953E389007E667B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95DA1341953E389007E667B /* Accounts.framework */; };
 		B9793B1F19572C70003A5BAD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9793B1E19572C70003A5BAD /* StoreKit.framework */; };
-		B9793B2119572D24003A5BAD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9793B2019572D24003A5BAD /* Parse.framework */; };
 		B9793B2319573344003A5BAD /* text-left.png in Resources */ = {isa = PBXBuildFile; fileRef = B9793B2219573344003A5BAD /* text-left.png */; };
+		B9A9812F195E0DC7001752F4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A9812E195E0DC7001752F4 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,8 +141,8 @@
 		B95DA1361953E399007E667B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B95DA1381953E3F9007E667B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		B9793B1E19572C70003A5BAD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		B9793B2019572D24003A5BAD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		B9793B2219573344003A5BAD /* text-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-left.png"; sourceTree = "<group>"; };
+		B9A9812E195E0DC7001752F4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,12 +156,12 @@
 				B37A9F5619008B3B0002BEA1 /* iAd.framework in Frameworks */,
 				AAD39658189D97C300675698 /* SystemConfiguration.framework in Frameworks */,
 				AAD39654189D97B500675698 /* Security.framework in Frameworks */,
-				B9793B2119572D24003A5BAD /* Parse.framework in Frameworks */,
 				AAD39652189D97AE00675698 /* QuartzCore.framework in Frameworks */,
 				AAD39650189D97A400675698 /* MobileCoreServices.framework in Frameworks */,
 				AAD3964E189D979900675698 /* libz.dylib in Frameworks */,
 				AAD3964C189D978D00675698 /* CoreLocation.framework in Frameworks */,
 				AAD3964A189D978500675698 /* CFNetwork.framework in Frameworks */,
+				B9A9812F195E0DC7001752F4 /* Parse.framework in Frameworks */,
 				AAD39648189D977E00675698 /* AudioToolbox.framework in Frameworks */,
 				AAD39613189D923A00675698 /* CoreGraphics.framework in Frameworks */,
 				AAD39615189D923A00675698 /* UIKit.framework in Frameworks */,
@@ -206,7 +206,7 @@
 		AAD3960F189D923A00675698 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B9793B2019572D24003A5BAD /* Parse.framework */,
+				B9A9812E195E0DC7001752F4 /* Parse.framework */,
 				B9793B1E19572C70003A5BAD /* StoreKit.framework */,
 				B95DA1381953E3F9007E667B /* CoreFoundation.framework */,
 				B95DA1361953E399007E667B /* AdSupport.framework */,
@@ -236,15 +236,11 @@
 				B3818ABA192EAA5B000E81F4 /* Locations */,
 				B3818ABB192EAA74000E81F4 /* Friends */,
 				AAD39622189D923A00675698 /* Main.storyboard */,
-				B3818AB7192EAA30000E81F4 /* PoloLocationManager.h */,
-				B3818AB8192EAA30000E81F4 /* PoloLocationManager.m */,
-				AAD3961F189D923A00675698 /* PoloAppDelegate.h */,
-				AAD39620189D923A00675698 /* PoloAppDelegate.m */,
-				AAD39625189D923A00675698 /* LoginSignupViewController.h */,
-				AAD39626189D923A00675698 /* LoginSignupViewController.m */,
+				B9A9812C195DF069001752F4 /* Managers */,
+				B9A98129195DF045001752F4 /* App Delegate */,
+				B9A9812B195DF05A001752F4 /* Login Signup */,
 				B3818ABC192EAA8F000E81F4 /* ArrowView */,
-				AAE8919E192C3E020062846F /* SettingsViewController.h */,
-				AAE8919F192C3E020062846F /* SettingsViewController.m */,
+				B9A9812D195DF078001752F4 /* Settings */,
 				AAE891A1192C46E00062846F /* Settings.bundle */,
 				AAD39628189D923A00675698 /* Images.xcassets */,
 				B9793B2219573344003A5BAD /* text-left.png */,
@@ -331,6 +327,42 @@
 				AA04606A189E321C001A5785 /* ArrowViewController.m */,
 			);
 			name = ArrowView;
+			sourceTree = "<group>";
+		};
+		B9A98129195DF045001752F4 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				AAD3961F189D923A00675698 /* PoloAppDelegate.h */,
+				AAD39620189D923A00675698 /* PoloAppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		B9A9812B195DF05A001752F4 /* Login Signup */ = {
+			isa = PBXGroup;
+			children = (
+				AAD39625189D923A00675698 /* LoginSignupViewController.h */,
+				AAD39626189D923A00675698 /* LoginSignupViewController.m */,
+			);
+			name = "Login Signup";
+			sourceTree = "<group>";
+		};
+		B9A9812C195DF069001752F4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B3818AB7192EAA30000E81F4 /* PoloLocationManager.h */,
+				B3818AB8192EAA30000E81F4 /* PoloLocationManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		B9A9812D195DF078001752F4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AAE8919E192C3E020062846F /* SettingsViewController.h */,
+				AAE8919F192C3E020062846F /* SettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

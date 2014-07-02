@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-iOS-Color-Picker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>A326425075C34ED38A1CFB9C</key>
+		<key>2C4D719B1F68478AA69526EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FD0743169D0746A0884D0EB6</key>
+		<key>7805CF61805144CEA67EBCAA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>927EC8E700224204B7DC1F00</key>
 		<dict>
 			<key>primary</key>
 			<true/>

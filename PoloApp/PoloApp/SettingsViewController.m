@@ -9,11 +9,35 @@
 #import "SettingsViewController.h"
 #import "iAd/iAd.h"
 
+
 @interface SettingsViewController ()
 
 @end
 
 @implementation SettingsViewController
+
+
+-(IBAction)chooseColor:(id)sender {
+    FCColorPickerViewController *colorPicker = [[FCColorPickerViewController alloc]
+                                                initWithNibName:@"FCColorPickerViewController"
+                                                bundle:[NSBundle mainBundle]];
+    colorPicker.color = self.view.backgroundColor;
+    colorPicker.delegate = self;
+    
+    [colorPicker setModalPresentationStyle:UIModalPresentationFormSheet];
+    [self presentViewController:colorPicker animated:YES completion:nil];
+    
+}
+
+-(void)colorPickerViewController:(FCColorPickerViewController *)colorPicker didSelectColor:(UIColor *)color {
+    self.view.backgroundColor = color;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)colorPickerViewControllerDidCancel:(FCColorPickerViewController *)colorPicker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)getUserSettings
 {

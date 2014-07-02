@@ -12,3 +12,9 @@
 #define COCOAPODS_VERSION_MINOR_FontAwesomeIconFactory 3
 #define COCOAPODS_VERSION_PATCH_FontAwesomeIconFactory 0
 
+// iOS-Color-Picker
+#define COCOAPODS_POD_AVAILABLE_iOS_Color_Picker
+#define COCOAPODS_VERSION_MAJOR_iOS_Color_Picker 1
+#define COCOAPODS_VERSION_MINOR_iOS_Color_Picker 1
+#define COCOAPODS_VERSION_PATCH_iOS_Color_Picker 2
+

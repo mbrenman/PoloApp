@@ -124,7 +124,6 @@
     }
 }
 
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -252,8 +251,7 @@
     //    cell.layer.cornerRadius = 10;
     //    cell.clipsToBounds = YES;
     
-    // Configure the cell...
-    
+    // Configure the cell...    
     int row = [indexPath row];
     
     cell.friendLabel.text = [_friends objectAtIndex:row];

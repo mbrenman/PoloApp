@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C4D719B1F68478AA69526EC"
-               BuildableName = "libPods-FontAwesomeIconFactory.a"
-               BlueprintName = "Pods-FontAwesomeIconFactory"
+               BlueprintIdentifier = "7805CF61805144CEA67EBCAA"
+               BuildableName = "libPods-iOS-Color-Picker.a"
+               BlueprintName = "Pods-iOS-Color-Picker"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

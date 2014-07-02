@@ -56,7 +56,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //    [PFPush handlePush:userInfo];
-    NSLog(@"%@", [[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
+    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    //Get user by trimming until len-len of " would like to connect with you"
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

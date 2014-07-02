@@ -70,11 +70,17 @@
         PFUser* me = [PFUser currentUser];
         NSMutableArray *friends = me[@"friends"];
         if (![friends containsObject:newFriend]){
+            NSLog(@"prepreinitializing");
             if (![[me username] isEqualToString:newFriend]){
+                if (!friends) {
+                    friends = [[NSMutableArray alloc] init];
+                }
                 if (friends.count  == 0) {
                     friends = [[NSMutableArray alloc] init];
                 }
+                
                 [friends addObject:newFriend];
+                me[@"friends"] = friends;
                 [me saveInBackground];
             } else {
                 //display alert

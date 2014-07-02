@@ -71,7 +71,7 @@
         NSMutableArray *friends = me[@"friends"];
         if (![friends containsObject:newFriend]){
             if (![[me username] isEqualToString:newFriend]){
-                if ([friends.count  == 0]) {
+                if (friends.count  == 0) {
                     friends = [[NSMutableArray alloc] init];
                 }
                 [friends addObject:newFriend];

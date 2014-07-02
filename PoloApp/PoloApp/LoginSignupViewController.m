@@ -30,7 +30,15 @@
         logInViewController.logInView.usernameField.textColor = [UIColor blackColor];
         logInViewController.logInView.passwordField.textColor = [UIColor blackColor];
         
-        logInViewController.logInView.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PoloTitle.png"]];
+        CGRect bounds = logInViewController.logInView.logo.bounds;
+        UILabel *label = [[UILabel alloc] initWithFrame: bounds];
+        label.adjustsFontSizeToFitWidth = YES;
+        label.textAlignment = UITextAlignmentCenter;
+        [label setText:@"Polo"];
+        [label setTextColor:[UIColor whiteColor]];
+        label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:35];
+        [label setAdjustsFontSizeToFitWidth: YES];
+        logInViewController.logInView.logo = label;
         
         logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten;
         
@@ -41,7 +49,11 @@
         [signUpViewController setFields:PFSignUpFieldsDefault | PFSignUpFieldsAdditional];
         [[[signUpViewController signUpView] additionalField] setPlaceholder:@"Phone Number"];
         
-        signUpViewController.signUpView.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PoloTitle.png"]];
+        bounds = signUpViewController.signUpView.logo.bounds;
+        label = [[UILabel alloc] initWithFrame: bounds];
+        [label setText:@"Polo"];
+        [label setTextColor:[UIColor orangeColor]];
+        signUpViewController.signUpView.logo = label;
         
         signUpViewController.view.backgroundColor = [UIColor blackColor];
         signUpViewController.signUpView.usernameField.backgroundColor = [UIColor whiteColor];

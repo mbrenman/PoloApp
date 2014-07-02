@@ -56,6 +56,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //    [PFPush handlePush:userInfo];
+    NSLog(@"%@", [[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

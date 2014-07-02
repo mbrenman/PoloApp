@@ -46,6 +46,9 @@ const float METERS_PER_MILE = 1609.34;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cleanArrowData) name:@"terminatingApp" object:nil];
+    
     _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:50];
     _TargetLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:30];
     
@@ -166,6 +169,11 @@ const float METERS_PER_MILE = 1609.34;
 {
     [super viewWillDisappear:animated];
     NSLog(@"will dissapear");
+    [self cleanArrowData];
+}
+
+- (void)cleanArrowData {
+    NSLog(@"CLEAN ARROW DATA");
     
     _visible = FALSE;
     
@@ -178,7 +186,7 @@ const float METERS_PER_MILE = 1609.34;
     
     //Stop the view from trying to update when we turn the device
     [self.locationManager stopUpdatingMyLocation];
-    //Purge whitelist
+
 }
 
 - (IBAction)ArrowBackButtonPushed:(id)sender {

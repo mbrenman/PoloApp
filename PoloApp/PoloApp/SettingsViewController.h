@@ -12,7 +12,6 @@
 
 @interface SettingsViewController : UIViewController <FCColorPickerViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *unitsSwitch;
-@property (weak, nonatomic) IBOutlet UIButton *saveSettingsButton;
 
 -(IBAction)chooseColor:(id)sender;
 

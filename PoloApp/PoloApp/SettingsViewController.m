@@ -8,35 +8,34 @@
 
 #import "SettingsViewController.h"
 #import "iAd/iAd.h"
-
-
+#import "Parse/Parse.h"
 @interface SettingsViewController ()
 
 @end
 
 @implementation SettingsViewController
 
+//-(IBAction)chooseColor:(id)sender {
+//    FCColorPickerViewController *colorPicker = [[FCColorPickerViewController alloc]
+//                                                initWithNibName:@"FCColorPickerViewController"
+//                                                bundle:[NSBundle mainBundle]];
+//    colorPicker.color = self.view.backgroundColor;
+//    colorPicker.delegate = self;
+//    
+//    [colorPicker setModalPresentationStyle:UIModalPresentationFormSheet];
+//    [self presentViewController:colorPicker animated:YES completion:nil];
+//    
+//}
+//
+//-(void)colorPickerViewController:(FCColorPickerViewController *)colorPicker didSelectColor:(UIColor *)color {
+//    self.view.backgroundColor = color;
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
+//
+//-(void)colorPickerViewControllerDidCancel:(FCColorPickerViewController *)colorPicker {
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
 
--(IBAction)chooseColor:(id)sender {
-    FCColorPickerViewController *colorPicker = [[FCColorPickerViewController alloc]
-                                                initWithNibName:@"FCColorPickerViewController"
-                                                bundle:[NSBundle mainBundle]];
-    colorPicker.color = self.view.backgroundColor;
-    colorPicker.delegate = self;
-    
-    [colorPicker setModalPresentationStyle:UIModalPresentationFormSheet];
-    [self presentViewController:colorPicker animated:YES completion:nil];
-    
-}
-
--(void)colorPickerViewController:(FCColorPickerViewController *)colorPicker didSelectColor:(UIColor *)color {
-    self.view.backgroundColor = color;
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)colorPickerViewControllerDidCancel:(FCColorPickerViewController *)colorPicker {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 
 - (void)getUserSettings
@@ -49,10 +48,6 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:_unitsSwitch.on forKey:@"units_preference"];
-}
-
-- (IBAction)saveButtonClicked:(id)sender {
-    [self saveUserSettings];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -70,15 +65,38 @@
     // Do any additional setup after loading the view.
     
     self.canDisplayBannerAds = YES;
+    [self.unitsSwitch addTarget:self action:@selector(setState) forControlEvents:UIControlEventValueChanged];
     
-    //Round the corners on the save settings button
-    _saveSettingsButton.layer.cornerRadius = 10;
-    _saveSettingsButton.clipsToBounds = YES;
+    UIBarButtonItem *myButton = [[UIBarButtonItem alloc]init];
+        myButton.action = @selector(logoutUser);
+        myButton.title = @"Log Out";
+        [myButton setTitleTextAttributes:@{
+                                       NSForegroundColorAttributeName  : [UIColor lightTextColor]}
+                            forState:normal];
+    myButton.target = self;
+
+    self.navigationItem.leftBarButtonItem = myButton;
+    
+//    //Round the corners on the save settings button
+//    _saveSettingsButton.layer.cornerRadius = 10;
+//    _saveSettingsButton.clipsToBounds = YES;
+    
+}
+
+- (void)logoutUser{
+    [PFInstallation.currentInstallation removeObjectForKey:@"user"];
+    [PFInstallation.currentInstallation saveEventually];
+    
+    [PFUser logOut];
+    //Segue back to the login screen
+    [self performSegueWithIdentifier:@"settingsToLogout" sender:nil];}
+
+- (void)setState{
+    [self saveUserSettings];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"SETTINGS!");
     [self getUserSettings];
 }
 

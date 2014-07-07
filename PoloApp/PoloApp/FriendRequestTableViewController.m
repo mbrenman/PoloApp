@@ -39,10 +39,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    for (PFObject* each in _requesters){
-        NSLog(@"requester: %@", each[@"requester"]);
-    }
-    
+//    for (PFObject* each in _requesters){
+//        NSLog(@"requester: %@", each[@"requester"]);
+//    }
+    self.tableView.backgroundColor = [UIColor blackColor];
+
     _actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                 delegate:self
                 cancelButtonTitle:@"Cancel"

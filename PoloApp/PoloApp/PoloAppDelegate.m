@@ -9,6 +9,7 @@
 #import "PoloAppDelegate.h"
 #import <Parse/Parse.h>
 #import "PoloLocationManager.h"
+#import "ArrowViewController.h"
 
 @interface PoloAppDelegate()
 
@@ -63,11 +64,22 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
                                    initWithTitle:@"Friend!"
                                    message:alert
                                    delegate:self
-                                   cancelButtonTitle:@"FRIEND"
-                                   otherButtonTitles:nil];
+                                   cancelButtonTitle:@"Connect"
+                                   otherButtonTitles:@"Dismiss", nil];
     
     [connectRequest show];
     
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if ([title isEqualToString:@"Connect"]) {
+        NSLog(@"Button 1 was selected.");
+    } else if([title isEqualToString:@"Dismiss"]) {
+        NSLog(@"Button 2 was selected.");
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

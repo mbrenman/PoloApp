@@ -58,6 +58,16 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //    [PFPush handlePush:userInfo];
     NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     //Get user by trimming until len-len of " would like to connect with you"
+    //An alert for if the user tries to add a friend that they already have
+    UIAlertView *connectRequest = [[UIAlertView alloc]
+                                   initWithTitle:@"Friend!"
+                                   message:alert
+                                   delegate:self
+                                   cancelButtonTitle:@"FRIEND"
+                                   otherButtonTitles:nil];
+    
+    [connectRequest show];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

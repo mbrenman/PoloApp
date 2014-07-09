@@ -53,6 +53,7 @@
 		B3D45D9D18C0FBB700C612F8 /* FriendListUINavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */; };
 		B3D45D9F18C100B600C612F8 /* rect4444.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9E18C100B600C612F8 /* rect4444.png */; };
 		B3D45DA118C1031000C612F8 /* rect4445.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45DA018C1031000C612F8 /* rect4445.png */; };
+		B952A174196478E80069E0A7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B952A173196478E80069E0A7 /* FacebookSDK.framework */; };
 		B95DA1331953E383007E667B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95DA1321953E383007E667B /* Social.framework */; };
 		B95DA1351953E389007E667B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95DA1341953E389007E667B /* Accounts.framework */; };
 		B9793B1F19572C70003A5BAD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9793B1E19572C70003A5BAD /* StoreKit.framework */; };
@@ -136,6 +137,7 @@
 		B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListUINavigationViewController.m; sourceTree = "<group>"; };
 		B3D45D9E18C100B600C612F8 /* rect4444.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect4444.png; sourceTree = "<group>"; };
 		B3D45DA018C1031000C612F8 /* rect4445.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect4445.png; sourceTree = "<group>"; };
+		B952A173196478E80069E0A7 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		B95DA1321953E383007E667B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B95DA1341953E389007E667B /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B95DA1361953E399007E667B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -155,6 +157,7 @@
 				B95DA1331953E383007E667B /* Social.framework in Frameworks */,
 				B37A9F5619008B3B0002BEA1 /* iAd.framework in Frameworks */,
 				AAD39658189D97C300675698 /* SystemConfiguration.framework in Frameworks */,
+				B952A174196478E80069E0A7 /* FacebookSDK.framework in Frameworks */,
 				AAD39654189D97B500675698 /* Security.framework in Frameworks */,
 				AAD39652189D97AE00675698 /* QuartzCore.framework in Frameworks */,
 				AAD39650189D97A400675698 /* MobileCoreServices.framework in Frameworks */,
@@ -206,6 +209,7 @@
 		AAD3960F189D923A00675698 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B952A173196478E80069E0A7 /* FacebookSDK.framework */,
 				B9A9812E195E0DC7001752F4 /* Parse.framework */,
 				B9793B1E19572C70003A5BAD /* StoreKit.framework */,
 				B95DA1381953E3F9007E667B /* CoreFoundation.framework */,
@@ -416,7 +420,7 @@
 				ORGANIZATIONNAME = mbrenman;
 				TargetAttributes = {
 					AAD3960C189D923A00675698 = {
-						DevelopmentTeam = N76MF7BL6V;
+						DevelopmentTeam = WC5PBECM68;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -675,6 +679,7 @@
 					Security,
 					"-framework",
 					SystemConfiguration,
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -704,6 +709,7 @@
 					Security,
 					"-framework",
 					SystemConfiguration,
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

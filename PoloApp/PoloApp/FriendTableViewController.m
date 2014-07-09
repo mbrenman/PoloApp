@@ -189,6 +189,19 @@
 {
     [super viewDidLoad];
     self.canDisplayBannerAds = YES;
+    self.tableView.backgroundColor = [UIColor blackColor];
+
+    UIBarButtonItem *myButton2 = [[UIBarButtonItem alloc]init];
+    myButton2.action = @selector(addFriendScreen);
+    myButton2.title = @"Add Friend";
+    [myButton2 setTitleTextAttributes:
+     @{NSForegroundColorAttributeName  : [UIColor lightTextColor]}
+                            forState:normal];
+    myButton2.target = self;
+    self.navigationItem.rightBarButtonItem = myButton2;
+    
+    
+    
     
     PoloLocationManager *myLocationManager = [PoloAppDelegate delegate].locationManager;
     [myLocationManager startUpdatingMyLocation];

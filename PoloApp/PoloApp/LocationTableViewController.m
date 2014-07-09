@@ -109,6 +109,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundColor = [UIColor blackColor];
+    
+    UIBarButtonItem *myButton2 = [[UIBarButtonItem alloc]init];
+    myButton2.action = @selector(goToLocationScreen:);
+    myButton2.title = @"Add Loc";
+    [myButton2 setTitleTextAttributes:
+     @{NSForegroundColorAttributeName  : [UIColor lightTextColor]}
+                            forState:normal];
+    myButton2.target = self;
+    self.navigationItem.rightBarButtonItem = myButton2;
 }
 
 - (void)viewWillAppear:(BOOL)animated

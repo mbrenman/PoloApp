@@ -98,6 +98,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self getUserSettings];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setToolbarHidden:NO animated:NO];
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning

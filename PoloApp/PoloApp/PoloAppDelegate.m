@@ -83,9 +83,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ArrowViewController *avc = (ArrowViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ArrowViewController"];
         
-        UIViewController *fvc = [[[tbc selectedViewController] childViewControllers] lastObject];
+        UIViewController *fvc = [[[tbc selectedViewController] childViewControllers] firstObject];
         
-        [avc setTargetUserName:@"a"];
+        //This should be not a literal. We should have a place where the pushing of notifications and here can see. Maybe app delegate property?
+        NSString *target = [alertView.message stringByReplacingOccurrencesOfString:@" would like to connect with you" withString:@""];
+        [avc setTargetUserName:target];
         
         [[fvc navigationController] pushViewController:avc animated:YES];
         

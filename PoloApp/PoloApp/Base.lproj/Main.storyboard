@@ -34,7 +34,7 @@
                         <viewControllerLayoutGuide type="bottom" id="OEP-AZ-mmp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="H3x-c5-ceN" customClass="ArrowView">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Vi-VG-jus">
@@ -466,7 +466,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TXm-gv-ivG"/>
-        <segue reference="TJO-ak-dHW"/>
+        <segue reference="lgx-U7-44A"/>
+        <segue reference="oIt-RW-7II"/>
     </inferredMetricsTieBreakers>
 </document>

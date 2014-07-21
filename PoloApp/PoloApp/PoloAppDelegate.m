@@ -9,6 +9,9 @@
 #import "PoloAppDelegate.h"
 #import <Parse/Parse.h>
 #import "PoloLocationManager.h"
+#import "ArrowViewController.h"
+#import "FriendListUINavigationViewController.h"
+#import "FriendTableViewController.h"
 
 @interface PoloAppDelegate()
 
@@ -55,7 +58,42 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+//    [PFPush handlePush:userInfo];
+    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    //Get user by trimming until len-len of " would like to connect with you"
+    //An alert for if the user tries to add a friend that they already have
+    UIAlertView *connectRequest = [[UIAlertView alloc]
+                                   initWithTitle:@"Friend!"
+                                   message:alert
+                                   delegate:self
+                                   cancelButtonTitle:@"Connect"
+                                   otherButtonTitles:@"Dismiss", nil];
+    
+    [connectRequest show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"Connect"]) {
+        NSLog(@"Button 1 was selected.");
+        UITabBarController *tbc = [self tabBarController];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ArrowViewController *avc = (ArrowViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ArrowViewController"];
+        
+        UIViewController *fvc = [[[tbc selectedViewController] childViewControllers] firstObject];
+        
+        //This should be not a literal. We should have a place where the pushing of notifications and here can see. Maybe app delegate property?
+        NSString *target = [alertView.message stringByReplacingOccurrencesOfString:@" would like to connect with you" withString:@""];
+        [avc setTargetUserName:target];
+        
+        [[fvc navigationController] pushViewController:avc animated:YES];
+        
+    } else if([title isEqualToString:@"Dismiss"]) {
+        NSLog(@"Button 2 was selected.");
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

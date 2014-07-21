@@ -10,10 +10,8 @@
 #import <FCColorPickerViewController.h>
 
 
-@interface SettingsViewController : UIViewController <FCColorPickerViewControllerDelegate>
+@interface SettingsViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UISwitch *unitsSwitch;
-
--(IBAction)chooseColor:(id)sender;
-
 
 @end

@@ -15,29 +15,6 @@
 
 @implementation SettingsViewController
 
-//-(IBAction)chooseColor:(id)sender {
-//    FCColorPickerViewController *colorPicker = [[FCColorPickerViewController alloc]
-//                                                initWithNibName:@"FCColorPickerViewController"
-//                                                bundle:[NSBundle mainBundle]];
-//    colorPicker.color = self.view.backgroundColor;
-//    colorPicker.delegate = self;
-//    
-//    [colorPicker setModalPresentationStyle:UIModalPresentationFormSheet];
-//    [self presentViewController:colorPicker animated:YES completion:nil];
-//    
-//}
-//
-//-(void)colorPickerViewController:(FCColorPickerViewController *)colorPicker didSelectColor:(UIColor *)color {
-//    self.view.backgroundColor = color;
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
-//
-//-(void)colorPickerViewControllerDidCancel:(FCColorPickerViewController *)colorPicker {
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
-
-
-
 - (void)getUserSettings
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -67,7 +44,7 @@
     self.canDisplayBannerAds = YES;
     [self.unitsSwitch addTarget:self action:@selector(setState) forControlEvents:UIControlEventValueChanged];
     
-    UIBarButtonItem *myButton = [[UIBarButtonItem alloc]init];
+    UIBarButtonItem *myButton = [[UIBarButtonItem alloc] init];
         myButton.action = @selector(logoutUser);
         myButton.title = @"Log Out";
         [myButton setTitleTextAttributes:@{
@@ -76,11 +53,6 @@
     myButton.target = self;
 
     self.navigationItem.leftBarButtonItem = myButton;
-    
-//    //Round the corners on the save settings button
-//    _saveSettingsButton.layer.cornerRadius = 10;
-//    _saveSettingsButton.clipsToBounds = YES;
-    
 }
 
 - (void)logoutUser{
@@ -98,6 +70,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self getUserSettings];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+//    [self.navigationController setToolbarHidden:NO animated:NO];
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning

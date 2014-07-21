@@ -7,6 +7,7 @@
 //
 
 #import "FriendListTabBarController.h"
+#import "PoloAppDelegate.h"
 
 @interface FriendListTabBarController ()
 
@@ -26,8 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSLog(@"");
+    [[PoloAppDelegate delegate] setTabBarController:self];
 	// Do any additional setup after loading the view.
 }
 

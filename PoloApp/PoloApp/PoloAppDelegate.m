@@ -10,6 +10,8 @@
 #import <Parse/Parse.h>
 #import "PoloLocationManager.h"
 #import "ArrowViewController.h"
+#import "FriendListUINavigationViewController.h"
+#import "FriendTableViewController.h"
 
 @interface PoloAppDelegate()
 
@@ -81,9 +83,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ArrowViewController *avc = (ArrowViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ArrowViewController"];
         
-        avc.targetUserName = @"a";
+        UIViewController *fvc = [[[tbc selectedViewController] childViewControllers] lastObject];
         
-        [tbc presentViewController:avc animated:YES completion:nil];
+        [avc setTargetUserName:@"a"];
+        
+        [[fvc navigationController] pushViewController:avc animated:YES];
         
     } else if([title isEqualToString:@"Dismiss"]) {
         NSLog(@"Button 2 was selected.");

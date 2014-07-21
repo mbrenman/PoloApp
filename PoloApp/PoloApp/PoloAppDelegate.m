@@ -74,9 +74,17 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-    
     if ([title isEqualToString:@"Connect"]) {
         NSLog(@"Button 1 was selected.");
+        UITabBarController *tbc = [self tabBarController];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ArrowViewController *avc = (ArrowViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ArrowViewController"];
+        
+        avc.targetUserName = @"a";
+        
+        [tbc presentViewController:avc animated:YES completion:nil];
+        
     } else if([title isEqualToString:@"Dismiss"]) {
         NSLog(@"Button 2 was selected.");
     }

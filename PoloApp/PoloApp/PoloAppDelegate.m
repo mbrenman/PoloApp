@@ -69,8 +69,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
                                    cancelButtonTitle:@"Connect"
                                    otherButtonTitles:@"Dismiss", nil];
     
-    [connectRequest show];
-    
+    UITabBarController *tbc = [self tabBarController];
+    //Don't show the popup if you are already on the arrow screen
+    if ( ![(NSStringFromClass([[[[tbc selectedViewController] childViewControllers] lastObject] class])) isEqualToString: @"ArrowViewController"]){
+        [connectRequest show];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

@@ -20,6 +20,37 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _unitsSwitch.on = [defaults boolForKey:@"units_preference"];
 }
+- (IBAction)pressedDeleteAccount:(id)sender {
+    
+    UIAlertView *deleteCheck = [[UIAlertView alloc]
+                                   initWithTitle:@"Delete Account"
+                                   message:@"Are you sure you want to delete your account?"
+                                   delegate:self
+                                   cancelButtonTitle:@"Yes"
+                                otherButtonTitles:@"Cancel", nil];
+
+        [deleteCheck show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"Yes"]) {
+        PFUser *me = [PFUser currentUser];
+
+        NSArray *myLocations =me[@"myLocations"];
+        for (PFObject *location in myLocations) {
+            [location deleteInBackground];
+        }
+        
+        [me saveInBackground];
+        
+        [me delete];
+        [me saveInBackground];
+        [self performSegueWithIdentifier:@"settingsToLogout" sender:nil];
+    } else if([title isEqualToString:@"Cancel"]) {
+        //
+    }
+}
 
 - (void)saveUserSettings
 {
@@ -61,7 +92,8 @@
     
     [PFUser logOut];
     //Segue back to the login screen
-    [self performSegueWithIdentifier:@"settingsToLogout" sender:nil];}
+[self performSegueWithIdentifier:@"settingsToLogout" sender:nil];
+}
 
 - (void)setState{
     [self saveUserSettings];

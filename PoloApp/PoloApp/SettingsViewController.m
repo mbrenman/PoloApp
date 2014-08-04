@@ -11,15 +11,17 @@
 #import "Parse/Parse.h"
 @interface SettingsViewController ()
 
+@property (strong, nonatomic) IBOutlet UITextField *phoneNumberTextField;
+
 @end
 
 @implementation SettingsViewController
 
-- (void)getUserSettings
-{
+- (void)getUserSettings {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _unitsSwitch.on = [defaults boolForKey:@"units_preference"];
 }
+
 - (IBAction)pressedDeleteAccount:(id)sender {
     
     UIAlertView *deleteCheck = [[UIAlertView alloc]
@@ -82,8 +84,23 @@
                                        NSForegroundColorAttributeName  : [UIColor lightTextColor]}
                             forState:normal];
     myButton.target = self;
+    [self getPhoneNumber];
 
     self.navigationItem.leftBarButtonItem = myButton;
+}
+
+- (IBAction)updatePhoneNumber:(id)sender {
+    PFUser *me = [PFUser currentUser];
+    me[@"additional"] = self.phoneNumberTextField.text;
+    [me saveInBackground];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if ([self.phoneNumberTextField isFirstResponder])
+    {
+        [self.phoneNumberTextField resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
 }
 
 - (void)logoutUser{
@@ -102,10 +119,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self getUserSettings];
-    
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 //    [self.navigationController setToolbarHidden:NO animated:NO];
     [self.tabBarController.tabBar setHidden:NO];
+}
+
+-(void)getPhoneNumber{
+    PFUser *me = [PFUser currentUser];
+    
+    self.phoneNumberTextField.text = me[@"additional"];
 }
 
 - (void)didReceiveMemoryWarning

@@ -386,10 +386,29 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Delete Account">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="pressedDeleteAccount:" destination="tCq-Vl-BUl" eventType="touchUpInside" id="HkT-Dn-RIA"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bqT-U9-pYD">
+                                <rect key="frame" x="20" y="71" width="113" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bo-8Y-9gB">
+                                <rect key="frame" x="251" y="71" width="64" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleColor" red="0.074347118929999997" green="0.70034391979999999" blue="0.1823996792" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updatePhoneNumber:" destination="tCq-Vl-BUl" eventType="touchUpInside" id="bY5-KK-DSG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -398,6 +417,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="jcW-0h-al1"/>
                     <connections>
                         <outlet property="UnitsSwitch" destination="KOe-o6-Xkt" id="Jmd-aZ-gWQ"/>
+                        <outlet property="phoneNumberTextField" destination="bqT-U9-pYD" id="4Ew-q9-UFF"/>
                         <outlet property="unitsSwitch" destination="SSA-mO-NNA" id="Mbn-hy-NaP"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="settingsToLogout" id="lgx-U7-44A"/>
                     </connections>

@@ -53,6 +53,8 @@
 		B3D45D9D18C0FBB700C612F8 /* FriendListUINavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */; };
 		B3D45D9F18C100B600C612F8 /* rect4444.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45D9E18C100B600C612F8 /* rect4444.png */; };
 		B3D45DA118C1031000C612F8 /* rect4445.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D45DA018C1031000C612F8 /* rect4445.png */; };
+		B91255171989E43D00432878 /* alert_box.png in Resources */ = {isa = PBXBuildFile; fileRef = B91255161989E43D00432878 /* alert_box.png */; };
+		B91255191989E47900432878 /* alert_box copy.png in Resources */ = {isa = PBXBuildFile; fileRef = B91255181989E47900432878 /* alert_box copy.png */; };
 		B952A174196478E80069E0A7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B952A173196478E80069E0A7 /* FacebookSDK.framework */; };
 		B95DA1331953E383007E667B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95DA1321953E383007E667B /* Social.framework */; };
 		B95DA1351953E389007E667B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95DA1341953E389007E667B /* Accounts.framework */; };
@@ -137,6 +139,8 @@
 		B3D45D9C18C0FBB700C612F8 /* FriendListUINavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListUINavigationViewController.m; sourceTree = "<group>"; };
 		B3D45D9E18C100B600C612F8 /* rect4444.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect4444.png; sourceTree = "<group>"; };
 		B3D45DA018C1031000C612F8 /* rect4445.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rect4445.png; sourceTree = "<group>"; };
+		B91255161989E43D00432878 /* alert_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alert_box.png; sourceTree = "<group>"; };
+		B91255181989E47900432878 /* alert_box copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert_box copy.png"; sourceTree = "<group>"; };
 		B952A173196478E80069E0A7 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		B95DA1321953E383007E667B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B95DA1341953E389007E667B /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -247,6 +251,8 @@
 				B9A9812D195DF078001752F4 /* Settings */,
 				AAE891A1192C46E00062846F /* Settings.bundle */,
 				AAD39628189D923A00675698 /* Images.xcassets */,
+				B91255161989E43D00432878 /* alert_box.png */,
+				B91255181989E47900432878 /* alert_box copy.png */,
 				B9793B2219573344003A5BAD /* text-left.png */,
 				AAD39617189D923A00675698 /* Supporting Files */,
 			);
@@ -420,7 +426,7 @@
 				ORGANIZATIONNAME = mbrenman;
 				TargetAttributes = {
 					AAD3960C189D923A00675698 = {
-						DevelopmentTeam = N76MF7BL6V;
+						DevelopmentTeam = WC5PBECM68;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -460,12 +466,14 @@
 				B9793B2319573344003A5BAD /* text-left.png in Resources */,
 				AAD39629189D923A00675698 /* Images.xcassets in Resources */,
 				AAD3961B189D923A00675698 /* InfoPlist.strings in Resources */,
+				B91255171989E43D00432878 /* alert_box.png in Resources */,
 				AA04607C189E9AD8001A5785 /* icon.png in Resources */,
 				AAE891A2192C46E00062846F /* Settings.bundle in Resources */,
 				B3D45DA118C1031000C612F8 /* rect4445.png in Resources */,
 				B3D45D9A18C06A2900C612F8 /* BackArrow2.png in Resources */,
 				AAD39624189D923A00675698 /* Main.storyboard in Resources */,
 				B3D45D9F18C100B600C612F8 /* rect4444.png in Resources */,
+				B91255191989E47900432878 /* alert_box copy.png in Resources */,
 				AA046078189E7BF8001A5785 /* chevron.jpeg in Resources */,
 				AA04607A189E8719001A5785 /* PoloTitle.png in Resources */,
 				B326CF5118E749A300499A87 /* woman.png in Resources */,

@@ -45,6 +45,10 @@
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self application:application didReceiveRemoteNotification:nil  ];
+    });
+    
     return YES;
 }
 
@@ -60,8 +64,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //    [PFPush handlePush:userInfo];
     NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    
     //Get user by trimming until len-len of " would like to connect with you"
     //An alert for if the user tries to add a friend that they already have
+    
     UIAlertView *connectRequest = [[UIAlertView alloc]
                                    initWithTitle:@"Friend!"
                                    message:alert
@@ -70,6 +76,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
                                    otherButtonTitles:@"Dismiss", nil];
     
     UITabBarController *tbc = [self tabBarController];
+    
     //Don't show the popup if you are already on the arrow screen
     if ( ![(NSStringFromClass([[[[tbc selectedViewController] childViewControllers] lastObject] class])) isEqualToString: @"ArrowViewController"]){
         [connectRequest show];

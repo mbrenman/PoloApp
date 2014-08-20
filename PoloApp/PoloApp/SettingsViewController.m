@@ -83,6 +83,7 @@
         [myButton setTitleTextAttributes:@{
                                        NSForegroundColorAttributeName  : [UIColor lightTextColor]}
                             forState:normal];
+    
     myButton.target = self;
     [self getPhoneNumber];
 

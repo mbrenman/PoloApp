@@ -143,16 +143,32 @@ const float METERS_PER_MILE = 1609.34;
         if (!error){
             _otherUser = (PFUser *)object;
             _haveTarget = YES;
+            
         } else {
             //Let the user know that they cannot connect
+            
+            if (error.code == 101) {
+                [self removeFriend:_targetUserName];
+            }
+            
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unknown User"
                                                             message:@"The user is either private or does not exist"
                                                            delegate:self
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
+            [self popBackAViewController];
         }
     }];
+}
+
+- (void)removeFriend: (NSString *)friend
+{
+    PFUser *currentUser = [PFUser currentUser];
+    NSMutableArray *friends = currentUser[@"friends"];
+    [friends removeObject:friend];
+    currentUser[@"friends"] = friends;
+    [currentUser saveInBackground];
 }
 
 - (void)regularInfoUpdate

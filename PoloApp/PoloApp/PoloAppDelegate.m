@@ -45,7 +45,6 @@
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
 
-    
     return YES;
 }
 

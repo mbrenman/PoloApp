@@ -7,6 +7,7 @@
 //
 
 #import "LoginSignupViewController.h"
+#import "TTAlertView.h"
 
 @implementation PoloViewController
 
@@ -87,10 +88,10 @@
         return YES; // Begin login process
     }
     
-    [[[UIAlertView alloc] initWithTitle:@"Missing Information"
+    [[[TTAlertView alloc] initWithTitle:@"Missing Information"
                                 message:@"Make sure you fill out all of the information!"
                                delegate:nil
-                      cancelButtonTitle:@"ok"
+                      cancelButtonTitle:@"Ok"
                       otherButtonTitles:nil] show];
     return NO; // Interrupt login process
 }

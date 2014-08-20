@@ -12,6 +12,7 @@
 #import "ArrowViewController.h"
 #import "FriendListUINavigationViewController.h"
 #import "FriendTableViewController.h"
+#import "TTAlertView.h"
 
 @interface PoloAppDelegate()
 
@@ -64,12 +65,12 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     //Get user by trimming until len-len of " would like to connect with you"
     //An alert for if the user tries to add a friend that they already have
     
-    UIAlertView *connectRequest = [[UIAlertView alloc]
+    TTAlertView *connectRequest = [[TTAlertView alloc]
                                    initWithTitle:@"Friend!"
                                    message:alert
                                    delegate:self
-                                   cancelButtonTitle:@"Connect"
-                                   otherButtonTitles:@"Dismiss", nil];
+                                   cancelButtonTitle:@"Dismiss"
+                                   otherButtonTitles:@"Connect", nil];
     
     UITabBarController *tbc = [self tabBarController];
     
@@ -79,10 +80,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(TTAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-    if ([title isEqualToString:@"Connect"]) {
+    if (buttonIndex == 1) {
         NSLog(@"Button 1 was selected.");
         UITabBarController *tbc = [self tabBarController];
         
@@ -97,7 +97,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         
         [[fvc navigationController] pushViewController:avc animated:YES];
         
-    } else if([title isEqualToString:@"Dismiss"]) {
+    } else if(buttonIndex == 0) {
         NSLog(@"Button 2 was selected.");
     }
 }

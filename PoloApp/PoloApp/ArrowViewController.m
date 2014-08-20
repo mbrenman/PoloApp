@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "PoloAppDelegate.h"
 #import "PoloLocationManager.h"
+#import "TTAlertView.h"
 
 const unsigned int UPDATE_SECONDS = 1;
 const float EARTH_RADIUS = 3963.1676;
@@ -151,7 +152,7 @@ const float METERS_PER_MILE = 1609.34;
                 [self removeFriend:_targetUserName];
             }
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unknown User"
+             TTAlertView *alert = [[TTAlertView alloc] initWithTitle:@"Unknown User"
                                                             message:@"The user is either private or does not exist"
                                                            delegate:self
                                                   cancelButtonTitle:@"OK"

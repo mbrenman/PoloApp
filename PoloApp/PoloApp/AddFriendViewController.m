@@ -9,12 +9,14 @@
 #import "AddFriendViewController.h"
 #import <Parse/Parse.h>
 
-@interface AddFriendViewController ()
+#import "TTAlertView.h"
+
+@interface AddFriendViewController () <UITextFieldDelegate>
 @property (nonatomic) NSMutableArray *friends;
-@property (nonatomic, strong) UIAlertView *alertNonexistent;
-@property (nonatomic, strong) UIAlertView *alertAlreadyAdded;
-@property (nonatomic, strong) UIAlertView *alertSelfAdded;
-@property (nonatomic, strong) UIAlertView *alertPendingRequest;
+@property (nonatomic, strong) TTAlertView *alertNonexistent;
+@property (nonatomic, strong) TTAlertView *alertAlreadyAdded;
+@property (nonatomic, strong) TTAlertView *alertSelfAdded;
+@property (nonatomic, strong) TTAlertView *alertPendingRequest;
 
 @end
 
@@ -39,9 +41,15 @@
     return self;
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (IBAction)AddButtonClick:(id)sender {
     NSString *newFriend = [_friendNameField text];
     [self AddFriendIfExistsinDB:newFriend];
+    [self.friendNameField resignFirstResponder];
     NSLog(@"ADDBUTTONCLOCK");
 }
 
@@ -113,17 +121,22 @@
         
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    
+    [self.friendNameField setReturnKeyType:UIReturnKeyDefault];
+    [self.friendNameField setDelegate:self];
+    
     //An alert for if the user tries to add a nonexistent friend
-    _alertNonexistent = [[UIAlertView alloc]
+    _alertNonexistent = [[TTAlertView alloc]
         initWithTitle:@"Error"
         message:@"No such user exists"
         delegate:self
         cancelButtonTitle:@"Dismiss"
         otherButtonTitles:nil];
-    
+        
     //An alert for if the user tries to add a friend that they already have
-    _alertAlreadyAdded = [[UIAlertView alloc]
+    _alertAlreadyAdded = [[TTAlertView alloc]
                          initWithTitle:@"Error"
                          message:@"Already friends with selcted user"
                          delegate:self
@@ -131,14 +144,14 @@
                          otherButtonTitles:nil];
 
     //An alert for is the user tries to add themselves
-    _alertSelfAdded = [[UIAlertView alloc]
+    _alertSelfAdded = [[TTAlertView alloc]
                           initWithTitle:@"Error"
                           message:@"Cannot add yourself"
                           delegate:self
                           cancelButtonTitle:@"Dismiss"
                           otherButtonTitles:nil];
     
-    _alertPendingRequest = [[UIAlertView alloc]
+    _alertPendingRequest = [[TTAlertView alloc]
                        initWithTitle:@"Error"
                        message:@"Friend request currently pending"
                        delegate:self

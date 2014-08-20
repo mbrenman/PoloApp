@@ -9,6 +9,8 @@
 #import "SettingsViewController.h"
 #import "iAd/iAd.h"
 #import "Parse/Parse.h"
+#import "TTAlertView.h"
+
 @interface SettingsViewController ()
 
 @property (strong, nonatomic) IBOutlet UITextField *phoneNumberTextField;
@@ -24,19 +26,18 @@
 
 - (IBAction)pressedDeleteAccount:(id)sender {
     
-    UIAlertView *deleteCheck = [[UIAlertView alloc]
+     TTAlertView *deleteCheck = [[TTAlertView alloc]
                                    initWithTitle:@"Delete Account"
                                    message:@"Are you sure you want to delete your account?"
                                    delegate:self
-                                   cancelButtonTitle:@"Yes"
-                                otherButtonTitles:@"Cancel", nil];
+                                   cancelButtonTitle:@"Cancel"
+                                otherButtonTitles:@"Yes", nil];
 
         [deleteCheck show];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-    if ([title isEqualToString:@"Yes"]) {
+- (void)alertView:(TTAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
         PFUser *me = [PFUser currentUser];
 
         NSArray *myLocations =me[@"myLocations"];
@@ -49,8 +50,6 @@
         [me delete];
         [me saveInBackground];
         [self performSegueWithIdentifier:@"settingsToLogout" sender:nil];
-    } else if([title isEqualToString:@"Cancel"]) {
-        //
     }
 }
 

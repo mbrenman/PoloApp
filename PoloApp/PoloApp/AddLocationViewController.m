@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "PoloLocationManager.h"
 #import "PoloAppDelegate.h"
+#import "TTAlertView.h"
 
 @interface AddLocationViewController ()
 
@@ -42,7 +43,7 @@
     //Only add name if the name hasn't been used already (for this user)
     if (nameAlreadyUsed){
         //Alert the user to choose a different name
-        UIAlertView *alert = [[UIAlertView alloc]                           initWithTitle:@"Name Already Used"
+         TTAlertView *alert = [[TTAlertView alloc]                           initWithTitle:@"Name Already Used"
                   message:@"Please use a different name"
                  delegate:self
         cancelButtonTitle:@"Dismiss"

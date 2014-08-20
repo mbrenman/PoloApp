@@ -58,6 +58,7 @@
 		B952A174196478E80069E0A7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B952A173196478E80069E0A7 /* FacebookSDK.framework */; };
 		B95DA1331953E383007E667B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95DA1321953E383007E667B /* Social.framework */; };
 		B95DA1351953E389007E667B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95DA1341953E389007E667B /* Accounts.framework */; };
+		B9609CC319A54D9500450144 /* TTAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9609CC219A54D9500450144 /* TTAlertView.m */; };
 		B9793B1F19572C70003A5BAD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9793B1E19572C70003A5BAD /* StoreKit.framework */; };
 		B9793B2319573344003A5BAD /* text-left.png in Resources */ = {isa = PBXBuildFile; fileRef = B9793B2219573344003A5BAD /* text-left.png */; };
 		B9A9812F195E0DC7001752F4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A9812E195E0DC7001752F4 /* Parse.framework */; };
@@ -146,6 +147,8 @@
 		B95DA1341953E389007E667B /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B95DA1361953E399007E667B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B95DA1381953E3F9007E667B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		B9609CC119A54D9500450144 /* TTAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTAlertView.h; sourceTree = "<group>"; };
+		B9609CC219A54D9500450144 /* TTAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTAlertView.m; sourceTree = "<group>"; };
 		B9793B1E19572C70003A5BAD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B9793B2219573344003A5BAD /* text-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-left.png"; sourceTree = "<group>"; };
 		B9A9812E195E0DC7001752F4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -241,6 +244,7 @@
 		AAD39616189D923A00675698 /* PoloApp */ = {
 			isa = PBXGroup;
 			children = (
+				B9609CC019A54D6B00450144 /* TTAlertView */,
 				B3818ABA192EAA5B000E81F4 /* Locations */,
 				B3818ABB192EAA74000E81F4 /* Friends */,
 				AAD39622189D923A00675698 /* Main.storyboard */,
@@ -337,6 +341,15 @@
 				AA04606A189E321C001A5785 /* ArrowViewController.m */,
 			);
 			name = ArrowView;
+			sourceTree = "<group>";
+		};
+		B9609CC019A54D6B00450144 /* TTAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				B9609CC119A54D9500450144 /* TTAlertView.h */,
+				B9609CC219A54D9500450144 /* TTAlertView.m */,
+			);
+			name = TTAlertView;
 			sourceTree = "<group>";
 		};
 		B9A98129195DF045001752F4 /* App Delegate */ = {
@@ -530,6 +543,7 @@
 			files = (
 				AAD39627189D923A00675698 /* LoginSignupViewController.m in Sources */,
 				AAD3965E189DD88F00675698 /* FriendTableViewController.m in Sources */,
+				B9609CC319A54D9500450144 /* TTAlertView.m in Sources */,
 				AAD39661189DDB0C00675698 /* FriendCell.m in Sources */,
 				AA04606B189E321C001A5785 /* ArrowViewController.m in Sources */,
 				B34B145418CBCAD600758173 /* FriendListTabBarController.m in Sources */,

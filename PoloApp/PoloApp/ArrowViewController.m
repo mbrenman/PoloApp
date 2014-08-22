@@ -13,14 +13,13 @@
 #import "PoloLocationManager.h"
 #import "TTAlertView.h"
 
-const unsigned int UPDATE_SECONDS = 1;
+const unsigned int SECONDS_BETWEEN_TARGET_UPDATES = 1;
 const float EARTH_RADIUS = 3963.1676;
 const float FEET_PER_MILE = 5280;
 const float KM_PER_MILE = 1.60934;
 const float METERS_PER_MILE = 1609.34;
 
 @interface ArrowViewController() <PoloLocationManagerDelegate>
-@property float radChange;
 @property (nonatomic, strong) PoloLocationManager *locationManager;
 @property (strong, nonatomic) PFUser *me;
 @property (retain, nonatomic) CLHeading *currentHeading;
@@ -29,7 +28,7 @@ const float METERS_PER_MILE = 1609.34;
 @property PFObject *connection;
 @property BOOL haveMyLoc, haveTargetLoc, haveTarget;
 @property BOOL visible;
-@property BOOL isLargerDistance;
+@property BOOL isMileOrKM;
 @property BOOL useMetricUnits;
 @property NSMutableArray *locations;
 @end
@@ -50,35 +49,32 @@ const float METERS_PER_MILE = 1609.34;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cleanArrowData) name:@"terminatingApp" object:nil];
     
-    _DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:50];
-    _TargetLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:30];
+    self.DistanceLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:50];
+    self.TargetLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:30];
     
-    _haveMyLoc = NO;
-    _otherUser = nil;
-    _connection = nil;
+    self.haveMyLoc = NO;
+    self.otherUser = nil;
+    self.connection = nil;
     
-    if (_staticLocation){
-        _TargetLabel.text = _staticSender;
-        _haveTarget = NO;
-        _haveTargetLoc = NO;
-        _otherLat = 0.0f;
-        _otherLong = 0.0f;
+    if (self.staticLocation){
+        self.TargetLabel.text = self.staticSender;
+        self.haveTarget = NO;
+        self.haveTargetLoc = NO;
+        self.otherLat = 0.0f;
+        self.otherLong = 0.0f;
         [self performSelectorInBackground:@selector(getStaticTargetInBackground) withObject:nil];
     } else {
-        _TargetLabel.text = _targetUserName;
-        _haveTarget = NO;
-        _haveTargetLoc = NO;
-        _otherLat = 0.0f;
-        _otherLong = 0.0f;
-        [self getTargetInBackground]; //Find the target user
+        self.TargetLabel.text = self.targetUserName;
+        self.haveTarget = NO;
+        self.haveTargetLoc = NO;
+        self.otherLat = 0.0f;
+        self.otherLong = 0.0f;
+        [self getTargetInBackground];
     }
     
-    _visible = YES;
+    self.visible = YES;
     
-    _radChange = 0.0f;
-    
-    //Open a new thread to update the target location regularly
-    [self performSelectorInBackground:@selector(regularInfoUpdate) withObject:nil];
+    [self performSelectorInBackground:@selector(regularTargetInfoUpdate) withObject:nil];
     
     //set up location manager
 	_locationManager = [[PoloAppDelegate delegate] locationManager];
@@ -88,15 +84,15 @@ const float METERS_PER_MILE = 1609.34;
         self.haveMyLoc = YES;
     }
     [self headingWasUpdated];
-    _me = [PFUser currentUser];
+    self.me = [PFUser currentUser];
 }
 
 
 - (IBAction)toggleDistanceGranularity:(id)sender {
-    if (_isLargerDistance) {
-        _isLargerDistance = false;
+    if (self.isMileOrKM) {
+        self.isMileOrKM = false;
     } else {
-        _isLargerDistance = true;
+        self.isMileOrKM = true;
     }
     [self updateDistance];
 }
@@ -109,8 +105,8 @@ const float METERS_PER_MILE = 1609.34;
 }
 
 - (void) setUnitsBasedOnSettings {
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _useMetricUnits = [defaults boolForKey:@"units_preference"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.useMetricUnits = [defaults boolForKey:@"units_preference"];
 }
 
 - (void) getStaticTargetInBackground {
@@ -158,7 +154,7 @@ const float METERS_PER_MILE = 1609.34;
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
-            [self popBackAViewController];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }
@@ -172,79 +168,79 @@ const float METERS_PER_MILE = 1609.34;
     [currentUser saveInBackground];
 }
 
-- (void)regularInfoUpdate
+- (void)regularTargetInfoUpdate
 {
     while (_visible)
     {
-        [self updateLocations];
+        if (!self.staticLocation) {
+            [self pullTargetLocationAndPushMyLocation];
+        }
         [self updateDistance];
-        sleep(UPDATE_SECONDS);
+        
+        sleep(SECONDS_BETWEEN_TARGET_UPDATES);
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    NSLog(@"will dissapear");
     [self cleanArrowData];
 }
 
 - (void)cleanArrowData {
-    NSLog(@"CLEAN ARROW DATA");
-    
-    _visible = FALSE;
+    self.visible = FALSE;
     
     //Zero out location data when we get off of the arrow
-    _me[@"connections"] = [[NSNull alloc] init];
-    [_connection deleteInBackground]; //Removes object from parse
-    _connection = nil;
-    [_me saveInBackground];
-    NSLog(@"should be zero");
+    self.me[@"connections"] = [[NSNull alloc] init];
+    [self.connection deleteInBackground];
+    self.connection = nil;
+    [self.me saveInBackground];
     
-    //Stop the view from trying to update when we turn the device
     [self.locationManager stopUpdatingMyLocation];
-
 }
 
 - (IBAction)ArrowBackButtonPushed:(id)sender {
-    NSLog(@"Pushed");
-    [self popBackAViewController];
-//    [self performSegueWithIdentifier:@"ArrowToPerson" sender:nil];
-}
-
-- (void)popBackAViewController
-{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)headingWasUpdated{
-    if (_haveMyLoc && _haveTargetLoc){
-        // Convert Degree to Radian to point the arrow
-        float newRad =  -self.locationManager.myHeading.trueHeading * M_PI / 180.0f;
+    if (self.haveMyLoc && self.haveTargetLoc){
+        float newRad =  - [self degreesToRadians: self.locationManager.myHeading.trueHeading];
     
-        _radChange = [self findNewRadChangeForTarget];
-        newRad += _radChange;
+        float radChange = 0;
+        float change = 0.0f;
+        
+        float dLat = self.otherLat - self.locationManager.myLat;
+        float dLong = self.otherLong - self.locationManager.myLong;
+        
+        change = atan2(dLat, dLong);
+        change -= M_PI_2;
+        
+        radChange -= change;
+        
+        
+        newRad += radChange;
 
         [_compassView setNewRad:newRad];
         [_compassView setNeedsDisplay];
-    } else {
-        NSLog(@"denied.");
     }
 }
 
 - (void)updateDistance
 {
-    if (_haveTargetLoc && _haveMyLoc){
-        float lat1 = [self degreesToRadians:self.locationManager.myLat];
-        float lat2 = [self degreesToRadians:_otherLat];
-        float long1 = [self degreesToRadians:self.locationManager.myLong];
-        float long2 = [self degreesToRadians:_otherLong];
+    if (self.haveTargetLoc && self.haveMyLoc){
+        float myLat = [self degreesToRadians:self.locationManager.myLat];
+        float otherLat = [self degreesToRadians:_otherLat];
+        float myLong = [self degreesToRadians:self.locationManager.myLong];
+        float otherLong = [self degreesToRadians:_otherLong];
     
-        float dLat = lat1 - lat2;
-        float dLong = long1 - long2;
+        float dLat = myLat - otherLat;
+        float dLong = myLong - otherLong;
     
-        float a = sinf(dLat/2.0f) * sinf(dLat/2.0f) + sinf(dLong/2.0f) * sinf(dLong/2.0f) * cosf(lat1) * cosf(lat2);
+        float a = sinf(dLat/2.0f) * sinf(dLat/2.0f) + sinf(dLong/2.0f) * sinf(dLong/2.0f) * cosf(myLat) * cosf(otherLat);
+        
         float c = 2.0f * atan2((sqrtf(a)), (sqrtf(1.0f-a)));
+        
         float d = EARTH_RADIUS * c;
         
         NSNumber *distance = [[NSNumber alloc] initWithFloat:d];
@@ -255,17 +251,17 @@ const float METERS_PER_MILE = 1609.34;
 
 - (void)updateLabelWithDistance:(NSNumber *)distanceInMiles
 {
-    if (_useMetricUnits){
-        if (_isLargerDistance) {
-            _DistanceLabel.text = [NSString stringWithFormat:@"%.3f km", [distanceInMiles floatValue] * KM_PER_MILE];
+    if (self.useMetricUnits){
+        if (self.isMileOrKM) {
+            self.DistanceLabel.text = [NSString stringWithFormat:@"%.3f km", [distanceInMiles floatValue] * KM_PER_MILE];
         } else {
-            _DistanceLabel.text = [NSString stringWithFormat:@"%.0f m", [distanceInMiles floatValue] * METERS_PER_MILE];
+            self.DistanceLabel.text = [NSString stringWithFormat:@"%.0f m", [distanceInMiles floatValue] * METERS_PER_MILE];
         }
     } else {
-        if (_isLargerDistance) {
-            _DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", [distanceInMiles floatValue]];
+        if (self.isMileOrKM) {
+            self.DistanceLabel.text = [NSString stringWithFormat:@"%.3f mi", [distanceInMiles floatValue]];
         } else {
-            _DistanceLabel.text = [NSString stringWithFormat:@"%.0f ft", [distanceInMiles floatValue] * FEET_PER_MILE];
+            self.DistanceLabel.text = [NSString stringWithFormat:@"%.0f ft", [distanceInMiles floatValue] * FEET_PER_MILE];
         }
     }
 }
@@ -275,46 +271,29 @@ const float METERS_PER_MILE = 1609.34;
     return degrees * M_PI / 180.0f;
 }
 
-- (float)findNewRadChangeForTarget
+- (void)pullTargetLocationAndPushMyLocation
 {
-    float radChange = 0;
-    float change = 0.0f;
-    
-    float dLat = _otherLat - self.locationManager.myLat;
-    float dLong = _otherLong - self.locationManager.myLong;
-    
-    change = atan2(dLat, dLong);
-    change -= M_PI_2;
-    
-    radChange -= change;
-    return radChange;
-}
-
-- (void)updateLocations
-{
-    if (!_staticLocation){
-        PFQuery *connectionQuery = [PFQuery queryWithClassName:@"Connection"];
-        [connectionQuery whereKey:@"user" equalTo:_targetUserName];
-        [connectionQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            if (object){
-                float otherLat = [[object objectForKey:@"lat"] floatValue];
-                float otherLong = [[object objectForKey:@"long"] floatValue];
-                
-                [self setOtherLat:otherLat];
-                [self setOtherLong:otherLong];
-                
-                _haveTargetLoc = YES;
-                [_compassView setNeedsDisplay];
+    PFQuery *connectionQuery = [PFQuery queryWithClassName:@"Connection"];
+    [connectionQuery whereKey:@"user" equalTo:_targetUserName];
+    [connectionQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (object){
+            float otherLat = [[object objectForKey:@"lat"] floatValue];
+            float otherLong = [[object objectForKey:@"long"] floatValue];
+            
+            [self setOtherLat:otherLat];
+            [self setOtherLong:otherLong];
+            
+            _haveTargetLoc = YES;
+            [_compassView setNeedsDisplay];
+        }
+        if (error) {
+            if (_haveTargetLoc){
+                [self.navigationController popViewControllerAnimated:YES];
             }
-            if (error) {
-                if (_haveTargetLoc){
-                    [self popBackAViewController];
-                }
-            }
-        }];
-    }
+        }
+    }];
     
-    if (!_staticLocation && _haveTarget){
+    if ( _haveTarget){
         if (!_connection){
             _connection = [[PFObject alloc] initWithClassName:@"Connection"];
         }
@@ -338,7 +317,6 @@ const float METERS_PER_MILE = 1609.34;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

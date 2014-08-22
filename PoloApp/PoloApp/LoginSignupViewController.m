@@ -72,7 +72,6 @@
         
         // Assign our sign up controller to be displayed from the login controller
         [logInViewController setSignUpController:signUpViewController];
-
         
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];

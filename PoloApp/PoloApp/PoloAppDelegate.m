@@ -98,7 +98,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [[fvc navigationController] pushViewController:avc animated:YES];
         
     } else if(buttonIndex == 0) {
-        NSLog(@"Button 2 was selected.");
+        //dismissed connection request
     }
 }
 

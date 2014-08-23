@@ -76,8 +76,7 @@ const float METERS_PER_MILE = 1609.34;
     
     [self performSelectorInBackground:@selector(regularTargetInfoUpdate) withObject:nil];
     
-    //set up location manager
-	_locationManager = [[PoloAppDelegate delegate] locationManager];
+	self.locationManager = [[PoloAppDelegate delegate] locationManager];
     self.locationManager.delegate = self;
     [self.locationManager startUpdatingMyLocation];
     if (self.locationManager.myLat != 0) {
@@ -86,7 +85,6 @@ const float METERS_PER_MILE = 1609.34;
     [self headingWasUpdated];
     self.me = [PFUser currentUser];
 }
-
 
 - (IBAction)toggleDistanceGranularity:(id)sender {
     if (self.isMileOrKM) {
@@ -110,12 +108,12 @@ const float METERS_PER_MILE = 1609.34;
 }
 
 - (void) getStaticTargetInBackground {
-    _me = [PFUser currentUser];
-    _locations = _me[@"myLocations"];
+    self.me = [PFUser currentUser];
+    self.locations = self.me[@"myLocations"];
     PFObject *target;
     
-    NSString *senderName = (NSString *)_staticSender;
-    for (PFObject *temp in _locations) {
+    NSString *senderName = (NSString *)self.staticSender;
+    for (PFObject *temp in self.locations) {
         [temp fetchIfNeeded];
         
         NSString *tempName = temp[@"name"];
@@ -125,29 +123,28 @@ const float METERS_PER_MILE = 1609.34;
             break;
         }
     }
-    _otherLat = [target[@"lat"] floatValue];
-    _otherLong = [target[@"long"] floatValue];
-    _haveTarget = YES;
-    _haveTargetLoc = YES;
+    self.otherLat = [target[@"lat"] floatValue];
+    self.otherLong = [target[@"long"] floatValue];
+    self.haveTarget = YES;
+    self.haveTargetLoc = YES;
 }
 
 
 - (void)getTargetInBackground
 {
     PFQuery *query= [PFUser query];
-    [query whereKey:@"username" equalTo:_targetUserName];
+    [query whereKey:@"username" equalTo:self.targetUserName];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
         if (!error){
-            _otherUser = (PFUser *)object;
-            _haveTarget = YES;
+            self.otherUser = (PFUser *)object;
+            self.haveTarget = YES;
             
         } else {
             //Let the user know that they cannot connect
-            
             if (error.code == 101) {
-                [self removeFriend:_targetUserName];
+                //other user does not exist
+                [self removeFriend:self.targetUserName];
             }
-            
              TTAlertView *alert = [[TTAlertView alloc] initWithTitle:@"Unknown User"
                                                             message:@"The user is either private or does not exist"
                                                            delegate:self
@@ -170,11 +167,13 @@ const float METERS_PER_MILE = 1609.34;
 
 - (void)regularTargetInfoUpdate
 {
-    while (_visible)
+    while (self.visible)
     {
         if (!self.staticLocation) {
-            [self pullTargetLocationAndPushMyLocation];
+            [self pullTargetLocation];
+            [self pushMyLocation];
         }
+
         [self updateDistance];
         
         sleep(SECONDS_BETWEEN_TARGET_UPDATES);
@@ -205,24 +204,17 @@ const float METERS_PER_MILE = 1609.34;
 
 - (void)headingWasUpdated{
     if (self.haveMyLoc && self.haveTargetLoc){
-        float newRad =  - [self degreesToRadians: self.locationManager.myHeading.trueHeading];
-    
-        float radChange = 0;
-        float change = 0.0f;
+        float reversedTrueHeading = - [self degreesToRadians: self.locationManager.myHeading.trueHeading];
         
         float dLat = self.otherLat - self.locationManager.myLat;
         float dLong = self.otherLong - self.locationManager.myLong;
-        
-        change = atan2(dLat, dLong);
-        change -= M_PI_2;
-        
-        radChange -= change;
-        
-        
-        newRad += radChange;
 
-        [_compassView setNewRad:newRad];
-        [_compassView setNeedsDisplay];
+        float offsetFromNorth = atan2(dLat, dLong) - M_PI_2;
+
+        float arrowRotation =  reversedTrueHeading - offsetFromNorth;
+
+        [self.compassView setNewRad:arrowRotation];
+        [self.compassView setNeedsDisplay];
     }
 }
 
@@ -230,9 +222,9 @@ const float METERS_PER_MILE = 1609.34;
 {
     if (self.haveTargetLoc && self.haveMyLoc){
         float myLat = [self degreesToRadians:self.locationManager.myLat];
-        float otherLat = [self degreesToRadians:_otherLat];
+        float otherLat = [self degreesToRadians:self.otherLat];
         float myLong = [self degreesToRadians:self.locationManager.myLong];
-        float otherLong = [self degreesToRadians:_otherLong];
+        float otherLong = [self degreesToRadians:self.otherLong];
     
         float dLat = myLat - otherLat;
         float dLong = myLong - otherLong;
@@ -271,11 +263,12 @@ const float METERS_PER_MILE = 1609.34;
     return degrees * M_PI / 180.0f;
 }
 
-- (void)pullTargetLocationAndPushMyLocation
+- (void)pullTargetLocation
 {
     PFQuery *connectionQuery = [PFQuery queryWithClassName:@"Connection"];
-    [connectionQuery whereKey:@"user" equalTo:_targetUserName];
+    [connectionQuery whereKey:@"user" equalTo:self.targetUserName];
     [connectionQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        
         if (object){
             float otherLat = [[object objectForKey:@"lat"] floatValue];
             float otherLong = [[object objectForKey:@"long"] floatValue];
@@ -283,33 +276,37 @@ const float METERS_PER_MILE = 1609.34;
             [self setOtherLat:otherLat];
             [self setOtherLong:otherLong];
             
-            _haveTargetLoc = YES;
-            [_compassView setNeedsDisplay];
+            self.haveTargetLoc = YES;
+            [self.compassView setNeedsDisplay];
         }
+        //this handles the case where the other user disconnects
         if (error) {
-            if (_haveTargetLoc){
+            if (self.haveTargetLoc){
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }
     }];
-    
-    if ( _haveTarget){
-        if (!_connection){
-            _connection = [[PFObject alloc] initWithClassName:@"Connection"];
+}
+
+- (void)pushMyLocation{
+    if (self.haveTarget){
+        
+        if (!self.connection){
+            self.connection = [[PFObject alloc] initWithClassName:@"Connection"];
         }
         
-        _connection[@"user"] = [[PFUser currentUser] username];
-        _connection[@"lat"] = [NSString stringWithFormat:@"%f", self.locationManager.myLat];
-        _connection[@"long"] = [NSString stringWithFormat:@"%f", self.locationManager.myLong];
+        self.connection[@"user"] = [[PFUser currentUser] username];
+        self.connection[@"lat"] = [NSString stringWithFormat:@"%f", self.locationManager.myLat];
+        self.connection[@"long"] = [NSString stringWithFormat:@"%f", self.locationManager.myLong];
         
         PFACL *acl = [PFACL ACLWithUser:[PFUser currentUser]];
-        [acl setReadAccess:YES forUser:_otherUser];
-        [_connection setACL:acl];
+        [acl setReadAccess:YES forUser:self.otherUser];
+        [self.connection setACL:acl];
         
-        _me[@"connections"] = _connection;
+        self.me[@"connections"] = self.connection;
         
-        if (_visible){
-            [_me saveInBackground];
+        if (self.visible){
+            [self.me saveInBackground];
         }
     }
 }

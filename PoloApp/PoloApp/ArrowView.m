@@ -46,7 +46,7 @@
         _bezierArrowView = [[ArrowPathView alloc] initWithFrame:CGRectMake(x_offset, y_offset, width, height)];
         [self addSubview:_bezierArrowView];
     }
-    CGAffineTransform rotate = CGAffineTransformMakeRotation( _newRad );
+    CGAffineTransform rotate = CGAffineTransformMakeRotation(self.newRad);// - M_PI_2);
     [_bezierArrowView setTransform:rotate];
 }
 

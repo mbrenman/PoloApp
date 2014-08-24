@@ -14,7 +14,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -34,7 +33,7 @@
         CGRect bounds = logInViewController.logInView.logo.bounds;
         UILabel *label = [[UILabel alloc] initWithFrame: bounds];
         label.adjustsFontSizeToFitWidth = YES;
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         [label setText:@"Polo"];
         [label setTextColor:[UIColor whiteColor]];
         label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:35];
@@ -52,7 +51,7 @@
         
         bounds = signUpViewController.signUpView.logo.bounds;
         label = [[UILabel alloc] initWithFrame: bounds];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         [label setText:@"Polo"];
         [label setTextColor:[UIColor whiteColor]];
         label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:35];
@@ -80,11 +79,10 @@
     }
 }
 
-// Sent to the delegate to determine whether the log in request should be submitted to the server.
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
     // Check if both fields are completed
     if (username && password && username.length != 0 && password.length != 0) {
-        return YES; // Begin login process
+        return YES;
     }
     
     [[[TTAlertView alloc] initWithTitle:@"Missing Information"
@@ -92,7 +90,7 @@
                                delegate:nil
                       cancelButtonTitle:@"Ok"
                       otherButtonTitles:nil] show];
-    return NO; // Interrupt login process
+    return NO;
 }
 
 // Sent to the delegate when a PFUser is logged in.

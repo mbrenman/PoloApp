@@ -26,8 +26,7 @@
     }
     return self;
 }
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+
 - (void)drawRect:(CGRect)rect
 {
     if (!_bezierArrowView){
@@ -35,8 +34,6 @@
         
         CGFloat screenWidth = CGRectGetWidth(self.bounds);
         CGFloat screenHeight = CGRectGetHeight(self.bounds);
-        
-        //Rect sizes should change with the size of the screen for multi-device functionality
         
         CGFloat x_offset = screenWidth * .15f; //Allow 15 percent margin per side
         CGFloat y_offset = screenHeight * .30f; //Allow for a 30 percent top margin
@@ -46,7 +43,7 @@
         _bezierArrowView = [[ArrowPathView alloc] initWithFrame:CGRectMake(x_offset, y_offset, width, height)];
         [self addSubview:_bezierArrowView];
     }
-    CGAffineTransform rotate = CGAffineTransformMakeRotation(self.newRad);// - M_PI_2);
+    CGAffineTransform rotate = CGAffineTransformMakeRotation(self.newRad);
     [_bezierArrowView setTransform:rotate];
 }
 

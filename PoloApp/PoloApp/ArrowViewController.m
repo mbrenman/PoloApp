@@ -22,7 +22,6 @@ const float METERS_PER_MILE = 1609.34;
 @interface ArrowViewController() <PoloLocationManagerDelegate>
 @property (nonatomic, strong) PoloLocationManager *locationManager;
 @property (strong, nonatomic) PFUser *me;
-@property (retain, nonatomic) CLHeading *currentHeading;
 @property float otherLat, otherLong;
 @property PFUser *otherUser;
 @property PFObject *connection;
@@ -30,7 +29,6 @@ const float METERS_PER_MILE = 1609.34;
 @property BOOL visible;
 @property BOOL isMileOrKM;
 @property BOOL useMetricUnits;
-@property NSMutableArray *locations;
 @end
 
 @implementation ArrowViewController
@@ -109,11 +107,11 @@ const float METERS_PER_MILE = 1609.34;
 
 - (void) getStaticTargetInBackground {
     self.me = [PFUser currentUser];
-    self.locations = self.me[@"myLocations"];
+    NSMutableArray *locations = self.me[@"myLocations"];
     PFObject *target;
     
     NSString *senderName = (NSString *)self.staticSender;
-    for (PFObject *temp in self.locations) {
+    for (PFObject *temp in locations) {
         [temp fetchIfNeeded];
         
         NSString *tempName = temp[@"name"];
@@ -221,6 +219,7 @@ const float METERS_PER_MILE = 1609.34;
 - (void)updateDistance
 {
     if (self.haveTargetLoc && self.haveMyLoc){
+        
         float myLat = [self degreesToRadians:self.locationManager.myLat];
         float otherLat = [self degreesToRadians:self.otherLat];
         float myLong = [self degreesToRadians:self.locationManager.myLong];

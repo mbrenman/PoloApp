@@ -11,7 +11,6 @@
 #import "FriendCell.h"
 
 @interface FriendRequestTableViewController ()
-@property (nonatomic) UIActionSheet *actionSheet;
 
 @end
 
@@ -29,11 +28,18 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    PFObject *temp = [_requesters objectAtIndex:indexPath.row];
-    _actionSheet.accessibilityValue = [temp objectId];   
-    _actionSheet.tag = indexPath.row;
+    PFObject *temp = [self.requesters objectAtIndex:indexPath.row];
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Confirm Friend",@"Reject Friend",nil];
+    
+    actionSheet.accessibilityValue = [temp objectId];
+    actionSheet.tag = indexPath.row;
 
-    [_actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 - (void)viewDidLoad
@@ -41,12 +47,6 @@
     [super viewDidLoad];
 
     self.tableView.backgroundColor = [UIColor blackColor];
-
-    _actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                delegate:self
-                cancelButtonTitle:@"Cancel"
-                destructiveButtonTitle:nil
-                otherButtonTitles:@"Confirm Friend",@"Reject Friend",nil];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -54,48 +54,27 @@
     if (buttonIndex == 0){
         //Confirm Friend Clicked
         // 1. add the friend
-
         PFQuery *friendRequestQuery = [PFQuery queryWithClassName:@"friendRequest"];
-        PFObject *friendRequest = [friendRequestQuery getObjectWithId:_actionSheet.accessibilityValue];
+        PFObject *friendRequest = [friendRequestQuery getObjectWithId:actionSheet.accessibilityValue];
         
         NSString *newFriend = friendRequest[@"requester"];
-
-        PFUser* me = [PFUser currentUser];
-        NSMutableArray *friends = me[@"friends"];
-        if (![friends containsObject:newFriend]){
-            NSLog(@"prepreinitializing");
-            if (![[me username] isEqualToString:newFriend]){
-                if (!friends) {
-                    friends = [[NSMutableArray alloc] init];
-                }
-                if (friends.count  == 0) {
-                    friends = [[NSMutableArray alloc] init];
-                }
-                
-                [friends addObject:newFriend];
-                me[@"friends"] = friends;
-                [me saveInBackground];
-            } else {
-                //display alert
-            }
-        } else {
-            //dislay alert
-        }
-        // 2. remove them from the local table
-        [_requesters removeObjectAtIndex:_actionSheet.tag];
+        [self addFriend:newFriend];
+        
+        // 2. remove them from the local request table
+        [self.requesters removeObjectAtIndex:actionSheet.tag];
         [self.tableView reloadData];
+        
         // 3. set the bool to accepted
         friendRequest[@"accepted"] = [NSNumber numberWithBool:YES];
         [friendRequest saveInBackground];
         
     } else if (buttonIndex == 1){
         //Reject Friend Clicked
-        //simply remove the object
-        [_requesters removeObjectAtIndex:_actionSheet.tag];
+        [self.requesters removeObjectAtIndex:actionSheet.tag];
         [self.tableView reloadData];
         
         PFQuery *friendRequestQuery = [PFQuery queryWithClassName:@"friendRequest"];
-        PFObject *friendRequest = [friendRequestQuery getObjectWithId:_actionSheet.accessibilityValue];
+        PFObject *friendRequest = [friendRequestQuery getObjectWithId:actionSheet.accessibilityValue];
         [friendRequest saveInBackground];
         [friendRequest deleteInBackground];
     }
@@ -103,8 +82,32 @@
 
     //Deselect the friend when a choice is made
     [[self tableView] deselectRowAtIndexPath:(NSIndexPath *)[[self tableView] indexPathForSelectedRow] animated:YES];
-    if (_requesters.count == 0) {
+    if (self.requesters.count == 0) {
         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)addFriend: (NSString *)newFriend{
+    PFUser* me = [PFUser currentUser];
+    NSMutableArray *friends = me[@"friends"];
+    
+    if (![friends containsObject:newFriend]){
+        NSLog(@"prepreinitializing");
+        if (![[me username] isEqualToString:newFriend]){
+            if (!friends) {
+                friends = [[NSMutableArray alloc] init];
+            }
+            if (friends.count  == 0) {
+                friends = [[NSMutableArray alloc] init];
+            }
+            [friends addObject:newFriend];
+            me[@"friends"] = friends;
+            [me saveInBackground];
+        } else {
+            //display alert
+        }
+    } else {
+        //dislay alert
     }
 }
 
@@ -125,7 +128,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _requesters.count;
+    return self.requesters.count;
 }
 
 
@@ -138,7 +141,7 @@
     
     NSInteger row = [indexPath row];
     
-    PFObject *temp = [_requesters objectAtIndex:row];
+    PFObject *temp = [self.requesters objectAtIndex:row];
     cell.friendLabel.text = temp[@"requester"];
 
     return cell;

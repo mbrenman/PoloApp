@@ -43,7 +43,7 @@
 }
 
 - (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    PFObject *location = [_locationNames objectAtIndex:indexPath.row];
+    PFObject *location = [self.locationNames objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"LocationToArrow" sender:location];
 }
 
@@ -54,7 +54,7 @@
     
     // Configure the cell...
     NSInteger row = [indexPath row];
-    NSString *location = [_locationNames objectAtIndex:row];
+    NSString *location = [self.locationNames objectAtIndex:row];
     cell.friendLabel.text = location;
     return cell;
 }
@@ -65,8 +65,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {        
         BOOL found = false;
-        NSString *deleteName = [_locationNames objectAtIndex:indexPath.row];
-        for (PFObject *temp in _locations) {
+        NSString *deleteName = [self.locationNames objectAtIndex:indexPath.row];
+        for (PFObject *temp in self.locations) {
             if (!found){
                 [temp fetch];
                 NSString *tempName = temp[@"name"];
@@ -75,7 +75,7 @@
                 if ([tempName isEqualToString:deleteName]) {
                     //Delete the actual object
                     [temp deleteInBackground];
-                    [_locations removeObject:temp];
+                    [self.locations removeObject:temp];
                     found = true;
                     NSLog(@"SHOULD BE DELETED");
                 }
@@ -87,13 +87,13 @@
         
         //remove from local NSArray
         if (found){
-            [_locationNames removeObjectAtIndex:indexPath.row];
+            [self.locationNames removeObjectAtIndex:indexPath.row];
         }
         
         //remove from database
          PFUser *me = [PFUser currentUser];
-         me[@"myLocations"] = _locations;
-         me[@"myLocationNames"] = _locationNames;
+         me[@"myLocations"] = self.locations;
+         me[@"myLocationNames"] = self.locationNames;
          [me saveInBackground];
         
         //remove from local table
@@ -124,10 +124,10 @@
     [super viewWillAppear:animated];
     self.canDisplayBannerAds = YES;
     PFUser *me = [PFUser currentUser];
-    _locations = me[@"myLocations"];
+    self.locations = me[@"myLocations"];
     
-    _locationNames = me[@"myLocationNames"];
-    _locationNames = [NSMutableArray arrayWithArray:[_locationNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
+    self.locationNames = me[@"myLocationNames"];
+    self.locationNames = [NSMutableArray arrayWithArray:[self.locationNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
     [self.tableView reloadData];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.tabBarController.tabBar setHidden:NO];
@@ -150,7 +150,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _locationNames.count;
+    return self.locationNames.count;
 }
 
 /*

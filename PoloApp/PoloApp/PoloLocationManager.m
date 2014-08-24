@@ -57,8 +57,8 @@
 }
 
 -(void)stopUpdatingMyLocation {
-    [_clLocationManager stopUpdatingHeading];
-    [_clLocationManager stopUpdatingLocation];
+    [self.clLocationManager stopUpdatingHeading];
+    [self.clLocationManager stopUpdatingLocation];
 }
 
 @end

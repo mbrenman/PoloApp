@@ -12,7 +12,6 @@
 #import "TTAlertView.h"
 
 @interface AddFriendViewController () <UITextFieldDelegate>
-@property (nonatomic) NSMutableArray *friends;
 @property (nonatomic, strong) TTAlertView *alertNonexistent;
 @property (nonatomic, strong) TTAlertView *alertAlreadyAdded;
 @property (nonatomic, strong) TTAlertView *alertSelfAdded;
@@ -69,15 +68,15 @@
 - (void)addFriendToFriends: (NSString *)newFriend
 {
     PFUser *me = [PFUser currentUser];
-    _friends = me[@"friends"];
+    NSMutableArray *friends = me[@"friends"];
     
-    if (_friends == nil){
+    if (friends == nil){
         me[@"friends"] = [[NSMutableArray alloc] init];
-        _friends = me[@"friends"];
+        friends = me[@"friends"];
     }
     
     //Only add new friend if user does not already have the friend
-    if (![_friends containsObject:newFriend]){
+    if (![friends containsObject:newFriend]){
         if (![[me username] isEqualToString:newFriend]){
          //   if (there exists no friend request with requester me.currentuser && target newFriend){
             PFQuery* query = [PFQuery queryWithClassName:@"friendRequest"];

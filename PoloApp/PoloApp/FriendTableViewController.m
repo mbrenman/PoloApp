@@ -24,13 +24,13 @@
 @implementation FriendTableViewController
 
 - (IBAction)friendRequestButtonPush:(id)sender {
-    if([_friendRequests count] > 0) {
+    if([self.friendRequests count] > 0) {
         [self performSegueWithIdentifier:@"friendTableToFriendTableRequests" sender:nil];
     }
 }
 
 - (void) updateButtonText{
-    int numOfFriendReqs = (int)[_friendRequests count];
+    int numOfFriendReqs = (int)[self.friendRequests count];
     
     if (numOfFriendReqs == 0) {
         [self.friendRequestsLabel setTitle:@"" forState:UIControlStateNormal];
@@ -62,7 +62,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         //remove from local array
-        NSString *removedFriendName = [_friends objectAtIndex:indexPath.row];
+        NSString *removedFriendName = [self.friends objectAtIndex:indexPath.row];
         PFUser *me = [PFUser currentUser];
         
         PFObject *friendDeletionRequest = [PFObject objectWithClassName:@"friendDeletionRequest"];
@@ -70,10 +70,10 @@
         friendDeletionRequest[@"target"] = removedFriendName;
         [friendDeletionRequest saveInBackground];
         
-        [_friends removeObjectAtIndex:indexPath.row];
+        [self.friends removeObjectAtIndex:indexPath.row];
         
         // remove from database
-        me[@"friends"] = _friends;
+        me[@"friends"] = self.friends;
         [me saveInBackground];
         
         //remove from local table
@@ -88,7 +88,7 @@
 }
 
 - (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath{
-    NSString *user = [_friends objectAtIndex:indexPath.row];
+    NSString *user = [self.friends objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"PersonToArrow" sender:user];
 }
 
@@ -121,17 +121,17 @@
     
     //Set up buttons with their targets
     
-    [_addFriendButton setTarget:self];
-    [_addFriendButton setAction:@selector(addFriendScreen)];
+    [self.addFriendButton setTarget:self];
+    [self.addFriendButton setAction:@selector(addFriendScreen)];
     
     PFUser *me = [PFUser currentUser];
-    _friends = me[@"friends"];
+    self.friends = me[@"friends"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     PFUser *me = [PFUser currentUser];
-    _friends = [NSMutableArray arrayWithArray:[me[@"friends"] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
+    self.friends = [NSMutableArray arrayWithArray:[me[@"friends"] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
     
     [self findFriendRequesters];
     [self handleAcceptedFriendRequests];
@@ -159,7 +159,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _friends.count;
+    return self.friends.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -170,7 +170,7 @@
     // Configure the cell...    
     NSInteger row = [indexPath row];
     
-    cell.friendLabel.text = [_friends objectAtIndex:row];
+    cell.friendLabel.text = [self.friends objectAtIndex:row];
     
     return cell;
 }
@@ -196,7 +196,7 @@
         [segue.destinationViewController setStaticLocation:NO];
     }
     if ([segue.identifier isEqualToString:@"friendTableToFriendTableRequests"]){
-        [segue.destinationViewController setRequesters:_friendRequests];
+        [segue.destinationViewController setRequesters:self.friendRequests];
     }
 }
 
@@ -210,7 +210,7 @@
     
     [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            _friendRequests = (NSMutableArray*)objects;
+            self.friendRequests = (NSMutableArray*)objects;
             for (PFObject *friendrequest in self.friendRequests) {
                 NSString *requester = friendrequest[@"requester"];
                 for (NSString *friend in self.friends) {
@@ -267,10 +267,10 @@
             //loop through accepted friend requests and add them all then delete all the objects
 
             for (PFObject* request in acceptedFriendRequests) {
-                _friends = me[@"friends"];
-                if (_friends == nil) {
+                self.friends = me[@"friends"];
+                if (self.friends == nil) {
                     me[@"friends"] = [[NSMutableArray alloc] initWithObjects:request[@"target"], nil];
-                } else if (![_friends containsObject:request[@"target"]]) {
+                } else if (![self.friends containsObject:request[@"target"]]) {
                     [me[@"friends"] addObject:request[@"target"]];
                 } else {
                     [request deleteInBackground];

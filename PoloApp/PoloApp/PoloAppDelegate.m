@@ -13,10 +13,13 @@
 #import "FriendListUINavigationViewController.h"
 #import "FriendTableViewController.h"
 #import "TTAlertView.h"
+#import "PoloFriendManager.h"
 
 @interface PoloAppDelegate()
 
 @property (strong, nonatomic) PoloLocationManager *locationManager;
+@property (strong, nonatomic) PoloFriendManager *friendManager;
+
 
 @end
 
@@ -26,11 +29,18 @@
     return (PoloAppDelegate *)([UIApplication sharedApplication].delegate);
 }
 
-- (PoloLocationManager*)locationManager{
+- (PoloLocationManager *)locationManager{
     if (!_locationManager) {
         _locationManager = [[PoloLocationManager alloc] init];
     }
     return _locationManager;
+}
+
+- (PoloFriendManager *)friendManager{
+    if (!_friendManager) {
+        _friendManager = [[PoloFriendManager alloc] init];
+    }
+    return _friendManager;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

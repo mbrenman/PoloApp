@@ -60,6 +60,7 @@
 		B9793B1F19572C70003A5BAD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9793B1E19572C70003A5BAD /* StoreKit.framework */; };
 		B9793B2319573344003A5BAD /* text-left.png in Resources */ = {isa = PBXBuildFile; fileRef = B9793B2219573344003A5BAD /* text-left.png */; };
 		B9A9812F195E0DC7001752F4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A9812E195E0DC7001752F4 /* Parse.framework */; };
+		B9CEFF6819AAA57600B7721D /* PoloFriendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CEFF6719AAA57600B7721D /* PoloFriendManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,8 @@
 		B9793B1E19572C70003A5BAD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B9793B2219573344003A5BAD /* text-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-left.png"; sourceTree = "<group>"; };
 		B9A9812E195E0DC7001752F4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		B9CEFF6619AAA57600B7721D /* PoloFriendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoloFriendManager.h; sourceTree = "<group>"; };
+		B9CEFF6719AAA57600B7721D /* PoloFriendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoloFriendManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -363,6 +366,8 @@
 		B9A9812C195DF069001752F4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B9CEFF6619AAA57600B7721D /* PoloFriendManager.h */,
+				B9CEFF6719AAA57600B7721D /* PoloFriendManager.m */,
 				B3818AB7192EAA30000E81F4 /* PoloLocationManager.h */,
 				B3818AB8192EAA30000E81F4 /* PoloLocationManager.m */,
 			);
@@ -542,6 +547,7 @@
 				B303893918CE2C6100204B0B /* LocationTableViewController.m in Sources */,
 				AA046068189E1B2C001A5785 /* AddFriendViewController.m in Sources */,
 				B35C18BE18EC950B00D29FDE /* FriendRequestTableViewController.m in Sources */,
+				B9CEFF6819AAA57600B7721D /* PoloFriendManager.m in Sources */,
 				AAE891A0192C3E020062846F /* SettingsViewController.m in Sources */,
 				AAD3961D189D923A00675698 /* main.m in Sources */,
 				B3818AB9192EAA30000E81F4 /* PoloLocationManager.m in Sources */,

@@ -59,11 +59,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//    [PFPush handlePush:userInfo];
+
     NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
-    
-    //Get user by trimming until len-len of " would like to connect with you"
-    //An alert for if the user tries to add a friend that they already have
     
     TTAlertView *connectRequest = [[TTAlertView alloc]
                                    initWithTitle:@"Friend!"
@@ -84,18 +81,18 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 {
     if (buttonIndex == 1) {
         NSLog(@"Button 1 was selected.");
-        UITabBarController *tbc = [self tabBarController];
+        UITabBarController *existingTabBarController = [self tabBarController];
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        ArrowViewController *avc = (ArrowViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ArrowViewController"];
+        ArrowViewController *newArrowVC = (ArrowViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ArrowViewController"];
         
-        UIViewController *fvc = [[[tbc selectedViewController] childViewControllers] firstObject];
+        UIViewController *existingFriendTableVC = [[[existingTabBarController selectedViewController] childViewControllers] firstObject];
         
         //This should be not a literal. We should have a place where the pushing of notifications and here can see. Maybe app delegate property?
         NSString *target = [alertView.message stringByReplacingOccurrencesOfString:@" would like to connect with you" withString:@""];
-        [avc setTargetUserName:target];
+        [newArrowVC setTargetUserName:target];
         
-        [[fvc navigationController] pushViewController:avc animated:YES];
+        [[existingFriendTableVC navigationController] pushViewController:newArrowVC animated:YES];
         
     } else if(buttonIndex == 0) {
         //dismissed connection request

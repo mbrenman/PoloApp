@@ -54,18 +54,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
     self.myHeading = newHeading;
-   // NSLog(@" -- myHeading - %@", self.myHeading);
 }
-
-//- (void)locationManager:(CLLocationManager *)manager
-//       didFailWithError:(NSError *)error
-//{
-//    NSLog(@"Error while getting core location : %@",[error localizedFailureReason]);
-//    if ([error code] == kCLErrorDenied) {
-//        //you had denied
-//    }
-//    [manager stopUpdatingLocation];
-//}
 
 -(void)stopUpdatingMyLocation {
     [_clLocationManager stopUpdatingHeading];

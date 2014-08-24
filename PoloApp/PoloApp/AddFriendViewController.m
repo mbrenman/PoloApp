@@ -22,9 +22,8 @@
 
 @implementation AddFriendViewController
 
-//this lets hide keyboard when a touch is outside the text area
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if ([_friendNameField isFirstResponder])// && [touch view] != (_friendNameField))
+    if ([_friendNameField isFirstResponder])
     {
         [_friendNameField resignFirstResponder];
     }
@@ -50,7 +49,6 @@
     NSString *newFriend = [_friendNameField text];
     [self AddFriendIfExistsinDB:newFriend];
     [self.friendNameField resignFirstResponder];
-    NSLog(@"ADDBUTTONCLOCK");
 }
 
 - (void)AddFriendIfExistsinDB: (NSString *)newFriend

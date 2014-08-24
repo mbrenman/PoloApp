@@ -34,7 +34,7 @@
                         <viewControllerLayoutGuide type="bottom" id="OEP-AZ-mmp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="H3x-c5-ceN" customClass="ArrowView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Vi-VG-jus">
@@ -190,7 +190,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="numOfFriendRequestsLabel" destination="SUf-sK-b3k" id="4XF-nf-sw9"/>
+                        <outlet property="friendRequestsLabel" destination="SUf-sK-b3k" id="smB-iw-lMz"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="LogOutSegue" id="TXm-gv-ivG"/>
                         <segue destination="7bK-gE-R1Q" kind="push" identifier="AddFriendSegue" id="GsT-ym-nQk"/>
                         <segue destination="pLJ-TN-xqo" kind="push" identifier="PersonToArrow" id="TJO-ak-dHW"/>
@@ -463,10 +463,10 @@
             </objects>
             <point key="canvasLocation" x="228" y="1036"/>
         </scene>
-        <!--Friend ListUI Navigation View Controller - Friends-->
+        <!--Navigation Controller - Friends-->
         <scene sceneID="IfQ-TV-SG3">
             <objects>
-                <navigationController storyboardIdentifier="FriendListUINavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="dek-XN-y0q" customClass="FriendListUINavigationViewController" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dek-XN-y0q" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="woman.png" id="CVx-8X-BB5"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
@@ -497,7 +497,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lgx-U7-44A"/>
-        <segue reference="oIt-RW-7II"/>
+        <segue reference="TXm-gv-ivG"/>
+        <segue reference="TJO-ak-dHW"/>
     </inferredMetricsTieBreakers>
 </document>

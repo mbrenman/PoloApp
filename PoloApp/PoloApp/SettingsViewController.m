@@ -108,8 +108,7 @@
     [PFInstallation.currentInstallation saveEventually];
     
     [PFUser logOut];
-    //Segue back to the login screen
-[self performSegueWithIdentifier:@"settingsToLogout" sender:nil];
+    [self performSegueWithIdentifier:@"settingsToLogout" sender:nil];
 }
 
 - (void)setState{

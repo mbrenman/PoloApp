@@ -53,7 +53,7 @@
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     NSString *location = [_locationNames objectAtIndex:row];
     cell.friendLabel.text = location;
     return cell;
@@ -63,17 +63,15 @@
 {
     // If row is deleted, remove it from the list.
     if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        NSLog([NSString stringWithFormat:@"IT ISSS %d", indexPath.row]);
-        
+    {        
         BOOL found = false;
         NSString *deleteName = [_locationNames objectAtIndex:indexPath.row];
         for (PFObject *temp in _locations) {
             if (!found){
-                [temp fetchIfNeeded];
-            
+                [temp fetch];
                 NSString *tempName = temp[@"name"];
-            
+                
+                
                 if ([tempName isEqualToString:deleteName]) {
                     //Delete the actual object
                     [temp deleteInBackground];

@@ -39,9 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    for (PFObject* each in _requesters){
-//        NSLog(@"requester: %@", each[@"requester"]);
-//    }
+
     self.tableView.backgroundColor = [UIColor blackColor];
 
     _actionSheet = [[UIActionSheet alloc] initWithTitle:nil
@@ -49,12 +47,6 @@
                 cancelButtonTitle:@"Cancel"
                 destructiveButtonTitle:nil
                 otherButtonTitles:@"Confirm Friend",@"Reject Friend",nil];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -144,7 +136,7 @@
     
     // Configure the cell...
     
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     
     PFObject *temp = [_requesters objectAtIndex:row];
     cell.friendLabel.text = temp[@"requester"];

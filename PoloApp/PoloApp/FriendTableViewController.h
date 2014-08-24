@@ -12,7 +12,6 @@
 #import "iAd/iAd.h"
 
 @interface FriendTableViewController : UITableViewController <ADBannerViewDelegate>
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addFriendButton;
 
 @end

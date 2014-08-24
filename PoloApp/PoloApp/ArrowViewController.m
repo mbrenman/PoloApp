@@ -143,13 +143,13 @@ const float METERS_PER_MILE = 1609.34;
                 //other user does not exist
                 [self removeFriend:self.targetUserName];
             }
-             TTAlertView *alert = [[TTAlertView alloc] initWithTitle:@"Unknown User"
-                                                            message:@"The user is either private or does not exist"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            [self.navigationController popViewControllerAnimated:YES];
+//             TTAlertView *alert = [[TTAlertView alloc] initWithTitle:@"Unknown User"
+//                                                            message:@"The user is either private or does not exist"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"OK"
+//                                                  otherButtonTitles:nil];
+//            [alert show];
+//            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }

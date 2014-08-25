@@ -13,14 +13,25 @@
 #import "iAd/iAd.h"
 #import "PoloLocationManager.h"
 #import "PoloAppDelegate.h"
+#import "PoloFriendManager.h"
 
 @interface FriendTableViewController ()
+
 @property (strong, nonatomic) IBOutlet UIButton *friendRequestsLabel;
 @property (nonatomic) NSMutableArray *friends;
 @property (nonatomic) NSMutableArray *friendRequests;
+@property (strong, nonatomic) PoloFriendManager *friendManager;
+
 @end
 
 @implementation FriendTableViewController
+
+- (PoloFriendManager *)friendManager{
+    if (!_friendManager) {
+        _friendManager = [PoloAppDelegate delegate].friendManager;
+    }
+    return _friendManager;
+}
 
 - (IBAction)friendRequestButtonPush:(id)sender {
     if([self.friendRequests count] > 0) {
@@ -56,28 +67,23 @@
     return self;
 }
 
-- (void)tableView:(UITableView *)tv commitEditingStyle:    (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tv commitEditingStyle:  (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        //remove from local array
         NSString *removedFriendName = [self.friends objectAtIndex:indexPath.row];
-        PFUser *me = [PFUser currentUser];
         
-        PFObject *friendDeletionRequest = [PFObject objectWithClassName:@"friendDeletionRequest"];
-        friendDeletionRequest[@"requester"] = [me username];
-        friendDeletionRequest[@"target"] = removedFriendName;
-        [friendDeletionRequest saveInBackground];
-        
-        [self.friends removeObjectAtIndex:indexPath.row];
-        
-        // remove from database
-        me[@"friends"] = self.friends;
-        [me saveInBackground];
-        
-        //remove from local table
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView reloadData];
+
+        [self.friendManager deleteFriendWithUsername:removedFriendName
+                               WithCompletionHandler:^(BOOL success) {
+                                   if (success) {
+                                       [self.friends removeObject:removedFriendName];
+
+                                       
+                                       [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                                                             withRowAnimation:UITableViewRowAnimationFade];
+                                    }
+                               }];
     }
 }
 

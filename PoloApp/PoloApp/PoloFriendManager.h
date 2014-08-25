@@ -12,6 +12,8 @@
 @interface PoloFriendManager : NSObject
 
 - (void)getFriendsWithCompletionHandler: (void (^)(BOOL success, NSMutableArray* friends))completionBlock;
+- (void)deleteFriendWithUsername: (NSString *)name WithCompletionHandler:(void (^)(BOOL success))completionBlock;
+
 - (void)getFriendRequestsWithCompletionHander: (void (^)(BOOL success, NSMutableArray* friends))completionBlock;
 
 - (void)handleFriendRequestFrom: (NSString *)requester
@@ -20,6 +22,7 @@
 
 - (void)sendFriendRequestTo: (NSString *)name WithCompletionHandler:(void (^)(BOOL success, NSString *alertMessage))completionBlock;
 
-- (void)deleteFriendWithUsername: (NSString *)name WithCompletionHandler:(void (^)(BOOL success))completionBlock;
+- (void)handleIncomingAcceptedFriendRequests: (void (^)(BOOL success))completionBlock;
+- (void)handleDeletionRequestsWithCompletionHander: (void (^)(BOOL success))completionBlock;
 
 @end

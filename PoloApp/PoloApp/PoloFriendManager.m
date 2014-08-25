@@ -15,6 +15,32 @@
     
 }
 
+- (void)deleteFriendWithUsername: (NSString *)name WithCompletionHandler:(void (^)(BOOL success))completionBlock{
+    PFUser *me = [PFUser currentUser];
+    PFObject *friendDeletionRequest = [PFObject objectWithClassName:@"friendDeletionRequest"];
+    friendDeletionRequest[@"requester"] = [me username];
+    friendDeletionRequest[@"target"] = name;
+    [friendDeletionRequest saveInBackground];
+    
+    NSMutableArray *friends = me[@"friends"];
+    [friends removeObject:name];
+    me[@"friends"] = friends;
+
+    [me saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (completionBlock) {
+            completionBlock(succeeded);
+        }
+    }];
+}
+
+- (void)handleIncomingAcceptedFriendRequests: (void (^)(BOOL success))completionBlock{
+    
+}
+
+- (void)handleDeletionRequestsWithCompletionHander: (void (^)(BOOL success))completionBlock{
+    
+}
+
 - (void)getFriendRequestsWithCompletionHander: (void (^)(BOOL success, NSMutableArray* friends))completionBlock{
     
 }
@@ -99,7 +125,7 @@
         return;
     }
     
-    if (![[me username] isEqualToString:newFriend]){
+    if ([[me username] isEqualToString:newFriend]){
         if (completionBlock) {
             completionBlock(NO, @"Cannot add yourself");
         }

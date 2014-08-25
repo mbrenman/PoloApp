@@ -8,7 +8,6 @@
 
 @import UIKit;
 @class FriendCell;
-#import <Parse/Parse.h>
 #import "iAd/iAd.h"
 
 @interface FriendTableViewController : UITableViewController <ADBannerViewDelegate>

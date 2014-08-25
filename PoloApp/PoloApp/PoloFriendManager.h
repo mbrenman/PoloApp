@@ -18,6 +18,6 @@
                                WithResponse: (BOOL)response
                       WithCompletionHandler: (void (^)(BOOL success))completionBlock;
 
-- (void)addFriendWithName: (NSString *)name withCompeltionHandler: (void (^)(BOOL success, NSString *alertMessage))completionBlock;
+- (void)sendFriendRequestTo: (NSString *)name WithCompletionHandler:(void (^)(BOOL success, NSString *alertMessage))completionBlock;
 
 @end

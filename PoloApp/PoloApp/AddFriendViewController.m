@@ -8,14 +8,12 @@
 
 #import "AddFriendViewController.h"
 #import <Parse/Parse.h>
-
+#import "PoloAppDelegate.h"
+#import "PoloFriendManager.h"
 #import "TTAlertView.h"
 
 @interface AddFriendViewController () <UITextFieldDelegate>
-@property (nonatomic, strong) TTAlertView *alertNonexistent;
-@property (nonatomic, strong) TTAlertView *alertAlreadyAdded;
-@property (nonatomic, strong) TTAlertView *alertSelfAdded;
-@property (nonatomic, strong) TTAlertView *alertPendingRequest;
+@property (nonatomic, strong) TTAlertView *alert;
 
 @end
 
@@ -46,75 +44,22 @@
 
 - (IBAction)AddButtonClick:(id)sender {
     NSString *newFriend = [_friendNameField text];
-    [self AddFriendIfExistsinDB:newFriend];
+    PoloFriendManager *friendManager = [PoloAppDelegate delegate].friendManager;
+    
+    [friendManager sendFriendRequestTo:newFriend
+                 WithCompletionHandler:^(BOOL success, NSString *alertMessage) {
+                     if (!success) {
+                         [self.alert setMessage:alertMessage];
+                         [self.alert show];
+                     } else {
+                         [self.navigationController popViewControllerAnimated:YES];
+                     }
+                 }];
+    
     [self.friendNameField resignFirstResponder];
 }
 
-- (void)AddFriendIfExistsinDB: (NSString *)newFriend
-{
-    //TODO: can we make this faster?
-    PFQuery *query= [PFUser query];
-    [query whereKey:@"username" equalTo: newFriend];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (object != nil){
-            [self addFriendToFriends:newFriend];
-        } else {
-            NSLog(@"NOPE Frand");
-            [_alertNonexistent show];
-        }
-    }];
-}
-     
-- (void)addFriendToFriends: (NSString *)newFriend
-{
-    PFUser *me = [PFUser currentUser];
-    NSMutableArray *friends = me[@"friends"];
-    
-    if (friends == nil){
-        me[@"friends"] = [[NSMutableArray alloc] init];
-        friends = me[@"friends"];
-    }
-    
-    //Only add new friend if user does not already have the friend
-    if (![friends containsObject:newFriend]){
-        if (![[me username] isEqualToString:newFriend]){
-         //   if (there exists no friend request with requester me.currentuser && target newFriend){
-            PFQuery* query = [PFQuery queryWithClassName:@"friendRequest"];
-            __block NSMutableArray *existingFriendRequets;
-            [query whereKey:@"target" equalTo:newFriend];
-            [query whereKey:@"requester" equalTo:me.username];
-            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                if (!error) {
-                    NSLog(@"populating existingFriendRequests");
-                    existingFriendRequets = (NSMutableArray*)objects;
-                    
-                    if (existingFriendRequets.count == 0){
-                        NSLog(@"CREATING friend requestobject");
-                        //create a friend request object
-                        PFObject *friendRequest = [PFObject objectWithClassName:@"friendRequest"];
-                        friendRequest[@"requester"] = [me username];
-                        friendRequest[@"target"] = newFriend;
-                        friendRequest[@"accepted"] = [NSNumber numberWithBool:NO];
-                        [friendRequest saveInBackground];
-                        
-                        //Pop view when friend can be successfully added
-                        [self.navigationController popViewControllerAnimated:YES];
-                    } else {
-                        NSLog(@"show pending alert");
-                        [_alertPendingRequest show];
-                    }
-                } else {
-                    //handle error
-                }
-            }];
-            } else {
-            [_alertSelfAdded show];
-        }
-    } else {
-        [_alertAlreadyAdded show];
-    }
-//    [self.navigationController popViewControllerAnimated:YES];
-}
+
         
 - (void)viewDidLoad
 {
@@ -125,35 +70,35 @@
     [self.friendNameField setDelegate:self];
     
     //An alert for if the user tries to add a nonexistent friend
-    _alertNonexistent = [[TTAlertView alloc]
+    _alert = [[TTAlertView alloc]
         initWithTitle:@"Error"
-        message:@"No such user exists"
+        message:@""
         delegate:self
         cancelButtonTitle:@"Dismiss"
         otherButtonTitles:nil];
-        
-    //An alert for if the user tries to add a friend that they already have
-    _alertAlreadyAdded = [[TTAlertView alloc]
-                         initWithTitle:@"Error"
-                         message:@"Already friends with selcted user"
-                         delegate:self
-                         cancelButtonTitle:@"Dismiss"
-                         otherButtonTitles:nil];
-
-    //An alert for is the user tries to add themselves
-    _alertSelfAdded = [[TTAlertView alloc]
-                          initWithTitle:@"Error"
-                          message:@"Cannot add yourself"
-                          delegate:self
-                          cancelButtonTitle:@"Dismiss"
-                          otherButtonTitles:nil];
-    
-    _alertPendingRequest = [[TTAlertView alloc]
-                       initWithTitle:@"Error"
-                       message:@"Friend request currently pending"
-                       delegate:self
-                       cancelButtonTitle:@"Dismiss"
-                       otherButtonTitles:nil];
+//        
+//    //An alert for if the user tries to add a friend that they already have
+//    _alertAlreadyAdded = [[TTAlertView alloc]
+//                         initWithTitle:@"Error"
+//                         message:@"Already friends with selcted user"
+//                         delegate:self
+//                         cancelButtonTitle:@"Dismiss"
+//                         otherButtonTitles:nil];
+//
+//    //An alert for is the user tries to add themselves
+//    _alertSelfAdded = [[TTAlertView alloc]
+//                          initWithTitle:@"Error"
+//                          message:@"Cannot add yourself"
+//                          delegate:self
+//                          cancelButtonTitle:@"Dismiss"
+//                          otherButtonTitles:nil];
+//    
+//    _alertPendingRequest = [[TTAlertView alloc]
+//                       initWithTitle:@"Error"
+//                       message:@"Friend request currently pending"
+//                       delegate:self
+//                       cancelButtonTitle:@"Dismiss"
+//                       otherButtonTitles:nil];
 }
 
 - (void)didReceiveMemoryWarning

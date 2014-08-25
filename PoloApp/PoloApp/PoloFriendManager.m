@@ -30,8 +30,10 @@
         if (!error) {
             if (isResponseYes) {
                 
-                [self addFriendWithName:requester withCompeltionHandler:^(BOOL success,NSString* alert){
-                    NSLog(alert);
+                [self addFriendWithName:requester withCompeltionHandler:^(BOOL success){
+                    if (success) {
+                        NSLog(@"Success");
+                    }
                 }];
 
                 friendRequest[@"accepted"] = [NSNumber numberWithBool:YES];
@@ -52,7 +54,7 @@
     }];
 }
 
-- (void)addFriendWithName: (NSString *)name withCompeltionHandler: (void (^)(BOOL success, NSString* alertMessage))completionBlock{
+- (void)addFriendWithName: (NSString *)name withCompeltionHandler: (void (^)(BOOL success))completionBlock{
     PFUser* me = [PFUser currentUser];
     NSMutableArray *friends = me[@"friends"];
     
@@ -68,17 +70,92 @@
             
             [me saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
-                    if (completionBlock) { completionBlock(YES, @"Success"); }
+                    if (completionBlock) { completionBlock(YES); }
                 }
             }];
             
         } else {
-            if (completionBlock) { completionBlock(NO, @"Can't add yourself"); }
+            if (completionBlock) { completionBlock(NO); }
         }
     } else {
-        if (completionBlock) { completionBlock(NO, @"Can't add an existing friend"); }
+        if (completionBlock) { completionBlock(NO); }
     }
 }
+
+- (void)sendFriendRequestTo: (NSString *)newFriend WithCompletionHandler:(void (^)(BOOL success, NSString *alertMessage))completionBlock {
+    
+    PFUser *me = [PFUser currentUser];
+    NSMutableArray *friends = me[@"friends"];
+    
+    if (friends == nil){
+        me[@"friends"] = [[NSMutableArray alloc] init];
+        friends = me[@"friends"];
+    }
+    
+    if ([friends containsObject:newFriend]){
+        if (completionBlock) {
+            completionBlock(NO, @"Already friends with selcted user");
+        }
+        return;
+    }
+    
+    if (![[me username] isEqualToString:newFriend]){
+        if (completionBlock) {
+            completionBlock(NO, @"Cannot add yourself");
+        }
+        return;
+    }
+    
+    PFQuery *query= [PFUser query];
+    
+    //check if other there is an existing request, if not, make and sent it
+    [query whereKey:@"username" equalTo: newFriend];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (object != nil){
+            
+            __block NSMutableArray *existingFriendRequests;
+
+            PFQuery* query = [PFQuery queryWithClassName:@"friendRequest"];
+            
+            [query whereKey:@"target" equalTo:newFriend];
+            [query whereKey:@"requester" equalTo:me.username];
+            
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                
+                if (!error) {
+                    NSLog(@"populating existingFriendRequests");
+                    existingFriendRequests = (NSMutableArray*)objects;
+                    
+                    if (existingFriendRequests.count == 0){
+                        NSLog(@"CREATING friend requestobject");
+
+                        PFObject *friendRequest = [PFObject objectWithClassName:@"friendRequest"];
+                        friendRequest[@"requester"] = [me username];
+                        friendRequest[@"target"] = newFriend;
+                        friendRequest[@"accepted"] = [NSNumber numberWithBool:NO];
+                        [friendRequest saveInBackground];
+                        
+                        if (completionBlock) {
+                            completionBlock(YES, nil);
+                        }
+                    } else {
+                        if (completionBlock) {
+                            completionBlock(NO, @"Friend request currently pending");
+                        }
+                    }
+                } else {
+                    //handle error
+                }
+            }];
+            
+        } else {
+            if (completionBlock) {
+                completionBlock(NO, @"There is no user with that name in our database, please double check your information");
+            }
+        }
+    }];
+}
+
 
 
 

@@ -12,7 +12,11 @@
 
 - (void)getFriendsWithCompletionHandler: (void (^)(BOOL success, NSMutableArray* friends))completionBlock
 {
+    PFUser *me = [PFUser currentUser];
     
+    if (completionBlock) {
+        completionBlock(YES, me[@"friends"]);
+    }
 }
 
 - (void)deleteFriendWithUsername: (NSString *)name WithCompletionHandler:(void (^)(BOOL success))completionBlock{

@@ -11,6 +11,7 @@
 #import "ArrowViewController.h"
 #import "FriendRequestTableViewController.h"
 #import "iAd/iAd.h"
+#import "Parse/Parse.h"
 #import "PoloLocationManager.h"
 #import "PoloAppDelegate.h"
 #import "PoloFriendManager.h"

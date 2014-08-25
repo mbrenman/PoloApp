@@ -20,4 +20,6 @@
 
 - (void)sendFriendRequestTo: (NSString *)name WithCompletionHandler:(void (^)(BOOL success, NSString *alertMessage))completionBlock;
 
+- (void)deleteFriendWithUsername: (NSString *)name WithCompletionHandler:(void (^)(BOOL success))completionBlock;
+
 @end

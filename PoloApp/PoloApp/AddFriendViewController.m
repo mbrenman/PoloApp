@@ -69,42 +69,18 @@
     [self.friendNameField setReturnKeyType:UIReturnKeyDefault];
     [self.friendNameField setDelegate:self];
     
-    //An alert for if the user tries to add a nonexistent friend
     _alert = [[TTAlertView alloc]
         initWithTitle:@"Error"
         message:@""
         delegate:self
         cancelButtonTitle:@"Dismiss"
         otherButtonTitles:nil];
-//        
-//    //An alert for if the user tries to add a friend that they already have
-//    _alertAlreadyAdded = [[TTAlertView alloc]
-//                         initWithTitle:@"Error"
-//                         message:@"Already friends with selcted user"
-//                         delegate:self
-//                         cancelButtonTitle:@"Dismiss"
-//                         otherButtonTitles:nil];
-//
-//    //An alert for is the user tries to add themselves
-//    _alertSelfAdded = [[TTAlertView alloc]
-//                          initWithTitle:@"Error"
-//                          message:@"Cannot add yourself"
-//                          delegate:self
-//                          cancelButtonTitle:@"Dismiss"
-//                          otherButtonTitles:nil];
-//    
-//    _alertPendingRequest = [[TTAlertView alloc]
-//                       initWithTitle:@"Error"
-//                       message:@"Friend request currently pending"
-//                       delegate:self
-//                       cancelButtonTitle:@"Dismiss"
-//                       otherButtonTitles:nil];
+
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

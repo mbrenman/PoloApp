@@ -18,7 +18,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *friendRequestsLabel;
 @property (nonatomic) NSMutableArray *friends;
 @property (nonatomic) NSMutableArray *friendRequests;
-@property (nonatomic) NSMutableArray *toBeDeleted;
 @end
 
 @implementation FriendTableViewController
@@ -116,13 +115,9 @@
     [myLocationManager startUpdatingMyLocation];
     
     //Set device to be associated with user
+#warning move this to app delegate
     [PFInstallation.currentInstallation setObject:PFUser.currentUser forKey:@"user"];
     [PFInstallation.currentInstallation saveInBackground];
-    
-    //Set up buttons with their targets
-    
-    [self.addFriendButton setTarget:self];
-    [self.addFriendButton setAction:@selector(addFriendScreen)];
     
     PFUser *me = [PFUser currentUser];
     self.friends = me[@"friends"];
@@ -180,7 +175,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"PersonToArrow"]){
-
+        
+#warning talk to Matt about what the following two lines do
         PFQuery *userQuery = [PFUser query];
         [userQuery whereKey:@"username" equalTo:sender];
         
@@ -190,7 +186,7 @@
         NSString *pushMessage = [NSString stringWithFormat:@"%@ would like to connect with you", [[PFUser currentUser] username]];
         
         [PFPush sendPushMessageToQueryInBackground:devicesFilter
-                                       withMessage:pushMessage]; //TODO: add username here and payload that auto connects the receiver with the caller.
+                                       withMessage:pushMessage];
 
         [segue.destinationViewController setTargetUserName:sender];
         [segue.destinationViewController setStaticLocation:NO];
@@ -229,30 +225,28 @@
         } else {
             //handle error
         }
-    }
-     ];
+    }];
 }
 
 -(void) handleDeletedFriends{
     PFUser *me = [PFUser currentUser];
     PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendDeletionRequest"];
     [requesterQuery whereKey:@"target" equalTo:me.username];
+    __block NSArray *toBeDeleted = [[NSArray alloc] init];
     
     [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            self.toBeDeleted = (NSMutableArray*)objects;
-            //NSLog(@"OBJECTS: %@",objects);
+            toBeDeleted = (NSMutableArray*)objects;
+            for (PFObject *object in toBeDeleted) {
+                [self.friends removeObject:object[@"requester"]];
+                me[@"friends"] = self.friends;
+                [me saveInBackground];
+                [object deleteInBackground];
+            }
         } else {
             //handle error
         }
     }];
-    
-    for (PFObject *object in self.toBeDeleted) {
-        [self.friends removeObject:object[@"requester"]];
-        me[@"friends"] = self.friends;
-        [me saveInBackground];
-        [object deleteInBackground];
-    }
 }
 
 - (void) handleAcceptedFriendRequests{

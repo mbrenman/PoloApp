@@ -247,10 +247,10 @@
             </objects>
             <point key="canvasLocation" x="1372" y="-403"/>
         </scene>
-        <!--Friend List Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="KD6-jO-9AT">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="ZfR-jF-EaM" customClass="FriendListTabBarController" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="ZfR-jF-EaM" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="IUU-MR-q5G">

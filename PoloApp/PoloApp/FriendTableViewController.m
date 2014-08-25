@@ -131,6 +131,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     PFUser *me = [PFUser currentUser];
+    
     self.friends = [NSMutableArray arrayWithArray:[me[@"friends"] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
     
     [self findFriendRequesters];
@@ -167,7 +168,6 @@
     static NSString *CellIdentifier = @"FriendCell";
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    // Configure the cell...    
     NSInteger row = [indexPath row];
     
     cell.friendLabel.text = [self.friends objectAtIndex:row];
@@ -203,6 +203,7 @@
 #pragma mark - Friend Requests
 
 - (void) findFriendRequesters{
+
     PFUser *me = [PFUser currentUser];
     PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendRequest"];
     [requesterQuery whereKey:@"accepted" equalTo:[NSNumber numberWithBool:NO]];
@@ -210,9 +211,11 @@
     
     [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            self.friendRequests = (NSMutableArray*)objects;
-            for (PFObject *friendrequest in self.friendRequests) {
+            for (PFObject *friendrequest in objects) {
                 NSString *requester = friendrequest[@"requester"];
+                [self.friendRequests addObject:requester];
+                
+                //automatically accept requests from friends
                 for (NSString *friend in self.friends) {
                     if ([requester isEqualToString:friend]) {
                         [self.friendRequests removeObject:friendrequest];
@@ -284,8 +287,15 @@
             //handle error
         }
     }];
-
 }
+
+-(NSMutableArray *)friendRequests{
+    if (!_friendRequests) {
+        _friendRequests = [[NSMutableArray alloc] init];
+    }
+    return _friendRequests;
+}
+
 
 
 @end

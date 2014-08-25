@@ -9,8 +9,11 @@
 #import "FriendRequestTableViewController.h"
 #import "Parse/Parse.h"
 #import "FriendCell.h"
+#import "PoloFriendManager.h"
+#import "PoloAppDelegate.h"
 
 @interface FriendRequestTableViewController ()
+
 
 @end
 
@@ -27,16 +30,12 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    PFObject *temp = [self.requesters objectAtIndex:indexPath.row];
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Confirm Friend",@"Reject Friend",nil];
     
-    actionSheet.accessibilityValue = [temp objectId];
     actionSheet.tag = indexPath.row;
 
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
@@ -51,32 +50,38 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    PoloFriendManager *friendManager = [PoloAppDelegate delegate].friendManager;
+    NSString *requester = [self.requesters objectAtIndex:[actionSheet tag]];
+
     if (buttonIndex == 0){
         //Confirm Friend Clicked
-        // 1. add the friend
-        PFQuery *friendRequestQuery = [PFQuery queryWithClassName:@"friendRequest"];
-        PFObject *friendRequest = [friendRequestQuery getObjectWithId:actionSheet.accessibilityValue];
-        
-        NSString *newFriend = friendRequest[@"requester"];
-        [self addFriend:newFriend];
-        
-        // 2. remove them from the local request table
-        [self.requesters removeObjectAtIndex:actionSheet.tag];
-        [self.tableView reloadData];
-        
-        // 3. set the bool to accepted
-        friendRequest[@"accepted"] = [NSNumber numberWithBool:YES];
-        [friendRequest saveInBackground];
+
+        [friendManager handleFriendRequestFrom:requester
+                                  WithResponse:YES
+                         WithCompletionHandler:^(BOOL success) {
+                             if (success) {
+                                 [self.requesters removeObjectAtIndex:actionSheet.tag];
+                                 [self.tableView reloadData];
+                                 if (self.requesters.count < 1) {
+                                     [self.navigationController popViewControllerAnimated:YES];
+                                 }
+                             }
+                         }];
         
     } else if (buttonIndex == 1){
         //Reject Friend Clicked
-        [self.requesters removeObjectAtIndex:actionSheet.tag];
-        [self.tableView reloadData];
         
-        PFQuery *friendRequestQuery = [PFQuery queryWithClassName:@"friendRequest"];
-        PFObject *friendRequest = [friendRequestQuery getObjectWithId:actionSheet.accessibilityValue];
-        [friendRequest saveInBackground];
-        [friendRequest deleteInBackground];
+        [friendManager handleFriendRequestFrom:requester
+                                  WithResponse:NO
+                         WithCompletionHandler:^(BOOL success) {
+                             if (success) {
+                                 [self.requesters removeObjectAtIndex:actionSheet.tag];
+                                 [self.tableView reloadData];
+                                 if (self.requesters.count < 1) {
+                                     [self.navigationController popViewControllerAnimated:YES];
+                                 }
+                             }
+                         }];
     }
     //Otherwise cancel was clicked, so we do nothing
 
@@ -84,30 +89,6 @@
     [[self tableView] deselectRowAtIndexPath:(NSIndexPath *)[[self tableView] indexPathForSelectedRow] animated:YES];
     if (self.requesters.count == 0) {
         [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
-- (void)addFriend: (NSString *)newFriend{
-    PFUser* me = [PFUser currentUser];
-    NSMutableArray *friends = me[@"friends"];
-    
-    if (![friends containsObject:newFriend]){
-        NSLog(@"prepreinitializing");
-        if (![[me username] isEqualToString:newFriend]){
-            if (!friends) {
-                friends = [[NSMutableArray alloc] init];
-            }
-            if (friends.count  == 0) {
-                friends = [[NSMutableArray alloc] init];
-            }
-            [friends addObject:newFriend];
-            me[@"friends"] = friends;
-            [me saveInBackground];
-        } else {
-            //display alert
-        }
-    } else {
-        //dislay alert
     }
 }
 
@@ -128,6 +109,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    
     return self.requesters.count;
 }
 
@@ -137,12 +119,9 @@
     static NSString *CellIdentifier = @"FriendCell";
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
-    
     NSInteger row = [indexPath row];
     
-    PFObject *temp = [self.requesters objectAtIndex:row];
-    cell.friendLabel.text = temp[@"requester"];
+    cell.friendLabel.text = [self.requesters objectAtIndex:row];
 
     return cell;
 }

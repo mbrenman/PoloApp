@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FriendRequestTableViewController :UITableViewController <UIActionSheetDelegate>
-@property (nonatomic,strong) NSMutableArray* requesters;
 
+@property (nonatomic,strong) NSMutableArray* requesters;
 
 @end

@@ -73,7 +73,6 @@
     {
         NSString *removedFriendName = [self.friends objectAtIndex:indexPath.row];
         
-
         [self.friendManager deleteFriendWithUsername:removedFriendName
                                WithCompletionHandler:^(BOOL success) {
                                    if (success) {
@@ -135,11 +134,21 @@
     
     self.friends = [NSMutableArray arrayWithArray:[me[@"friends"] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
     
-    [self findFriendRequesters];
-    [self handleAcceptedFriendRequests];
-    [self handleDeletedFriends];
+    [self.friendManager getFriendRequestsWithCompletionHander:^(BOOL success, NSMutableArray *friendRequests) {
+        self.friendRequests = friendRequests;
+        [self updateButtonText];
+    }];
     
-    [self.tableView reloadData];
+    [self.friendManager handleIncomingAcceptedFriendRequests:^(BOOL success) {
+        self.friends = me[@"friends"];
+        [self.tableView reloadData];
+    }];
+    
+    [self.friendManager handleDeletionRequestsWithCompletionHander:^(BOOL success) {
+        self.friends = me[@"friends"];
+        [self.tableView reloadData];
+    }];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.tabBarController.tabBar setHidden:NO];
 }
@@ -206,87 +215,6 @@
 
 - (void) findFriendRequesters{
 
-    PFUser *me = [PFUser currentUser];
-    PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendRequest"];
-    [requesterQuery whereKey:@"accepted" equalTo:[NSNumber numberWithBool:NO]];
-    [requesterQuery whereKey:@"target" equalTo:me.username];
-    
-    [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *friendrequest in objects) {
-                NSString *requester = friendrequest[@"requester"];
-                [self.friendRequests addObject:requester];
-                
-                //automatically accept requests from friends
-                for (NSString *friend in self.friends) {
-                    if ([requester isEqualToString:friend]) {
-                        [self.friendRequests removeObject:friendrequest];
-                        friendrequest[@"accepted"] = [NSNumber numberWithBool:YES];
-                        [friendrequest saveInBackground];
-                        [me saveInBackground];
-                    }
-                }
-            }
-            [self updateButtonText];
-        } else {
-            //handle error
-        }
-    }];
-}
-
--(void) handleDeletedFriends{
-    PFUser *me = [PFUser currentUser];
-    PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendDeletionRequest"];
-    [requesterQuery whereKey:@"target" equalTo:me.username];
-    __block NSArray *toBeDeleted = [[NSArray alloc] init];
-    
-    [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            toBeDeleted = (NSMutableArray*)objects;
-            for (PFObject *object in toBeDeleted) {
-                [self.friends removeObject:object[@"requester"]];
-                me[@"friends"] = self.friends;
-                [me saveInBackground];
-                [object deleteInBackground];
-            }
-        } else {
-            //handle error
-        }
-    }];
-}
-
-- (void) handleAcceptedFriendRequests{
-    PFUser *me = [PFUser currentUser];
-    PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendRequest"];
-    
-    [requesterQuery whereKey:@"accepted" equalTo:[NSNumber numberWithBool:YES]];
-    [requesterQuery whereKey:@"requester" equalTo:me.username];
-    
-    [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            
-            NSMutableArray *acceptedFriendRequests = (NSMutableArray*)objects;
-            
-            //loop through accepted friend requests and add them all then delete all the objects
-
-            for (PFObject* request in acceptedFriendRequests) {
-                self.friends = me[@"friends"];
-                if (self.friends == nil) {
-                    me[@"friends"] = [[NSMutableArray alloc] initWithObjects:request[@"target"], nil];
-                } else if (![self.friends containsObject:request[@"target"]]) {
-                    [me[@"friends"] addObject:request[@"target"]];
-                } else {
-                    [request deleteInBackground];
-                }
-                [me saveInBackground];
-                [request deleteInBackground];
-                [self.tableView reloadData];
-                
-            }
-        } else {
-            //handle error
-        }
-    }];
 }
 
 -(NSMutableArray *)friendRequests{

@@ -34,15 +34,105 @@
 }
 
 - (void)handleIncomingAcceptedFriendRequests: (void (^)(BOOL success))completionBlock{
+    PFUser *me = [PFUser currentUser];
+    PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendRequest"];
     
+    [requesterQuery whereKey:@"accepted" equalTo:[NSNumber numberWithBool:YES]];
+    [requesterQuery whereKey:@"requester" equalTo:me.username];
+    
+    [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSMutableArray *friends = me[@"friends"];
+            NSMutableArray *acceptedFriendRequests = (NSMutableArray*)objects;
+            
+            //loop through accepted friend requests and add them all then delete all the objects
+            
+            for (PFObject* request in acceptedFriendRequests) {
+                friends = me[@"friends"];
+                if (friends == nil) {
+                    me[@"friends"] = [[NSMutableArray alloc] initWithObjects:request[@"target"], nil];
+                } else if ([friends containsObject:request[@"target"]]) {
+                    [request deleteInBackground];
+                } else {
+                    [me[@"friends"] addObject:request[@"target"]];
+                }
+                [me saveInBackground];
+                [request deleteInBackground];
+                if (completionBlock) {
+                    completionBlock(YES);
+                }
+            }
+        } else {
+            if (completionBlock) {
+                completionBlock(NO);
+            }
+        }
+    }];
 }
 
 - (void)handleDeletionRequestsWithCompletionHander: (void (^)(BOOL success))completionBlock{
+    PFUser *me = [PFUser currentUser];
+    PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendDeletionRequest"];
+    [requesterQuery whereKey:@"target" equalTo:me.username];
+    __block NSArray *toBeDeleted = [[NSArray alloc] init];
     
+    [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSMutableArray *friends = me[@"friends"];
+
+            toBeDeleted = (NSMutableArray*)objects;
+            for (PFObject *object in toBeDeleted) {
+                [friends removeObject:object[@"requester"]];
+                me[@"friends"] = friends;
+                [me saveInBackground];
+                [object deleteInBackground];
+            }
+            if (completionBlock) {
+                completionBlock(YES);
+            }
+        } else {
+            if (completionBlock) {
+                completionBlock(NO);
+            }
+        }
+    }];
 }
 
-- (void)getFriendRequestsWithCompletionHander: (void (^)(BOOL success, NSMutableArray* friends))completionBlock{
+- (void)getFriendRequestsWithCompletionHander: (void (^)(BOOL success, NSMutableArray* requests))completionBlock{
     
+    PFUser *me = [PFUser currentUser];
+    PFQuery* requesterQuery = [PFQuery queryWithClassName:@"friendRequest"];
+    [requesterQuery whereKey:@"accepted" equalTo:[NSNumber numberWithBool:NO]];
+    [requesterQuery whereKey:@"target" equalTo:me.username];
+    
+    [requesterQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSMutableArray *friends = me[@"friends"];
+            NSMutableArray *friendRequestsAsStrings = [[NSMutableArray alloc] init];
+            
+            for (PFObject *friendrequest in objects) {
+                NSString *requester = friendrequest[@"requester"];
+                [friendRequestsAsStrings addObject:requester];
+                
+                //automatically accept requests from friends
+                for (NSString *friend in friends) {
+                    if ([requester isEqualToString:friend]) {
+                        [friendRequestsAsStrings removeObject:friendrequest];
+                        friendrequest[@"accepted"] = [NSNumber numberWithBool:YES];
+                        [friendrequest saveInBackground];
+                        [me saveInBackground];
+                    }
+                }
+            }
+            if (completionBlock) {
+                completionBlock(YES, friendRequestsAsStrings);
+            }
+        } else {
+            if (completionBlock) {
+                completionBlock(NO, nil);
+            }
+        }
+    }];
 }
 
 - (void)handleFriendRequestFrom: (NSString *)requester

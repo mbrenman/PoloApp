@@ -110,48 +110,35 @@
     
     //check if other there is an existing request, if not, make and sent it
     [query whereKey:@"username" equalTo: newFriend];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (object != nil){
-            
-            __block NSMutableArray *existingFriendRequests;
-
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *otherUser, NSError *error) {
+        if (otherUser == nil){
+            if (completionBlock) {
+                completionBlock(NO, @"There is no user with that name in our database, please double check your information");
+            }
+        } else {
             PFQuery* query = [PFQuery queryWithClassName:@"friendRequest"];
             
             [query whereKey:@"target" equalTo:newFriend];
             [query whereKey:@"requester" equalTo:me.username];
             
-            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                
+            [query findObjectsInBackgroundWithBlock:^(NSArray *existingFriendRequests, NSError *error) {
                 if (!error) {
-                    NSLog(@"populating existingFriendRequests");
-                    existingFriendRequests = (NSMutableArray*)objects;
-                    
                     if (existingFriendRequests.count == 0){
-                        NSLog(@"CREATING friend requestobject");
-
+                        
                         PFObject *friendRequest = [PFObject objectWithClassName:@"friendRequest"];
                         friendRequest[@"requester"] = [me username];
                         friendRequest[@"target"] = newFriend;
                         friendRequest[@"accepted"] = [NSNumber numberWithBool:NO];
                         [friendRequest saveInBackground];
                         
-                        if (completionBlock) {
-                            completionBlock(YES, nil);
-                        }
+                        if (completionBlock) { completionBlock(YES, nil); }
                     } else {
-                        if (completionBlock) {
-                            completionBlock(NO, @"Friend request currently pending");
-                        }
+                        if (completionBlock) { completionBlock(NO, @"Friend request currently pending");}
                     }
                 } else {
-                    //handle error
+                    if (completionBlock) { completionBlock(NO, @"Error, try again"); }
                 }
             }];
-            
-        } else {
-            if (completionBlock) {
-                completionBlock(NO, @"There is no user with that name in our database, please double check your information");
-            }
         }
     }];
 }
